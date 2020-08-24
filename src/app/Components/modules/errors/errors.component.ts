@@ -35,13 +35,13 @@ export class ErrorsComponent implements OnInit {
   displayedColumns: string[] = ['logId','api', 'origin', 'info', 'logHitAt'];
   dataSource = this.ELEMENT_DATA;
 
-  // getErrors(type: string) {
-  //   this.errorService.getErrorsByApi(type).subscribe((res) => {
-  //     console.log(res);
-  //     this.ELEMENT_DATA = res.data;
-  //     this.dataSource = this.ELEMENT_DATA;
-  //   });
-  // }
+  getErrors(type: string) {
+    this.errorService.getErrorsByApi(type).subscribe((res) => {
+      console.log(res);
+      this.ELEMENT_DATA = res.data;
+      this.dataSource = this.ELEMENT_DATA;
+    });
+  }
 
   getAll(){
     this.errorService.getAllError().subscribe((res) => {

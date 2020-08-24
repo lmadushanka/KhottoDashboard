@@ -144,14 +144,11 @@ export class AddProviderComponent implements OnInit {
     this.newProvider.openDays = this.days;
 
     // PROVIDER VALUES ENTITY SET < Form Submission^^
-    this.addProviderInfo('name', this.newProvider.name);
-    this.addProviderInfo('locationName', this.newProvider.location);
+    // this.addProviderInfo('name', this.newProvider.name);
+    // this.addProviderInfo('locationName', this.newProvider.location);
     this.addProviderInfo('address', this.newProvider.address);
     this.addProviderInfo('callNumber', this.newProvider.phone);
-    this.addProviderInfo(
-      'luxuryCategory',
-      Number(this.newProvider.luxuryCategory)
-    );
+    // this.addProviderInfo('luxuryCategory',Number(this.newProvider.luxuryCategory));
     this.addProviderInfo('taxRate', this.newProvider.taxRate);
     this.addProviderInfo('serviceCharge', this.newProvider.serviceCharge);
     this.addProviderInfo('mapUrl', this.newProvider.mapUrl);
@@ -167,6 +164,9 @@ export class AddProviderComponent implements OnInit {
     this.addProviderDto.categoryId = Number(this.newProvider.category);
     this.addProviderDto.providerTypeId = Number(this.newProvider.providerType);
 
+    this.addProviderDto.providerName = this.newProvider.name;
+    this.addProviderDto.luxuryCategory = this.newProvider.luxuryCategory;
+    this.addProviderDto.location = this.newProvider.location;
     this.providerInfo.logoImage = this.newProvider.logoImage;
     this.providerInfo.coverImage = this.newProvider.coverImage;
     this.providerInfo.bannerImage = this.newProvider.bannerImage;

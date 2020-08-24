@@ -17,6 +17,7 @@
         <mat-option
           *ngFor="let item of itemTypeList"
           value="{{ item.value }}"
+          (click)="onItemrTypeSelect(item.value)"
           >{{ item.name }}</mat-option
         >
       </mat-select>
@@ -98,7 +99,47 @@
       </mat-select>
     </mat-form-field>
 
-    <hr *ngIf="providerType" style="width: 100%;" />
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+      *ngIf="itemType"
+    >
+      <mat-label>Item Availabilty</mat-label>
+      <input
+        matInput
+        placeholder="Enter Availabilty"
+        type="text"
+        formControlName="itemAvailability"
+        required
+      />
+    </mat-form-field>
+
+    <hr style="width: 100%;" />
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 40%;">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let option of options;">
+          <td scope="row">
+            {{ option.value }} 
+            <input
+            id="{{ option.value }}"
+            type="checkbox"
+            [checked]="option.isOpen"
+            value="{{ option.isOpen }}"
+          />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+    <hr style="width: 100%;" />
 
     <!-- Terms -->
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">

@@ -45,7 +45,7 @@ export class ItemsComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[] = [];
 
   constructor(private session: SessionService,
-     private itemService:ItemService
+     private ItemService:ItemService
      
      ) {}
 
@@ -59,7 +59,7 @@ export class ItemsComponent implements OnInit {
 
   getAllProvider() {
 
-    this.itemService.getAllItemList().subscribe((res) => {
+    this.ItemService.getAllItemList().subscribe((res) => {
       console.log(res);
       this.ELEMENT_DATA = res.data;
       this.dataSource = this.ELEMENT_DATA;

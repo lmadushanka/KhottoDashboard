@@ -6,4 +6,5 @@ export class ProviderInfo {
   bannerImage: File;
   providerInfo: AddProviderDto;
   data: any;
+  
 }

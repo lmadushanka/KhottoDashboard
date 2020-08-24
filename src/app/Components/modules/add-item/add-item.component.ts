@@ -8,6 +8,7 @@ import { ItemService } from 'src/app/services/Item/item.service';
 import { AddItemDto } from 'src/app/entity/addItemDto';
 import { ItemDto } from 'src/app/entity/itemDto';
 import { ItemValues } from 'src/app/entity/itemValues';
+import { OpenDays } from 'src/app/entity/open-days';
 import { ProviderService } from '../../../Services/provider/provider.service';
 
 @Component({
@@ -30,6 +31,11 @@ export class AddItemComponent implements OnInit {
   providerId: any;
   providerType:any;
 
+
+  itemType = false;
+
+  options: any;
+
   addItemForm = new FormGroup({
     itemType: new FormControl(),
     itemName: new FormControl(),
@@ -37,6 +43,7 @@ export class AddItemComponent implements OnInit {
     cover: new FormControl(),
     description: new FormControl(),
     provider: new FormControl(),
+    itemAvailability: new FormControl(),
   });
 
   coverFile: File = null;
@@ -50,14 +57,14 @@ export class AddItemComponent implements OnInit {
 
   errTerm: any = { show: false, value: 'Enter details... !' };
 
+
   constructor(
     private session: SessionService,
-    private itemService: ItemService,
+    private ItemService: ItemService,
   ) {}
 
   ngOnInit() {
     this.session.sessionCheck();
-
     this.providerId = localStorage.getItem('providerId');
 
     if(this.providerId == 0){
@@ -83,6 +90,7 @@ export class AddItemComponent implements OnInit {
     this.newItem.coverImage = this.coverFile;
     this.newItem.description = this.addItemForm.value.description;
     this.newItem.terms = this.terms;
+    this.newItem.availability = this.addItemForm.value.itemAvailability
     // console.log(this.newItem);
 
     this.itemDto.itemTypeId = Number(this.newItem.type);
@@ -100,13 +108,14 @@ export class AddItemComponent implements OnInit {
     this.addItemInfo('coverImage', this.coverFile);
     this.addItemInfo('simpleDescription', this.newItem.description);
     this.addItemInfo('terms', this.newItem.terms);
+    this.addItemInfo('availability', this.newItem.availability);
     this.itemDto.itemValues = this.itemValues;
 
     this.addItemDto.coverImage = this.newItem.coverImage;
     this.addItemDto.itemInfo = this.itemDto;
 
     console.log(this.addItemDto);
-    this.itemService.addItem(this.addItemDto).subscribe((res) => {});
+    this.ItemService.addItem(this.addItemDto).subscribe((res) => {});
 
     setTimeout(function () {
       _this.resetForm();
@@ -174,10 +183,21 @@ export class AddItemComponent implements OnInit {
   }
 
   onProviderSelect(){
-    this.itemService.getProviders().subscribe((res) => {
+    this.ItemService.getProviders().subscribe((res) => {
       this.provider = res.data;
       console.log(this.provider);
     });
+  }
+
+  onItemrTypeSelect(value) {
+    if(value == 2){
+      this.itemType = true;
+    }else if(value == 1){
+      this.itemType = false;
+    }
+
+    console.log(value);
+    
   }
 
 }

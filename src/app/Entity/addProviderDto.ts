@@ -5,4 +5,7 @@ export class AddProviderDto {
   serviceUserId: any;
   categoryId: any;
   providerValues: ProviderValues[];
+  providerName:any;
+  luxuryCategory:any;
+  location:any;
 }
