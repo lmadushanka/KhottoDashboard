@@ -29,16 +29,26 @@ export class ErrorsComponent implements OnInit {
 
   ngOnInit() {
     this.session.sessionCheck();
+    this.getAll();
   }
 
-  displayedColumns: string[] = ['logId', 'origin', 'info', 'logHitAt'];
+  displayedColumns: string[] = ['logId','api', 'origin', 'info', 'logHitAt'];
   dataSource = this.ELEMENT_DATA;
 
-  getErrors(type: string) {
-    this.errorService.getErrorsByApi(type).subscribe((res) => {
+  // getErrors(type: string) {
+  //   this.errorService.getErrorsByApi(type).subscribe((res) => {
+  //     console.log(res);
+  //     this.ELEMENT_DATA = res.data;
+  //     this.dataSource = this.ELEMENT_DATA;
+  //   });
+  // }
+
+  getAll(){
+    this.errorService.getAllError().subscribe((res) => {
       console.log(res);
       this.ELEMENT_DATA = res.data;
       this.dataSource = this.ELEMENT_DATA;
+      console.log(this.dataSource);
     });
   }
 }

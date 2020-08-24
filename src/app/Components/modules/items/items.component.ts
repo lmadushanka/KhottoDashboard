@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from 'src/app/services/session/session.service';
+import { ItemService } from '../../../Services/Item/item.service';
 
 export interface PeriodicElement {
   type: string;
@@ -41,12 +42,32 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent implements OnInit {
-  constructor(private session: SessionService) {}
+  ELEMENT_DATA: PeriodicElement[] = [];
+
+  constructor(private session: SessionService,
+     private itemService:ItemService
+     
+     ) {}
 
   ngOnInit() {
     this.session.sessionCheck();
+    this.getAllProvider();
   }
 
   displayedColumns: string[] = ['type', 'name', 'price', 'cover_image'];
   dataSource = ELEMENT_DATA;
+
+  getAllProvider() {
+
+    this.itemService.getAllItemList().subscribe((res) => {
+      console.log(res);
+      this.ELEMENT_DATA = res.data;
+      this.dataSource = this.ELEMENT_DATA;
+
+      console.log(this.dataSource);
+
+      
+    });
+  }
+
 }

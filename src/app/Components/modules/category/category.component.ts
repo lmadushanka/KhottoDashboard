@@ -38,6 +38,8 @@ export class CategoryComponent implements OnInit {
       console.log(res);
       this.ELEMENT_DATA = res.data;
       this.dataSource = this.ELEMENT_DATA;
+
+      
     });
   }
 }

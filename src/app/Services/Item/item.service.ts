@@ -33,4 +33,10 @@ export class ItemService {
     let signinUrl = this.baseUrl + '/provider/providerNameList';
     return this.http.get<any>(signinUrl, httpOptions);
   }
+
+  getAllItemList():Observable<any>{
+    let signinUrl = this.baseUrl + '/item/all/1';
+
+    return this.http.get<any>(signinUrl, httpOptions);
+  }
 }

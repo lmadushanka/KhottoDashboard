@@ -1,4 +1,4 @@
-<a mat-button class="btn btn-primary" href="/home/add-item">Add Item</a>
+<a mat-button class="btn btn-primary" href="/dashboard/add-item">Add Item</a>
 <mat-divider></mat-divider>
 <br />
 
@@ -6,7 +6,7 @@
   <!-- Type Column -->
   <ng-container matColumnDef="type">
     <th mat-header-cell *matHeaderCellDef>Type</th>
-    <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.itemTypeId }}</td>
   </ng-container>
 
   <!-- Name Column -->
@@ -25,7 +25,13 @@
   <ng-container matColumnDef="cover_image">
     <th mat-header-cell *matHeaderCellDef>Cover Image</th>
     <td mat-cell *matCellDef="let element">
-      <img src="{{ element.imageUrl }}" />
+      <img
+      
+        src="{{ element.coverImage }}"
+        height="120"
+        style="padding: 5px;"
+        
+      />
     </td>
   </ng-container>
 

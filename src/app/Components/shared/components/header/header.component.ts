@@ -25,5 +25,8 @@ export class HeaderComponent implements OnInit {
 
   signOut() {
     window.localStorage.removeItem('user');
+    window.localStorage.removeItem('token');
+    window.localStorage.removeItem('serviceUserId');
+    window.localStorage.removeItem('providerId');
   }
 }

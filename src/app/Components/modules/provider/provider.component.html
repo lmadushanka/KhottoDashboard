@@ -1,9 +1,9 @@
-<a mat-button class="btn btn-primary" href="/home/add-provider">Add Provider</a>
+<a mat-button class="btn btn-primary" href="/dashboard/add-provider">Add Provider</a>
 <mat-divider></mat-divider>
 <br />
 
 <!-- Provider Type -->
-<mat-form-field
+<!-- <mat-form-field
   class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 float-right"
   appearance="fill"
 >
@@ -16,7 +16,7 @@
       >{{ item.name }}</mat-option
     >
   </mat-select>
-</mat-form-field>
+</mat-form-field> -->
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <!--- Note that these columns can be defined in any order.
@@ -25,13 +25,13 @@
   <!-- Provider Column -->
   <ng-container matColumnDef="provider">
     <th mat-header-cell *matHeaderCellDef>Provider</th>
-    <td mat-cell *matCellDef="let element">{{ element.provider }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.providerId }}</td>
   </ng-container>
 
   <!-- Type Column -->
-  <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef>Type</th>
-    <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
   </ng-container>
 
   <!-- Address Column -->
@@ -43,7 +43,7 @@
   <!-- Action Column -->
   <ng-container matColumnDef="action">
     <th mat-header-cell *matHeaderCellDef>Action</th>
-    <td mat-cell *matCellDef="let element">{{ element.action }}</td>
+    <td mat-cell *matCellDef="let element"></td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

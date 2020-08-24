@@ -18,9 +18,7 @@ export interface PeriodicElement {
   styleUrls: ['./provider.component.scss'],
 })
 export class ProviderComponent implements OnInit {
-  ELEMENT_DATA: PeriodicElement[] = [
-    { provider: 'Lakshitha', type: 'Hotel', address: 'nugegoda', action: 'H' },
-  ];
+  ELEMENT_DATA: PeriodicElement[] = [];
 
   providerTypeList = [
     { name: 'Resturent', value: 1 },
@@ -35,31 +33,33 @@ export class ProviderComponent implements OnInit {
 
   ngOnInit() {
     this.session.sessionCheck();
+    this.getAllProvider();
   }
 
-  displayedColumns: string[] = ['provider', 'type', 'address', 'action'];
+  displayedColumns: string[] = ['provider', 'name', 'address', 'action'];
   dataSource = this.ELEMENT_DATA;
 
-  getProviderList(providerTypeId: number) {
-    this.ELEMENT_DATA = [
-      {
-        provider: 'Lakshitha',
-        type: 'Hotel',
-        address: 'Nugegoda',
-        action: 'H',
-      },
-      {
-        provider: 'Chamika',
-        type: 'Res',
-        address: 'Gampaha',
-        action: 'R',
-      },
-    ];
+  // getProviderList(providerTypeId: number) {
+   
+  //   this.dataSource = this.ELEMENT_DATA;
 
-    this.dataSource = this.ELEMENT_DATA;
+  //   this.providerService.getProviderList(providerTypeId).subscribe((res) => {
+  //     console.log(res);
+  //     this.dataSource = res;
+  //     console.log(this.dataSource);
+  //   });
+  // }
 
-    this.providerService.getProviderList(providerTypeId).subscribe((res) => {
-      console.log(res);
-    });
-  }
+    getAllProvider() {
+
+      this.providerService.getAllProviderList().subscribe((res) => {
+        console.log(res);
+        this.ELEMENT_DATA = res.data;
+        this.dataSource = this.ELEMENT_DATA;
+
+        console.log(this.dataSource);
+
+        
+      });
+    }
 }

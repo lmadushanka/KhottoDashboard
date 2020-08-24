@@ -23,5 +23,11 @@ export class ErrorService {
 
     return this.httpClient.get<any>(errorUrl+apiType,httpOptions);
   }
+
+  getAllError():Observable<any>{
+    let errorUrl = this.baseUrl + '/logger/recent/';
+
+    return this.httpClient.get<any>(errorUrl,httpOptions);
+  }
   
 }

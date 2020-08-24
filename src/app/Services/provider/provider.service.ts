@@ -49,4 +49,10 @@ export class ProviderService {
 
     return this.http.get<any>(signinUrl+providerTypeId+'/'+providerId, httpOptions);
   }
+
+  getAllProviderList():Observable<any>{
+    let signinUrl = this.baseUrl + '/provider/all/1';
+
+    return this.http.get<any>(signinUrl, httpOptions);
+  }
 }
