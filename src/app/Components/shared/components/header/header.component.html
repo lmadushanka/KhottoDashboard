@@ -1,0 +1,51 @@
+<mat-toolbar color="red" class="bg-dark">
+  <mat-toolbar-row class="bg-dark">
+    <span class="" routerLink="/home/dashboard">
+      <h4 style="color:white">Khotto</h4>
+    </span>
+
+    <button
+      class="header-toggle-button"
+      mat-icon-button
+      (click)="toggleSideBar()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+      <div fxLayout="row" fxLayoutGap="20px">
+        <span>
+          <form
+            class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"
+          >
+            <div class="input-group">
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Search for..."
+                aria-label="Search"
+                aria-describedby="basic-addon2"
+              />
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fa fa-search"></i>
+                  <!-- <fa-icon [icon]="['fas', 'search']"></fa-icon> -->
+                </button>
+              </div>
+            </div>
+          </form>
+          <button mat-button [matMenuTriggerFor]="menu">
+            <i class="fa fa-user-circle fa-2x user-icon"></i>
+          </button>
+          <mat-menu #menu="matMenu">
+            <div class="user-details">{{ currentUser }}</div>
+            <button class="btn mat-menu-btn" routerLink="" (click)="signOut()">
+              <i class="fa fa-sign-out sign-out-icon"></i>
+              Sign out
+            </button>
+          </mat-menu>
+        </span>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,56 @@
+<a mat-button class="btn btn-primary" href="/dashboard/add-category">Add Category</a>
+<mat-divider></mat-divider>
+<br />
+
+<!-- Provider Type -->
+<mat-form-field
+  class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 float-right"
+  appearance="fill"
+>
+  <mat-label>Select Provider Type...</mat-label>
+  <mat-select>
+    <mat-option
+      *ngFor="let item of providerTypeList"
+      value="{{ item.value }}"
+      (click)="getCategory(item.value)"
+      >{{ item.name }}</mat-option
+    >
+  </mat-select>
+</mat-form-field>
+
+<table
+  mat-table
+  [dataSource]="dataSource"
+  class="mat-elevation-z8"
+  *ngIf="ELEMENT_DATA.length != 0"
+>
+  <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Category Id Column -->
+  <ng-container matColumnDef="categoryId">
+    <th mat-header-cell *matHeaderCellDef style="width: 30%;">Category Id</th>
+    <td mat-cell *matCellDef="let element">{{ element.categoryId }}</td>
+  </ng-container>
+
+  <!-- Type Column -->
+  <ng-container matColumnDef="categoryName">
+    <th mat-header-cell *matHeaderCellDef style="width: 30%;">Category Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.categoryName }}</td>
+  </ng-container>
+
+  <!-- Image Column -->
+  <ng-container matColumnDef="categoryImage">
+    <th mat-header-cell *matHeaderCellDef style="width: 60%;">Type</th>
+    <td mat-cell *matCellDef="let element">
+      <img
+        src="{{ element.categoryImage }}"
+        height="120"
+        style="padding: 5px;"
+      />
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

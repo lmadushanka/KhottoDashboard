@@ -1,0 +1,73 @@
+// :host {
+//     padding: 20px;
+//     background-color: #fc0;
+// }
+mat-nav-list {
+  padding: 5px;
+}
+
+.mat-list-base .mat-list-item {
+  font-size: 16px;
+  margin-left: 2%;
+  margin-bottom: 5%;
+}
+
+button.mat-focus-indicator.mat-menu-trigger.mat-button.mat-button-base {
+  width: 199px;
+  margin: 0px;
+  margin-left: 2%;
+  margin-bottom: 5%;
+}
+
+.mat-button {
+  text-align: left;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.mat-menu-item {
+  background: transparent;
+}
+
+button.mat-menu-item {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 75px;
+}
+
+.mat-list-base .mat-subheader {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.mat-list-base {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.mat-list-base .mat-list-item {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.nav-icon {
+  margin-right: 3%;
+}
+
+// .side-div {
+//   position: relative;
+// }
+
+.side-footer {
+  position: absolute;
+  bottom: 0px;
+  background-color: #343a40;
+  padding: 10px !important;
+}
+
+.mat-menu-btn {
+  color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.mat-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.5);
+  color: rgb(33, 37, 41);
+}

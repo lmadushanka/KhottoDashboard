@@ -1,0 +1,51 @@
+<a mat-button class="btn btn-primary" href="/home/add-provider">Add Provider</a>
+<mat-divider></mat-divider>
+<br />
+
+<!-- Provider Type -->
+<mat-form-field
+  class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 float-right"
+  appearance="fill"
+>
+  <mat-label>Select Type...</mat-label>
+  <mat-select>
+    <mat-option
+      *ngFor="let item of providerTypeList"
+      value="{{ item.value }}"
+      (click)="getProviderList(item.value)"
+      >{{ item.name }}</mat-option
+    >
+  </mat-select>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Provider Column -->
+  <ng-container matColumnDef="provider">
+    <th mat-header-cell *matHeaderCellDef>Provider</th>
+    <td mat-cell *matCellDef="let element">{{ element.provider }}</td>
+  </ng-container>
+
+  <!-- Type Column -->
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef>Type</th>
+    <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+  </ng-container>
+
+  <!-- Address Column -->
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef>Address</th>
+    <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+  </ng-container>
+
+  <!-- Action Column -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef>Action</th>
+    <td mat-cell *matCellDef="let element">{{ element.action }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

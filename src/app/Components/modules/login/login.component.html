@@ -1,0 +1,74 @@
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+  <mat-card fxFlex="25">
+    <label id="logo" fxLayoutAlign="center center">
+      <img class="row" src="../../../../assets/images/Logo (1).png" height="250" />
+    </label>
+    <form
+      class="login-form"
+      fxLayoutAlign="stretch"
+      fxLayout="column"
+      autocomplete="off"
+    >
+      <mat-form-field>
+        <input
+          type="email"
+          id="username"
+          [(ngModel)]="loginDto.username"
+          name="username"
+          required
+          matInput
+          placeholder="E-mail"
+        />
+        <p class="text-danger">
+          {{emailValidation}}
+        </p>
+
+        <p class="text-danger">
+          {{Validating}}
+        </p>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="password"
+          [(ngModel)]="loginDto.password"
+          id="password"
+          name="password"
+          required
+          placeholder="Password"
+        />
+
+        <p class="text-danger">
+          {{Validating}}
+        </p>
+
+      </mat-form-field>
+      
+      <button
+        id="loginButton"
+        mat-raised-button
+        (click)="singIn()"
+        type="submit"
+        color="primary"
+      >
+        Login
+      </button>
+
+      <br>
+
+      <!-- <button
+        class="btn btn-danger"
+        id="loginButton"
+        mat-raised-button
+        (click)="clear()"
+        type="submit"
+        color="danger"
+      >
+        Clear
+      </button> -->
+      <!-- <a id="forgotPassword" href="forgot-password">Forgot Password ?</a> -->
+      <a mat-button href="forgot-password">Forgot Password ?</a>
+    </form>
+  </mat-card>
+</div>

@@ -1,0 +1,12 @@
+<app-header (toggleSideBarForMe)="sideBarToggler()"></app-header>
+<mat-drawer-container class="col-12 clear-bs-mp" style="width: 100%;">
+  <mat-drawer mode="side" [opened]="sideBarOpen" style="width: 225px;">
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+
+  <mat-drawer-content style="height: 92vh;">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+<!-- <app-footer></app-footer> -->
