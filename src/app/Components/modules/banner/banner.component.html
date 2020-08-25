@@ -1,0 +1,41 @@
+<a mat-button class="btn btn-primary" href="/dashboard/add-banner">Add Banner</a>
+<mat-divider></mat-divider>
+<br />
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- firstName Column -->
+    <ng-container matColumnDef="bannerName">
+      <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Banner Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.bannerName}} </td>
+    </ng-container>
+  
+    <!-- lastName Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef style="width: 40%;"> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.bannerDescription}} </td>
+    </ng-container>
+  
+    <!-- email Column -->
+    <ng-container matColumnDef="bannerImage">
+      <th mat-header-cell *matHeaderCellDef style="width: 60%;"> Image </th>
+      <td mat-cell *matCellDef="let element">
+          
+        <img
+      
+        src="{{ element.bannerImage }}"
+        height="120"
+        style="padding: 5px;"
+        
+      />
+    </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  

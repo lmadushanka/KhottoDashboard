@@ -48,6 +48,10 @@ import { AddItemDto } from './entity/addItemDto';
 import { ItemDto } from './entity/itemDto';
 import { AddCategoryDto } from './entity/addCategoryDto';
 import { CategoryDto } from './entity/categoryDto';
+import { AddUserComponent } from './Components/modules/add-user/add-user.component';
+import { UsersComponent } from './Components/modules/users/users.component';
+import { BannerComponent } from './Components/modules/banner/banner.component';
+import { AddBannerComponent } from './Components/modules/add-banner/add-banner.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +66,10 @@ import { CategoryDto } from './entity/categoryDto';
     ErrorsComponent,
     CategoryComponent,
     AddCategoryComponent,
+    AddUserComponent,
+    UsersComponent,
+    BannerComponent,
+    AddBannerComponent,
   ],
   imports: [
     BrowserModule,
