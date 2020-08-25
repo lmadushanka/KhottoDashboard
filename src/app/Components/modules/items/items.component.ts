@@ -9,32 +9,7 @@ export interface PeriodicElement {
   imageUrl: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    type: 'Food',
-    name: 'Bread',
-    price: 170.5,
-    imageUrl: 'https://picsum.photos/50',
-  },
-  {
-    type: 'Bevarages',
-    name: 'Orange Juice',
-    price: 100.5,
-    imageUrl: 'https://picsum.photos/50',
-  },
-  {
-    type: 'Snack',
-    name: 'Bisucuit',
-    price: 50.5,
-    imageUrl: 'https://picsum.photos/50',
-  },
-  {
-    type: 'Soup',
-    name: 'Vegitable',
-    price: 150.5,
-    imageUrl: 'https://picsum.photos/50',
-  },
-];
+const ELEMENT_DATA: PeriodicElement[] = [];
 
 @Component({
   selector: 'app-items',
@@ -51,13 +26,13 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit() {
     this.session.sessionCheck();
-    this.getAllProvider();
+    this.getAllItems();
   }
 
   displayedColumns: string[] = ['type', 'name', 'price', 'cover_image'];
   dataSource = ELEMENT_DATA;
 
-  getAllProvider() {
+  getAllItems() {
 
     this.ItemService.getAllItemList().subscribe((res) => {
       console.log(res);

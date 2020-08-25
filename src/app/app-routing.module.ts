@@ -12,6 +12,10 @@ import { AddItemComponent } from './Components/modules/add-item/add-item.compone
 import { ErrorsComponent } from './Components/modules/errors/errors.component';
 import { CategoryComponent } from './Components/modules/category/category.component';
 import { AddCategoryComponent } from './Components/modules/add-category/add-category.component';
+import { AddUserComponent } from './Components/modules/add-user/add-user.component';
+import { UsersComponent } from './Components/modules/users/users.component';
+import { BannerComponent } from './Components/modules/banner/banner.component';
+import { AddBannerComponent } from './Components/modules/add-banner/add-banner.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -31,6 +35,10 @@ const routes: Routes = [
       { path: 'errors', component: ErrorsComponent },
       { path: 'category', component: CategoryComponent },
       { path: 'add-category', component: AddCategoryComponent },
+      { path: 'add-user', component: AddUserComponent },
+      { path: 'users', component: UsersComponent },
+      { path: 'banner', component: BannerComponent },
+      { path: 'add-banner', component: AddBannerComponent },
     ],
   },
 ];

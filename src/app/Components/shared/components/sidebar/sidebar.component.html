@@ -33,10 +33,21 @@
     <i class="fa fa-list nav-icon"></i>
     Category</a
   >
+  <a
+    mat-list-item
+    routerLinkActive="list-item-active"
+    routerLink="/dashboard/banner"
+  >
+    <i class="fa fa-list nav-icon"></i>
+    Banner</a
+  >
   <button id="sideTitle" mat-button [matMenuTriggerFor]="menu">Settings</button>
   <mat-menu #menu="matMenu" style="width: 100%;">
     <button class="btn mat-menu-btn" routerLink="/dashboard/errors">
       Errors
+    </button>
+    <button class="btn mat-menu-btn" routerLink="/dashboard/users">
+      Users
     </button>
   </mat-menu>
   <!-- <mat-divider></mat-divider> -->
