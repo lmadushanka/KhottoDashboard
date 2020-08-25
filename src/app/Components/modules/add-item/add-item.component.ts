@@ -197,6 +197,11 @@ export class AddItemComponent implements OnInit {
     }
 
     console.log(value);
+
+    this.ItemService.getOptionByItemType(value).subscribe((res) =>{
+      console.log(res.data);
+      this.options = res.data;
+    });
     
   }
 
