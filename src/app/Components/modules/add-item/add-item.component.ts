@@ -60,7 +60,7 @@ export class AddItemComponent implements OnInit {
 
   constructor(
     private session: SessionService,
-    private ItemService: ItemService,
+    private ItemService:ItemService
   ) {}
 
   ngOnInit() {
