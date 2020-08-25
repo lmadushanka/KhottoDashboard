@@ -5,5 +5,6 @@ export class ItemDto {
   price: any;
   providerId: any;
   serviceUserId: any;
+  itemOptionValues: number[];
   itemValues: ItemValues[];
 }

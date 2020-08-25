@@ -48,6 +48,7 @@ import { AddItemDto } from './entity/addItemDto';
 import { ItemDto } from './entity/itemDto';
 import { AddCategoryDto } from './entity/addCategoryDto';
 import { CategoryDto } from './entity/categoryDto';
+import { ItemOption } from './entity/itemOption';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,7 @@ import { CategoryDto } from './entity/categoryDto';
     ItemDto,
     AddCategoryDto,
     CategoryDto,
+    ItemOption,
   ],
   bootstrap: [AppComponent],
 })

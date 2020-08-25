@@ -40,7 +40,7 @@ export class ItemService {
     return this.http.get<any>(signinUrl, httpOptions);
   }
 
-  getOptionByItemType(value):Observable<any>{
+  getOptionsByItemType(value):Observable<any>{
     let signingUrl = this.baseUrl +'/itemOption/';
     return this.http.get<any>(signingUrl + value,httpOptions);
   }

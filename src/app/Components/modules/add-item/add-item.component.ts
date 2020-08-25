@@ -10,6 +10,7 @@ import { ItemDto } from 'src/app/entity/itemDto';
 import { ItemValues } from 'src/app/entity/itemValues';
 import { OpenDays } from 'src/app/entity/open-days';
 import { ProviderService } from '../../../Services/provider/provider.service';
+import { ItemOption } from 'src/app/entity/itemOption';
 
 @Component({
   selector: 'app-add-item',
@@ -29,12 +30,12 @@ export class AddItemComponent implements OnInit {
   terms: Term[];
   provider: ProviderInfo;
   providerId: any;
-  providerType:any;
-
+  providerType: any;
 
   itemType = false;
 
-  options: any;
+  itemOptions: ItemOption[] = [];
+  selectedOption: number[] = [];
 
   addItemForm = new FormGroup({
     itemType: new FormControl(),
@@ -57,31 +58,37 @@ export class AddItemComponent implements OnInit {
 
   errTerm: any = { show: false, value: 'Enter details... !' };
 
-
   constructor(
     private session: SessionService,
-    private ItemService:ItemService
+    private ItemService: ItemService
   ) {}
 
   ngOnInit() {
     this.session.sessionCheck();
     this.providerId = localStorage.getItem('providerId');
 
-    if(this.providerId == 0){
+    if (this.providerId == 0) {
       this.providerType = true;
-  }else if(this.providerId !== 0){
-    this.providerType = false;
-  }
+    } else if (this.providerId !== 0) {
+      this.providerType = false;
+    }
     this.onProviderSelect();
   }
 
   onSubmit() {
     var _this = this;
     let serviceUserId = localStorage.getItem('serviceUserId');
-    
 
     if (this.termArray.length != 0) {
       this.terms = this.termArray;
+    }
+
+    if (this.itemOptions.length != 0) {
+      for (var i = 0; i < this.itemOptions.length; i++) {
+        if (this.itemOptions[i].isActiveOption == true) {
+          this.selectedOption.push(this.itemOptions[i].optionId);
+        }
+      }
     }
 
     this.newItem.name = this.addItemForm.value.itemName;
@@ -90,20 +97,21 @@ export class AddItemComponent implements OnInit {
     this.newItem.coverImage = this.coverFile;
     this.newItem.description = this.addItemForm.value.description;
     this.newItem.terms = this.terms;
-    this.newItem.availability = this.addItemForm.value.itemAvailability
+    this.newItem.availability = this.addItemForm.value.itemAvailability;
     // console.log(this.newItem);
 
     this.itemDto.itemTypeId = Number(this.newItem.type);
     this.itemDto.price = Number(this.newItem.price);
     this.itemDto.serviceUserId = Number(serviceUserId);
+    this.itemDto.itemOptionValues = this.selectedOption;
 
     // add provider
-    if(this.providerId == 0){
+    if (this.providerId == 0) {
       this.itemDto.providerId = this.addItemForm.value.provider;
-    }else if(this.providerId == 0){
+    } else if (this.providerId == 0) {
       this.itemDto.providerId = Number(this.providerId);
     }
-    
+
     this.addItemInfo('name', this.newItem.name);
     this.addItemInfo('coverImage', this.coverFile);
     this.addItemInfo('simpleDescription', this.newItem.description);
@@ -151,17 +159,21 @@ export class AddItemComponent implements OnInit {
     this.addItemForm.reset();
     this.newItem.coverImage = null;
     this.termArray = [];
+    this.itemOptions = [];
     this.itemValues = [];
     this.terms = null;
+    this.selectedOption = [];
     this.coverFile = null;
     this.imgURLCover = null;
   }
 
-  onClear(){
+  onClear() {
     this.addItemForm.reset();
     this.newItem.coverImage = null;
     this.termArray = [];
     this.itemValues = [];
+    this.itemOptions = [];
+    this.selectedOption = [];
     this.terms = null;
     this.coverFile = null;
     this.imgURLCover = null;
@@ -182,29 +194,32 @@ export class AddItemComponent implements OnInit {
     this.newItem.coverImage = this.coverFile;
   }
 
-  onProviderSelect(){
+  onProviderSelect() {
     this.ItemService.getProviders().subscribe((res) => {
       this.provider = res.data;
-      console.log(this.provider);
+      // console.log(this.provider);
     });
   }
 
   onItemrTypeSelect(value) {
-    if(value == 2){
+    if (value == 2) {
       this.itemType = true;
-    }else if(value == 1){
+    } else if (value == 1) {
       this.itemType = false;
     }
 
-    console.log(value);
+    // console.log(value);
 
-    this.ItemService.getOptionByItemType(value).subscribe((res) =>{
-      console.log(res.data);
-      this.options = res.data;
+    this.ItemService.getOptionsByItemType(value).subscribe((res) => {
+      // console.log(res.data);
+      this.itemOptions = res.data;
     });
-    
   }
 
+  updateOption(name, optId, i) {
+    let o = <HTMLInputElement>document.getElementById(name + optId);
+    let value = o.checked;
+
+    this.itemOptions[i].isActiveOption = value;
+  }
 }
-
-
