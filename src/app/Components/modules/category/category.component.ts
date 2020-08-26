@@ -6,6 +6,9 @@ export interface CategoryElement {
   categoryId: number;
   categoryImage: string;
   categoryName: string;
+  view: string;
+  edit: string;
+  delete: string;
 }
 
 @Component({
@@ -15,6 +18,7 @@ export interface CategoryElement {
 })
 export class CategoryComponent implements OnInit {
   ELEMENT_DATA: CategoryElement[] = [];
+  deleteElement: any = { name: '', itemTypeId: 0 };
 
   providerTypeList = [
     { name: 'Resturent', value: 1 },
@@ -28,9 +32,10 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
     this.session.sessionCheck();
+    this.getAllCategory();
   }
 
-  displayedColumns: string[] = ['categoryId', 'categoryName', 'categoryImage'];
+  displayedColumns: string[] = ['categoryId', 'categoryName', 'categoryImage','view','edit','delete'];
   dataSource = this.ELEMENT_DATA;
 
   getCategory(type: number) {
@@ -42,4 +47,24 @@ export class CategoryComponent implements OnInit {
       
     });
   }
+
+  getAllCategory(){
+    this.category.getAllCategory().subscribe((res) => {
+      console.log(res);
+      this.ELEMENT_DATA = res.data;
+      this.dataSource = this.ELEMENT_DATA;
+    });
+  }
+
+  setDeleteItem(element) {
+    this.deleteElement.name = element.name;
+    this.deleteElement.itemId = element.itemId;
+  }
+
+  // deleteItem() {
+  //   console.log(this.deleteElement.itemId);
+  //   this.ItemService.deleteItemById(this.deleteElement.itemId).subscribe((res) => {
+  //     this.getAllItems(this.nextCount);
+  //   });
+  // }
 }

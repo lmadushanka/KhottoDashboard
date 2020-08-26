@@ -5,6 +5,9 @@ export interface PeriodicElement {
   bannerName: string;
   description: string;
   image: any;
+  view: string;
+  edit: string;
+  delete: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [];
@@ -18,6 +21,7 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 export class BannerComponent implements OnInit {
 
   ELEMENT_DATA: PeriodicElement[] = [];
+  deleteElement: any = { name: '', itemTypeId: 0 };
 
   constructor(private bannerService: BannerService) { }
 
@@ -26,7 +30,7 @@ export class BannerComponent implements OnInit {
     this.getAllBanner();
   }
 
-  displayedColumns: string[] = ['bannerName', 'description', 'bannerImage'];
+  displayedColumns: string[] = ['bannerName', 'description', 'bannerImage','view','edit','delete'];
   dataSource = ELEMENT_DATA;
 
   getAllBanner(){
@@ -40,5 +44,17 @@ export class BannerComponent implements OnInit {
       
     });
   }
+
+  setDeleteItem(element) {
+    this.deleteElement.name = element.name;
+    this.deleteElement.itemId = element.itemId;
+  }
+
+  // deleteItem() {
+  //   console.log(this.deleteElement.itemId);
+  //   this.ItemService.deleteItemById(this.deleteElement.itemId).subscribe((res) => {
+  //     this.getAllItems(this.nextCount);
+  //   });
+  // }
 
 }

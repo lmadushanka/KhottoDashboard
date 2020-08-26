@@ -28,6 +28,16 @@ export class CategoryService {
     return this.httpClient.get<any>(categoryUrl+value,httpOptions);
   }
 
+  getAllCategory():Observable<any>{
+    let categoryUrl = this.baseUrl + '/category/all';
+
+    
+
+    // const params = new HttpParams().set('providerTypeId',type);
+
+    return this.httpClient.get<any>(categoryUrl,httpOptions);
+  }
+
   addCategory(addCategoryDto:AddCategoryDto): Observable<any> {
     let categoryUrl = this.baseUrl + '/category';
 
