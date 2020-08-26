@@ -2,6 +2,85 @@
 <mat-divider></mat-divider>
 <br />
 
+<div class="lightgray-back form-container">
+  <form class="row" [formGroup]="filterUser" autocomplete="off">
+
+    <!-- First Name -->
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>First Name</mat-label>
+      <input
+        matInput
+        placeholder="Enter First Name"
+        type="text"
+        formControlName="firstName"
+      />
+    </mat-form-field>
+
+    <!-- Last Name -->
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>Last Name</mat-label>
+      <input
+        matInput
+        placeholder="Enter Last Name"
+        type="text"
+        formControlName="lastName"
+      />
+    </mat-form-field>
+
+    <!-- Mobile No -->
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>Provider Name</mat-label>
+      <input
+        matInput
+        placeholder="Enter Provider Name "
+        type="text"
+        formControlName="providerName"
+        autocomplete="off"
+      />
+    </mat-form-field>
+
+   <!-- Provider Type -->
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>Select User Type</mat-label>
+      <mat-select formControlName="serviceUserTypeId">
+        <mat-option
+            *ngFor="let item of serviceUserTypeList"
+            value="{{ item.serviceUserTypeId }}"
+          >{{ item.serviceUserTypeName }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Submit Button -->
+    <mat-card-actions class="col-2 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+      
+    <button
+      class="btn btn-sucess"
+      mat-raised-button
+      color="primary"
+      type="submit"
+      type="submit"
+      (click)="onSubmit()"
+      style="margin: 5px; padding: 0px 20px;"
+    >
+      Filter
+    </button>
+    </mat-card-actions>
+  </form>
+</div>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
@@ -10,7 +89,7 @@
     <!-- firstName Column -->
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef> First Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.fistName}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
     </ng-container>
   
     <!-- lastName Column -->
@@ -22,7 +101,7 @@
     <!-- mobile Column -->
     <ng-container matColumnDef="mobile">
       <th mat-header-cell *matHeaderCellDef> Mobile </th>
-      <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.mobileNo}} </td>
     </ng-container>
   
     <!-- email Column -->
@@ -30,9 +109,81 @@
       <th mat-header-cell *matHeaderCellDef> Email </th>
       <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
+
+    <!-- View Column -->
+  <ng-container matColumnDef="view">
+    <th mat-header-cell *matHeaderCellDef>View</th>
+    <td mat-cell *matCellDef="let element">
+      <i class="btn fa fa-external-link"></i>
+    </td>
+  </ng-container>
+
+  <!-- Edit Column -->
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef>Edit</th>
+    <td mat-cell *matCellDef="let element">
+      <i class="btn fa fa-edit"></i>
+    </td>
+  </ng-container>
+
+  <!-- Delete Column -->
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef>Delete</th>
+    <td mat-cell *matCellDef="let element">
+      <i
+        class="btn fa fa-trash"
+        data-toggle="modal"
+        data-target="#confirmationModal"
+      ></i>
+    </td>
+  </ng-container>
+
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <!-- Modal -->
+<div
+class="modal fade"
+id="confirmationModal"
+tabindex="-1"
+role="dialog"
+aria-labelledby="confirmationModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="confirmationModalLabel">
+        <span class="modal-text-head">Do you want to delete the User ?</span>
+      </h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <span class="modal-text">You are deleting" </span>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        No
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger"
+        data-dismiss="modal"
+      >
+        Yes
+      </button>
+    </div>
+  </div>
+</div>
+</div>
   
   

@@ -22,4 +22,14 @@ export class UserService {
     return this.http.get<any>(signingUrl + value,httpOptions);
   }
 
+  getAllUsers(value):Observable<any>{
+    let signingUrl = this.baseUrl + '/user/searchByFilters';
+    return this.http.post<any>(signingUrl,value,httpOptions);
+  }
+
+  addUser(value):Observable<any>{
+    let signingUrl = this.baseUrl + '/auth/signup';
+    return this.http.post<any>(signingUrl,value,httpOptions);
+  }
+
 }

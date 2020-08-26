@@ -94,10 +94,13 @@ export class ItemsComponent implements OnInit {
 
   setDeleteItem(element) {
     this.deleteElement.name = element.name;
-    this.deleteElement.itemTypeId = element.itemTypeId;
+    this.deleteElement.itemId = element.itemId;
   }
 
   deleteItem() {
-    console.log(this.deleteElement.itemTypeId);
+    console.log(this.deleteElement.itemId);
+    this.ItemService.deleteItemById(this.deleteElement.itemId).subscribe((res) => {
+      this.getAllItems(this.nextCount);
+    });
   }
 }

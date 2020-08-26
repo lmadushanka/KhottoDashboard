@@ -45,6 +45,11 @@ export class ItemService {
     return this.http.get<any>(signingUrl + value,httpOptions);
   }
 
+  deleteItemById(value):Observable<any>{
+    let signingUrl = this.baseUrl + '/item/';
+    let serviceUserId = localStorage.getItem('serviceUserId');
 
+    return this.http.delete<any>(signingUrl + value + '/' + serviceUserId, httpOptions);
+  }
 
 }

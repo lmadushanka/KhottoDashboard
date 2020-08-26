@@ -3,6 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { SessionService } from 'src/app/services/session/session.service';
 import { AddUserDto } from 'src/app/Entity/addUserDto';
 import { UserService } from 'src/app/Services/user/user.service';
+import { ItemService } from 'src/app/services/Item/item.service';
+import { ProviderInfo } from '../../../Entity/providerInfo';
 
 @Component({
   selector: 'app-add-user',
@@ -22,22 +24,36 @@ export class AddUserComponent implements OnInit {
     email: new FormControl(),
     password: new FormControl(),
     serviceUserTypeId: new FormControl(),
+    provider: new FormControl()
   });
 
   serviceUserTypeList = [];
 
+  providerId: any;
+  providerType: any;
+  provider: ProviderInfo;
+
   constructor(
     private session: SessionService,
     private userService: UserService,
+    private ItemService: ItemService
     
     ) { }
 
   ngOnInit(): void {
     this.session.sessionCheck();
     this.serviceUserId = localStorage.getItem('serviceUserId');
+    this.providerId = localStorage.getItem('providerId');
     this.getUserType(this.serviceUserId);
 
     console.log(this.serviceUserId)
+
+    if (this.providerId == 0) {
+      this.providerType = true;
+    } else if (this.providerId !== 0) {
+      this.providerType = false;
+    }
+    this.onProviderSelect();
   }
 
   onSubmit(){
@@ -53,7 +69,17 @@ export class AddUserComponent implements OnInit {
     this.addUserDto.password = this.addUserForm.value.password;
     this.addUserDto.serviceUserTypeId = Number(this.addUserForm.value.serviceUserTypeId);
 
+    if (this.providerId == 0) {
+      this.addUserDto.providerId = Number(this.addUserForm.value.provider);
+    } else if (this.providerId == 0) {
+      this.addUserDto.providerId = Number(this.providerId);
+    }
+
     console.log(this.addUserDto);
+
+    this.userService.addUser(this.addUserDto).subscribe((res) =>{
+      console.log(res);
+    });
   }
 
   getUserType(value){
@@ -61,6 +87,13 @@ export class AddUserComponent implements OnInit {
       console.log(res);
       this.serviceUserTypeList = res.data;
     })
+  }
+
+  onProviderSelect() {
+    this.ItemService.getProviders().subscribe((res) => {
+      this.provider = res.data;
+      // console.log(this.provider);
+    });
   }
 
 }

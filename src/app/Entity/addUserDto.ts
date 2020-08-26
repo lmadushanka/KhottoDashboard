@@ -5,5 +5,6 @@ export class AddUserDto {
     email:any;
     password:any;
     serviceUserTypeId:number;
+    providerId:any;
   }
   
