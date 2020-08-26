@@ -53,6 +53,7 @@ import { AddUserComponent } from './Components/modules/add-user/add-user.compone
 import { UsersComponent } from './Components/modules/users/users.component';
 import { BannerComponent } from './Components/modules/banner/banner.component';
 import { AddBannerComponent } from './Components/modules/add-banner/add-banner.component';
+import { NgSwitcheryModule } from 'angular-switchery-ios';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { AddBannerComponent } from './Components/modules/add-banner/add-banner.c
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    NgSwitcheryModule,
   ],
   providers: [
     LoginDto,
