@@ -1,40 +1,34 @@
-<a mat-button class="btn btn-primary" href="/dashboard/add-banner">Add Banner</a>
+<a mat-button class="btn btn-primary" href="/dashboard/add-banner"
+  >Add Banner</a
+>
 <mat-divider></mat-divider>
 <br />
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-    <!--- Note that these columns can be defined in any order.
+  <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
-  
-    <!-- firstName Column -->
-    <ng-container matColumnDef="bannerName">
-      <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Banner Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.bannerName}} </td>
-    </ng-container>
-  
-    <!-- lastName Column -->
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef style="width: 40%;"> Description </th>
-      <td mat-cell *matCellDef="let element"> {{element.bannerDescription}} </td>
-    </ng-container>
-  
-    <!-- email Column -->
-    <ng-container matColumnDef="bannerImage">
-      <th mat-header-cell *matHeaderCellDef style="width: 60%;"> Image </th>
-      <td mat-cell *matCellDef="let element">
-          
-        <img
-      
-        src="{{ element.bannerImage }}"
-        height="120"
-        style="padding: 5px;"
-        
-      />
-    </td>
-    </ng-container>
 
-    <!-- View Column -->
+  <!-- firstName Column -->
+  <ng-container matColumnDef="bannerName">
+    <th mat-header-cell *matHeaderCellDef style="width: 20%">Banner Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.bannerName }}</td>
+  </ng-container>
+
+  <!-- lastName Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef style="width: 40%">Description</th>
+    <td mat-cell *matCellDef="let element">{{ element.bannerDescription }}</td>
+  </ng-container>
+
+  <!-- email Column -->
+  <ng-container matColumnDef="bannerImage">
+    <th mat-header-cell *matHeaderCellDef style="width: 60%">Image</th>
+    <td mat-cell *matCellDef="let element">
+      <img src="{{ element.bannerImage }}" height="120" style="padding: 5px" />
+    </td>
+  </ng-container>
+
+  <!-- View Column -->
   <ng-container matColumnDef="view">
     <th mat-header-cell *matHeaderCellDef>View</th>
     <td mat-cell *matCellDef="let element">
@@ -51,62 +45,59 @@
   </ng-container>
 
   <!-- Delete Column -->
-  <ng-container matColumnDef="delete">
-    <th mat-header-cell *matHeaderCellDef>Delete</th>
+  <ng-container matColumnDef="cancel">
+    <th mat-header-cell *matHeaderCellDef>Cancel</th>
     <td mat-cell *matCellDef="let element">
-      <i
-        class="btn fa fa-trash"
-        (click)="setDeleteItem(element)"
-        data-toggle="modal"
-        data-target="#confirmationModal"
-      ></i>
+      <ng-switchery
+        class="switch-btn"
+        size="switchery-xs"
+        color="switchery-info"
+        [(ngModel)]="element.visible"
+      ></ng-switchery>
     </td>
   </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  
-  <!-- Modal -->
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<!-- Modal -->
 <div
-class="modal fade"
-id="confirmationModal"
-tabindex="-1"
-role="dialog"
-aria-labelledby="confirmationModalLabel"
-aria-hidden="true"
+  class="modal fade"
+  id="confirmationModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="confirmationModalLabel"
+  aria-hidden="true"
 >
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="confirmationModalLabel">
-        <span class="modal-text-head">Do you want to delete the Banner ?</span>
-      </h5>
-      <button
-        type="button"
-        class="close"
-        data-dismiss="modal"
-        aria-label="Close"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <span class="modal-text">You are deleting </span>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">
-        No
-      </button>
-      <button
-        type="button"
-        class="btn btn-danger"
-        data-dismiss="modal"
-      >
-        Yes
-      </button>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmationModalLabel">
+          <span class="modal-text-head"
+            >Do you want to delete the Banner ?</span
+          >
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span class="modal-text">You are deleting </span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          No
+        </button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">
+          Yes
+        </button>
+      </div>
     </div>
   </div>
 </div>
-</div>
-
