@@ -78,23 +78,23 @@ export class AddProviderComponent implements OnInit {
   ];
 
   dayList: OpenDays[] = [
-    { value: 'Monday', isOpen: false, hour: '00:00-00:00' },
-    { value: 'Tuesday', isOpen: false, hour: '00:00-00:00' },
-    { value: 'Wednesday', isOpen: false, hour: '00:00-00:00' },
-    { value: 'Thursday', isOpen: false, hour: '00:00-00:00' },
-    { value: 'Friday', isOpen: false, hour: '00:00-00:00' },
-    { value: 'Saturday', isOpen: false, hour: '00:00-00:00' },
-    { value: 'Sunday', isOpen: false, hour: '00:00-00:00' },
+    { day: 'Monday', isOpen: false, hours: '00:00-00:00' },
+    { day: 'Tuesday', isOpen: false, hours: '00:00-00:00' },
+    { day: 'Wednesday', isOpen: false, hours: '00:00-00:00' },
+    { day: 'Thursday', isOpen: false, hours: '00:00-00:00' },
+    { day: 'Friday', isOpen: false, hours: '00:00-00:00' },
+    { day: 'Saturday', isOpen: false, hours: '00:00-00:00' },
+    { day: 'Sunday', isOpen: false, hours: '00:00-00:00' },
   ];
 
   baseDayList: OpenDays[] = [
-    { value: 'Monday', isOpen: false, hour: '00:00-00:00' },
-    { value: 'Tuesday', isOpen: false, hour: '00:00-00:00' },
-    { value: 'Wednesday', isOpen: false, hour: '00:00-00:00' },
-    { value: 'Thursday', isOpen: false, hour: '00:00-00:00' },
-    { value: 'Friday', isOpen: false, hour: '00:00-00:00' },
-    { value: 'Saturday', isOpen: false, hour: '00:00-00:00' },
-    { value: 'Sunday', isOpen: false, hour: '00:00-00:00' },
+    { day: 'Monday', isOpen: false, hours: '00:00-00:00' },
+    { day: 'Tuesday', isOpen: false, hours: '00:00-00:00' },
+    { day: 'Wednesday', isOpen: false, hours: '00:00-00:00' },
+    { day: 'Thursday', isOpen: false, hours: '00:00-00:00' },
+    { day: 'Friday', isOpen: false, hours: '00:00-00:00' },
+    { day: 'Saturday', isOpen: false, hours: '00:00-00:00' },
+    { day: 'Sunday', isOpen: false, hours: '00:00-00:00' },
   ];
 
   facilityArray: Facility[] = [];
@@ -239,22 +239,22 @@ export class AddProviderComponent implements OnInit {
       let o = <HTMLInputElement>document.getElementById(day + type);
       var value: string = o.value;
 
-      var openStr: string = this.dayList[i].hour.slice(0, 5);
-      var closeStr: string = this.dayList[i].hour.slice(-5);
+      var openStr: string = this.dayList[i].hours.slice(0, 5);
+      var closeStr: string = this.dayList[i].hours.slice(-5);
       var newTime: string = value + '-' + closeStr;
 
-      this.dayList[i].hour = newTime;
+      this.dayList[i].hours = newTime;
     }
 
     if (type == 'Close') {
       let c = <HTMLInputElement>document.getElementById(day + type);
       var value: string = c.value;
 
-      var openStr: string = this.dayList[i].hour.slice(0, 5);
-      var closeStr: string = this.dayList[i].hour.slice(-5);
+      var openStr: string = this.dayList[i].hours.slice(0, 5);
+      var closeStr: string = this.dayList[i].hours.slice(-5);
       var newTime: string = openStr + '-' + value;
 
-      this.dayList[i].hour = newTime;
+      this.dayList[i].hours = newTime;
     }
   }
 

@@ -7,5 +7,5 @@ export class Item {
   coverImage: File;
   description: string;
   terms: Term[];
-  availability:any;
+  availability:string;
 }

@@ -409,40 +409,40 @@
         <tbody>
           <tr *ngFor="let day of dayList; let d = index">
             <td scope="row">
-              {{ day.value }}
+              {{ day.day }}
             </td>
             <td>
               <div class="col-12" appearance="fill">
                 <input
-                  id="{{ day.value }}"
+                  id="{{ day.day }}"
                   placeholder="Open"
                   type="checkbox"
                   [checked]="day.isOpen"
                   value="{{ day.isOpen }}"
-                  (change)="updateIsOpen(day.value, d)"
+                  (change)="updateIsOpen(day.day, d)"
                 />
               </div>
             </td>
             <td>
               <div class="col-12 td-cell" appearance="fill">
                 <input
-                  id="{{ day.value }}Open"
+                  id="{{ day.day }}Open"
                   class="time-select"
                   placeholder="Enter Time"
                   type="time"
                   [disabled]="!day.isOpen"
-                  (change)="updateTime(day.value, 'Open', d)"
+                  (change)="updateTime(day.day, 'Open', d)"
                 />
               </div>
             </td>
             <td>
               <div class="col-12 td-cell" appearance="fill">
                 <input
-                  id="{{ day.value }}Close"
+                  id="{{ day.day }}Close"
                   placeholder="Enter Time"
                   type="time"
                   [disabled]="!day.isOpen"
-                  (change)="updateTime(day.value, 'Close', d)"
+                  (change)="updateTime(day.day, 'Close', d)"
                 />
               </div>
             </td>

@@ -1,5 +1,5 @@
 export class OpenDays {
-  value: string;
+  day: string;
   isOpen: boolean;
-  hour: string;
+  hours: string;
 }

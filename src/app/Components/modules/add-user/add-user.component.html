@@ -1,6 +1,138 @@
-
-<a mat-button class="btn btn-primary" href="dashboard/users">View Users</a>
+<a mat-button class="btn btn-primary" href="dashboard/category">View Users</a>
 <mat-divider></mat-divider>
 <br />
 
+<div class="lightgray-back form-container">
+  <form class="row" [formGroup]="addUserForm" autocomplete="off">
 
+    <!-- First Name -->
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>First Name</mat-label>
+      <input
+        matInput
+        placeholder="Enter First Name"
+        type="text"
+        formControlName="firstName"
+        required
+      />
+    </mat-form-field>
+
+    <!-- Last Name -->
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>Last Name</mat-label>
+      <input
+        matInput
+        placeholder="Enter Last Name"
+        type="text"
+        formControlName="lastName"
+        required
+      />
+    </mat-form-field>
+
+    <!-- Mobile No -->
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        placeholder="Enter Email "
+        type="text"
+        formControlName="email"
+        required
+        autocomplete="off"
+      />
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>Mobile Number</mat-label>
+      <input
+        matInput
+        placeholder="Enter Mobile Number"
+        type="email"
+        formControlName="mobileNo"
+      />
+    </mat-form-field>
+
+    <!-- Password 01 -->
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        placeholder="Enter Password"
+        type="password"
+        formControlName="password"
+        required
+      />
+    </mat-form-field>
+
+     <!-- Password 02 -->
+     <!-- <mat-form-field
+     class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+     appearance="fill"
+   >
+     <mat-label>Re - Password</mat-label>
+     <input
+       matInput
+       placeholder="Re-Enter Password"
+       type="password"
+       formControlName="password2"
+       required
+     />
+   </mat-form-field> -->
+
+   <!-- Provider Type -->
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>Select User Type</mat-label>
+      <mat-select formControlName="serviceUserTypeId" required>
+        <mat-option
+            *ngFor="let item of serviceUserTypeList"
+            value="{{ item.serviceUserTypeId }}"
+          >{{ item.serviceUserTypeName }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+    
+    <hr style="width: 100%;" />
+
+    <!-- Submit Button -->
+    <mat-card-actions class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+      <button
+      class="btn btn-danger"
+      mat-raised-button
+      color="danger"
+      style="margin: 15px; padding: 5px 20px;"
+    >
+      Clear
+    </button>
+    <button
+      class="btn btn-sucess"
+      mat-raised-button
+      color="primary"
+      type="submit"
+      type="submit"
+      (click)="onSubmit()"
+      style="margin: 15px; padding: 5px 20px;"
+    >
+      Submit
+    </button>
+    </mat-card-actions>
+  </form>
+</div>

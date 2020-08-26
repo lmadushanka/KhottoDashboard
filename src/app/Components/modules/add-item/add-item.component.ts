@@ -100,6 +100,7 @@ export class AddItemComponent implements OnInit {
     this.newItem.availability = this.addItemForm.value.itemAvailability;
     // console.log(this.newItem);
 
+
     this.itemDto.itemTypeId = Number(this.newItem.type);
     this.itemDto.price = Number(this.newItem.price);
     this.itemDto.serviceUserId = Number(serviceUserId);
@@ -116,7 +117,7 @@ export class AddItemComponent implements OnInit {
     this.addItemInfo('coverImage', this.coverFile);
     this.addItemInfo('simpleDescription', this.newItem.description);
     this.addItemInfo('terms', this.newItem.terms);
-    this.addItemInfo('availability', this.newItem.availability);
+    this.addItemInfo('availability', Number(this.newItem.availability));
     this.itemDto.itemValues = this.itemValues;
 
     this.addItemDto.coverImage = this.newItem.coverImage;
@@ -141,9 +142,9 @@ export class AddItemComponent implements OnInit {
 
   addTerm(termA) {
     if (termA != '') {
-      this.termArray.push({
-        term: termA,
-      });
+      this.termArray.push(
+        termA
+      );
       let t = <HTMLInputElement>document.getElementById('term');
       t.value = '';
     } else {

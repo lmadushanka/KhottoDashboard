@@ -38,3 +38,38 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+
+<br>
+
+<button
+        class="btn btn-success"
+        mat-raised-button
+        color="success"
+        type="submit"
+        (click)="onPreviewButton()"
+        style="margin: 15px; padding: 0px 20px; float:left"
+      >
+       << Preview
+      </button>
+
+      <button
+        class="btn btn-info"
+        mat-raised-button
+        color="success"
+        type="submit"
+        style="margin: 15px; padding: 0px 20px; float:left"
+      >
+      {{nextCount}}
+      </button>
+
+
+      <button
+        class="btn btn-success"
+        mat-raised-button
+        color="success"
+        type="submit"
+        (click)="onNextButton()"
+        style="margin: 15px; padding: 0px 20px; float:left"
+      >
+        Next >>
+      </button>

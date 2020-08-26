@@ -34,10 +34,10 @@ export class ItemService {
     return this.http.get<any>(signinUrl, httpOptions);
   }
 
-  getAllItemList():Observable<any>{
-    let signinUrl = this.baseUrl + '/item/all/1';
+  getAllItemList(value):Observable<any>{
+    let signinUrl = this.baseUrl + '/item/all/';
 
-    return this.http.get<any>(signinUrl, httpOptions);
+    return this.http.get<any>(signinUrl + value, httpOptions);
   }
 
   getOptionsByItemType(value):Observable<any>{

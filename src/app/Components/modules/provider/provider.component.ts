@@ -20,6 +20,8 @@ export interface PeriodicElement {
 export class ProviderComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[] = [];
 
+  nextCount:number = 1;
+
   providerTypeList = [
     { name: 'Resturent', value: 1 },
     { name: 'Hotel', value: 2 },
@@ -33,7 +35,7 @@ export class ProviderComponent implements OnInit {
 
   ngOnInit() {
     this.session.sessionCheck();
-    this.getAllProvider();
+    this.getAllProvider(this.nextCount);
   }
 
   displayedColumns: string[] = ['provider', 'name', 'address', 'action'];
@@ -50,16 +52,59 @@ export class ProviderComponent implements OnInit {
   //   });
   // }
 
-    getAllProvider() {
+    getAllProvider(value) {
 
-      this.providerService.getAllProviderList().subscribe((res) => {
+      this.providerService.getAllProviderList(value).subscribe((res) => {
         console.log(res);
         this.ELEMENT_DATA = res.data;
         this.dataSource = this.ELEMENT_DATA;
 
-        console.log(this.dataSource);
+        // console.log(this.dataSource);
 
         
       });
+    }
+
+    onNextButton(){
+
+      let i = 0;
+
+      i++;
+
+      this.nextCount += i; 
+      // console.log(this.nextCount);
+
+      this.providerService.getAllProviderList(this.nextCount).subscribe((res) => {
+        console.log(res);
+        this.ELEMENT_DATA = res.data;
+        this.dataSource = this.ELEMENT_DATA;
+
+        // console.log(this.dataSource);
+
+        
+      });
+
+    }
+
+    onPreviewButton(){
+      let i = 0;
+
+      i--;
+
+      if(this.nextCount != 1){
+        this.nextCount += i; 
+      // console.log(this.nextCount);
+      }
+
+      this.providerService.getAllProviderList(this.nextCount).subscribe((res) => {
+        console.log(res);
+        this.ELEMENT_DATA = res.data;
+        this.dataSource = this.ELEMENT_DATA;
+
+        // console.log(this.dataSource);
+
+        
+      });
+      
     }
 }

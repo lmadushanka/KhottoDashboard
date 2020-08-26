@@ -19,6 +19,8 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 export class ItemsComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[] = [];
 
+  nextCount:number =1;
+
   constructor(private session: SessionService,
      private ItemService:ItemService
      
@@ -26,23 +28,64 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit() {
     this.session.sessionCheck();
-    this.getAllItems();
+    this.getAllItems(this.nextCount);
   }
 
   displayedColumns: string[] = ['type', 'name', 'price', 'cover_image'];
   dataSource = ELEMENT_DATA;
 
-  getAllItems() {
+  getAllItems(value) {
 
-    this.ItemService.getAllItemList().subscribe((res) => {
+    this.ItemService.getAllItemList(value).subscribe((res) => {
       console.log(res);
       this.ELEMENT_DATA = res.data;
       this.dataSource = this.ELEMENT_DATA;
 
-      console.log(this.dataSource);
+      // console.log(this.dataSource);
 
       
     });
+  }
+
+  onPreviewButton(){
+    let i = 0;
+
+    i--;
+
+    if(this.nextCount != 1){
+      this.nextCount += i; 
+    // console.log(this.nextCount);
+    }
+
+    this.ItemService.getAllItemList(this.nextCount).subscribe((res) => {
+      console.log(res);
+      this.ELEMENT_DATA = res.data;
+      this.dataSource = this.ELEMENT_DATA;
+
+      // console.log(this.dataSource);
+
+      
+    });
+    
+  }
+
+  onNextButton(){
+
+    let i = 0;
+
+    i++;
+
+    this.nextCount += i; 
+    // console.log(this.nextCount);
+
+    this.ItemService.getAllItemList(this.nextCount).subscribe((res) => {
+      console.log(res);
+      this.ELEMENT_DATA = res.data;
+      this.dataSource = this.ELEMENT_DATA;
+
+      // console.log(this.dataSource);
+    });
+
   }
 
 }
