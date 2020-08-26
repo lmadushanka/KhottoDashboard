@@ -38,15 +38,17 @@
     routerLinkActive="list-item-active"
     routerLink="/dashboard/banner"
   >
-    <i class="fa fa-list nav-icon"></i>
+  <i class="fa fa-file-o fa-lg nav-icon"></i>
     Banner</a
   >
-  <button id="sideTitle" mat-button [matMenuTriggerFor]="menu">Settings</button>
+  <button id="sideTitle" mat-button [matMenuTriggerFor]="menu"><i class="fa fa-cog fa-lg nav-icon"></i>Settings</button>
   <mat-menu #menu="matMenu" style="width: 100%;">
     <button class="btn mat-menu-btn" routerLink="/dashboard/errors">
+      <i class="fa fa-exclamation-circle fa-lg nav-icon"></i>
       Errors
     </button>
     <button class="btn mat-menu-btn" routerLink="/dashboard/users">
+      <i class="fa fa-user-circle-o fa-lg nav-icon"></i>
       Users
     </button>
   </mat-menu>
