@@ -38,3 +38,12 @@ body {
 .mat-menu-panel {
   min-height: 30px !important;
 }
+
+.modal-backdrop {
+  position: none !important;
+  display: none !important;
+}
+
+.modal {
+  top: 15% !important;
+}

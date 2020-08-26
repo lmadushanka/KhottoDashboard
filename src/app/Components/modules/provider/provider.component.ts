@@ -21,6 +21,7 @@ export interface PeriodicElement {
 })
 export class ProviderComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[] = [];
+  deleteElement: any = { name: '', providerId: 0 };
 
   providerTypeList = [
     { name: 'Resturent', value: 1 },
@@ -69,7 +70,12 @@ export class ProviderComponent implements OnInit {
     });
   }
 
-  deleteProvider(id) {
-    console.log(id);
+  setDeleteProvider(element) {
+    this.deleteElement.name = element.name;
+    this.deleteElement.providerId = element.providerId;
+  }
+
+  deleteProvider() {
+    console.log(this.deleteElement.providerId);
   }
 }
