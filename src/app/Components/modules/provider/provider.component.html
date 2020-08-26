@@ -62,7 +62,10 @@
   <ng-container matColumnDef="delete">
     <th mat-header-cell *matHeaderCellDef>Delete</th>
     <td mat-cell *matCellDef="let element">
-      <i class="btn fa fa-trash" (click)="openDialog()"></i>
+      <i
+        class="btn fa fa-trash"
+        (click)="deleteProvider(element.providerId)"
+      ></i>
     </td>
   </ng-container>
 
