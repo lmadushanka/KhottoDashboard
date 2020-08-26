@@ -9,7 +9,9 @@ export interface PeriodicElement {
   provider: string;
   type: string;
   address: String;
-  action: string;
+  view: string;
+  edit: string;
+  delete: string;
 }
 
 @Component({
@@ -19,6 +21,7 @@ export interface PeriodicElement {
 })
 export class ProviderComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[] = [];
+  deleteElement: any = { name: '', providerId: 0 };
 
   nextCount:number = 1;
 
@@ -38,11 +41,18 @@ export class ProviderComponent implements OnInit {
     this.getAllProvider(this.nextCount);
   }
 
-  displayedColumns: string[] = ['provider', 'name', 'address', 'action'];
+  displayedColumns: string[] = [
+    'provider',
+    'name',
+    'address',
+    'view',
+    'edit',
+    'delete',
+  ];
   dataSource = this.ELEMENT_DATA;
 
   // getProviderList(providerTypeId: number) {
-   
+
   //   this.dataSource = this.ELEMENT_DATA;
 
   //   this.providerService.getProviderList(providerTypeId).subscribe((res) => {
@@ -52,6 +62,7 @@ export class ProviderComponent implements OnInit {
   //   });
   // }
 
+<<<<<<< HEAD
     getAllProvider(value) {
 
       this.providerService.getAllProviderList(value).subscribe((res) => {
@@ -107,4 +118,24 @@ export class ProviderComponent implements OnInit {
       });
       
     }
+=======
+  getAllProvider() {
+    this.providerService.getAllProviderList().subscribe((res) => {
+      console.log(res);
+      this.ELEMENT_DATA = res.data;
+      this.dataSource = this.ELEMENT_DATA;
+
+      console.log(this.dataSource);
+    });
+  }
+
+  setDeleteProvider(element) {
+    this.deleteElement.name = element.name;
+    this.deleteElement.providerId = element.providerId;
+  }
+
+  deleteProvider() {
+    console.log(this.deleteElement.providerId);
+  }
+>>>>>>> b11f4f58b9963708e5b02a234aaede2502e373b5
 }

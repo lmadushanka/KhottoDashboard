@@ -214,7 +214,10 @@ export class AddItemComponent implements OnInit {
     this.ItemService.getOptionsByItemType(value).subscribe((res) => {
       // console.log(res.data);
       this.itemOptions = res.data;
-      console.log(this.itemOptions)
+
+      for (var i = 0; i < this.itemOptions.length; i++) {
+        this.itemOptions[i].isActiveOption = false;
+      }
     });
   }
 
