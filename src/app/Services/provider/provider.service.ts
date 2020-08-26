@@ -55,4 +55,13 @@ export class ProviderService {
 
     return this.http.get<any>(signinUrl+value, httpOptions);
   }
+
+  deleteProviderById(value):Observable<any>{
+    let signinUrl = this.baseUrl + '/provider';
+    let serviceUserId = localStorage.getItem('serviceUserId');
+
+    return this.http.delete<any>(signinUrl + '/' + value + '/' + serviceUserId, httpOptions);
+    
+
+  }
 }

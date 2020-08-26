@@ -126,5 +126,9 @@ export class ProviderComponent implements OnInit {
 
   deleteProvider() {
     console.log(this.deleteElement.providerId);
+    this.providerService.deleteProviderById(this.deleteElement.providerId).subscribe((res) =>{
+      console.log(res);
+      this.getAllProvider(this.nextCount);
+    });
   }
 }
