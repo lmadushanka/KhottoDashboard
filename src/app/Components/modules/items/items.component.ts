@@ -19,10 +19,10 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 export class ItemsComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[] = [];
 
-  constructor(private session: SessionService,
-     private ItemService:ItemService
-     
-     ) {}
+  constructor(
+    private session: SessionService,
+    private ItemService: ItemService
+  ) {}
 
   ngOnInit() {
     this.session.sessionCheck();
@@ -33,16 +33,11 @@ export class ItemsComponent implements OnInit {
   dataSource = ELEMENT_DATA;
 
   getAllItems() {
-
     this.ItemService.getAllItemList().subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.ELEMENT_DATA = res.data;
       this.dataSource = this.ELEMENT_DATA;
-
       console.log(this.dataSource);
-
-      
     });
   }
-
 }

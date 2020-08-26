@@ -9,7 +9,9 @@ export interface PeriodicElement {
   provider: string;
   type: string;
   address: String;
-  action: string;
+  view: string;
+  edit: string;
+  delete: string;
 }
 
 @Component({
@@ -36,11 +38,18 @@ export class ProviderComponent implements OnInit {
     this.getAllProvider();
   }
 
-  displayedColumns: string[] = ['provider', 'name', 'address', 'action'];
+  displayedColumns: string[] = [
+    'provider',
+    'name',
+    'address',
+    'view',
+    'edit',
+    'delete',
+  ];
   dataSource = this.ELEMENT_DATA;
 
   // getProviderList(providerTypeId: number) {
-   
+
   //   this.dataSource = this.ELEMENT_DATA;
 
   //   this.providerService.getProviderList(providerTypeId).subscribe((res) => {
@@ -50,16 +59,17 @@ export class ProviderComponent implements OnInit {
   //   });
   // }
 
-    getAllProvider() {
+  getAllProvider() {
+    this.providerService.getAllProviderList().subscribe((res) => {
+      console.log(res);
+      this.ELEMENT_DATA = res.data;
+      this.dataSource = this.ELEMENT_DATA;
 
-      this.providerService.getAllProviderList().subscribe((res) => {
-        console.log(res);
-        this.ELEMENT_DATA = res.data;
-        this.dataSource = this.ELEMENT_DATA;
+      console.log(this.dataSource);
+    });
+  }
 
-        console.log(this.dataSource);
-
-        
-      });
-    }
+  deleteProvider(id) {
+    console.log(id);
+  }
 }

@@ -2,5 +2,21 @@ a {
   text-decoration: none;
 }
 table {
-    width: 100%;
-  }
+  width: 100%;
+}
+
+.fa-external-link {
+  color: #0069d9;
+}
+
+.fa-edit {
+  color: #12d900;
+}
+
+.fa-trash {
+  color: #d90000;
+}
+
+.fa:hover {
+  // cursor: pointer;
+}
