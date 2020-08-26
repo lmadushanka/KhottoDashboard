@@ -62,7 +62,6 @@ export class ProviderComponent implements OnInit {
   //   });
   // }
 
-<<<<<<< HEAD
     getAllProvider(value) {
 
       this.providerService.getAllProviderList(value).subscribe((res) => {
@@ -118,16 +117,7 @@ export class ProviderComponent implements OnInit {
       });
       
     }
-=======
-  getAllProvider() {
-    this.providerService.getAllProviderList().subscribe((res) => {
-      console.log(res);
-      this.ELEMENT_DATA = res.data;
-      this.dataSource = this.ELEMENT_DATA;
-
-      console.log(this.dataSource);
-    });
-  }
+  
 
   setDeleteProvider(element) {
     this.deleteElement.name = element.name;
@@ -137,5 +127,4 @@ export class ProviderComponent implements OnInit {
   deleteProvider() {
     console.log(this.deleteElement.providerId);
   }
->>>>>>> b11f4f58b9963708e5b02a234aaede2502e373b5
 }
