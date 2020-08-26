@@ -75,40 +75,39 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
 
-<br>
+<br />
 
 <button
-        class="btn btn-success"
-        mat-raised-button
-        color="success"
-        type="submit"
-        (click)="onPreviewButton()"
-        style="margin: 15px; padding: 0px 20px; float:left"
-      >
-       << Preview
-      </button>
+  class="btn btn-success page-btn"
+  mat-raised-button
+  color="success"
+  type="submit"
+  (click)="onPreviewButton()"
+  style="margin: 15px; padding: 0px 20px; float: left"
+>
+  << Preview
+</button>
 
-      <button
-        class="btn btn-info"
-        mat-raised-button
-        color="success"
-        type="submit"
-        style="margin: 15px; padding: 0px 20px; float:left"
-      >
-      {{nextCount}}
-      </button>
+<button
+  class="btn btn-info"
+  mat-raised-button
+  color="success"
+  type="submit"
+  style="margin: 15px; padding: 0px 20px; float: left"
+>
+  {{ nextCount }}
+</button>
 
-      <button
-        class="btn btn-success"
-        mat-raised-button
-        color="success"
-        type="submit"
-        (click)="onNextButton()"
-        style="margin: 15px; padding: 0px 20px; float:left"
-      >
-        Next >>
-      </button>
-
+<button
+  class="btn btn-success page-btn"
+  mat-raised-button
+  color="success"
+  type="submit"
+  (click)="onNextButton()"
+  style="margin: 15px; padding: 0px 20px; float: left"
+>
+  Next >>
+</button>
 
 <!-- Modal -->
 <div
@@ -143,7 +142,12 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           No
         </button>
-        <button type="button" class="btn btn-danger" (click)="deleteProvider()">
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deleteProvider()"
+          data-dismiss="modal"
+        >
           Yes
         </button>
       </div>
