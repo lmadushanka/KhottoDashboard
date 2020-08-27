@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
       this.loginService.signIn(this.loginDto).subscribe(
         (res) => {
           if (res.success) {
-            this.router.navigateByUrl('/dashboard');
+            
             user.access = 1;
             user.user = this.loginDto.username;
 
@@ -63,6 +63,8 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('providerId', res.data.providerId);
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('user', JSON.stringify(user));
+
+            this.router.navigateByUrl('/dashboard');
           }
         },
         (error) => {
