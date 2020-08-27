@@ -20,4 +20,10 @@ export class BannerService {
 
     return this.http.get<any>(signinUrl, httpOptions);
   }
+
+  addNewBanner(value):Observable<any>{
+    let signinUrl = this.baseUrl + '/banner';
+
+    return this.http.post<any>(signinUrl, value, httpOptions);
+  }
 }

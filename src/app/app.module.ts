@@ -54,6 +54,8 @@ import { UsersComponent } from './Components/modules/users/users.component';
 import { BannerComponent } from './Components/modules/banner/banner.component';
 import { AddBannerComponent } from './Components/modules/add-banner/add-banner.component';
 import { NgSwitcheryModule } from 'angular-switchery-ios';
+import { DiscountComponent } from './Components/modules/discount/discount.component';
+import { AddDiscountComponent } from './Components/modules/add-discount/add-discount.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +74,8 @@ import { NgSwitcheryModule } from 'angular-switchery-ios';
     UsersComponent,
     BannerComponent,
     AddBannerComponent,
+    DiscountComponent,
+    AddDiscountComponent,
   ],
   imports: [
     BrowserModule,

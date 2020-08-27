@@ -38,7 +38,7 @@
             <i class="fa fa-user-circle fa-2x user-icon"></i>
           </button>
           <mat-menu #menu="matMenu">
-            <div class="user-details">{{ currentUser }}</div>
+            <div class="user-details" style="font-size:12px;">{{ currentUser }}</div>
             <button class="btn mat-menu-btn" routerLink='/login' (click)="signOut()">
               <i class="fa fa-sign-out sign-out-icon"></i>
               Sign out
