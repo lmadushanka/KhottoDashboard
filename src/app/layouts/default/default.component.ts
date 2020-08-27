@@ -13,10 +13,20 @@ export class DefaultComponent implements OnInit {
   constructor(private router: Router, private session: SessionService) {}
 
   ngOnInit() {
+    this.refreshBefore();
     this.session.sessionCheck();
   }
 
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
+  }
+
+  refreshBefore() {
+    var val = localStorage.getItem('refresh');
+    if (val == 'one') {
+      localStorage.removeItem('refresh');
+      localStorage.setItem('refresh', 'two');
+      location.reload();
+    }
   }
 }

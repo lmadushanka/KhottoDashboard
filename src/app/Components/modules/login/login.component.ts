@@ -29,14 +29,13 @@ export class LoginComponent implements OnInit {
     var user = JSON.parse(localStorage.getItem('user'));
     if (user != null) {
       window.localStorage.removeItem('user');
+      localStorage.removeItem('refresh');
     }
   }
 
   login() {
     this.loginForm.emit();
   }
-
-  
 
   singIn() {
     var user = { access: 0, user: '' };
@@ -55,7 +54,6 @@ export class LoginComponent implements OnInit {
       this.loginService.signIn(this.loginDto).subscribe(
         (res) => {
           if (res.success) {
-            
             user.access = 1;
             user.user = this.loginDto.username;
 
@@ -63,6 +61,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('providerId', res.data.providerId);
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('refresh', 'one');
 
             // this.router.navigateByUrl('/dashboard');
             location.replace('/dashboard');
@@ -77,6 +76,3 @@ export class LoginComponent implements OnInit {
     }
   }
 }
-
-
-
