@@ -61,7 +61,6 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('providerId', res.data.providerId);
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('user', JSON.stringify(user));
-            localStorage.setItem('refresh', 'one');
 
             // this.router.navigateByUrl('/dashboard');
             location.replace('/dashboard');
