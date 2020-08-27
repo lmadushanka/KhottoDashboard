@@ -64,6 +64,8 @@ export class ProviderComponent implements OnInit {
 
     getAllProvider(value) {
 
+      this.session.sessionCheck();
+
       this.providerService.getAllProviderList(value).subscribe((res) => {
         console.log(res);
         this.ELEMENT_DATA = res.data;

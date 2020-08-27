@@ -18,16 +18,14 @@ import { BannerComponent } from './Components/modules/banner/banner.component';
 import { AddBannerComponent } from './Components/modules/add-banner/add-banner.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
-  {
-    path: 'dashboard',
+  {path: '',
     component: DefaultComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: '', component: HomeComponent },
+      { path: 'dashboard', component: HomeComponent },
       { path: 'provider', component: ProviderComponent },
       { path: 'add-provider', component: AddProviderComponent },
       { path: 'items', component: ItemsComponent },

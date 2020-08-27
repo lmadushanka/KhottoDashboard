@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
       this.loginService.signIn(this.loginDto).subscribe(
         (res) => {
           if (res.success) {
-            this.router.navigate(['dashboard/']);
+            this.router.navigate(['/dashboard']);
             user.access = 1;
             user.user = this.loginDto.username;
 

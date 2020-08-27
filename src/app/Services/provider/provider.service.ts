@@ -53,6 +53,8 @@ export class ProviderService {
   getAllProviderList(value):Observable<any>{
     let signinUrl = this.baseUrl + '/provider/all/';
 
+    let token = localStorage.getItem('token');
+
     return this.http.get<any>(signinUrl+value, httpOptions);
   }
 
