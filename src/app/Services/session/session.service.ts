@@ -11,7 +11,7 @@ export class SessionService {
     var user = JSON.parse(localStorage.getItem('user'));
     if (user != null) {
     } else {
-      this.router.navigate(['login']);
+      this.router.navigate(['/login']);
     }
   }
 }
