@@ -19,4 +19,14 @@ export class DiscountService {
     let signinUrl = this.baseUrl + '/discount/all';
     return this.http.get<any>(signinUrl, httpOptions);
   }
+
+  getItemByProviderId(value){
+    let signinUrl = this.baseUrl + '/item/itemNameList';
+    return this.http.get<any>(signinUrl+ '/' + value, httpOptions);
+  }
+
+  addDiscount(value){
+    let signinUrl = this.baseUrl + '/discount';
+    return this.http.post<any>(signinUrl,value, httpOptions);
+  }
 }
