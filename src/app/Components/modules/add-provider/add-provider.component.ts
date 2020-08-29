@@ -134,7 +134,7 @@ export class AddProviderComponent implements OnInit {
     this.newProvider.taxRate = this.addProviderForm.value.taxRate;
     this.newProvider.serviceCharge = this.addProviderForm.value.serviceCharge;
     this.newProvider.mapUrl = this.addProviderForm.value.mapUrl;
-    this.newProvider.description = this.addProviderForm.value.description;
+    this.newProvider.simpleDescription = this.addProviderForm.value.description;
     this.newProvider.facility = this.facilities;
     this.newProvider.policy = this.policies;
     this.newProvider.openDays = this.days;
@@ -156,7 +156,7 @@ export class AddProviderComponent implements OnInit {
     this.addProviderInfo('coverImage', 'coverImage');
     this.addProviderInfo('bannerImage', 'bannerImage');
     this.addProviderDto.serviceUserId = Number(serviceUserId);
-    this.addProviderDto.simpleDescription = this.newProvider.description;
+    this.addProviderDto.simpleDescription = this.newProvider.simpleDescription;
     this.addProviderDto.providerValues = this.providerValues;
     this.addProviderDto.categoryId = Number(this.newProvider.category);
     this.addProviderDto.providerTypeId = Number(this.newProvider.providerType);

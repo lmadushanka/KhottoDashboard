@@ -110,20 +110,22 @@ export class AddItemComponent implements OnInit {
 
     // add provider
     if (this.providerId == 0) {
-      this.itemDto.providerId = this.addItemForm.value.provider;
+      this.itemDto.providerId = Number(this.addItemForm.value.provider);
     } else if (this.providerId == 0) {
       this.itemDto.providerId = Number(this.providerId);
     }
 
-    this.addItemInfo('name', this.newItem.name);
+    // this.addItemInfo('name', this.newItem.name);
     this.addItemInfo('coverImage', this.coverFile);
-    this.addItemInfo('simpleDescription', this.newItem.description);
+    // this.addItemInfo('simpleDescription', this.newItem.description);
     this.addItemInfo('terms', this.newItem.terms);
     this.addItemInfo('availability', Number(this.newItem.availability));
     this.itemDto.itemValues = this.itemValues;
 
     this.addItemDto.coverImage = this.newItem.coverImage;
     this.addItemDto.itemInfo = this.itemDto;
+    this.addItemDto.itemInfo.simpleDescription = this.newItem.description;
+    this.addItemDto.itemInfo.itemName = this.newItem.name;
 
     console.log(this.addItemDto);
     this.ItemService.addItem(this.addItemDto).subscribe((res) => {

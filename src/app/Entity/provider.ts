@@ -16,7 +16,7 @@ export class Provider {
   logoImage: File;
   coverImage: File;
   bannerImage: File;
-  description: string;
+  simpleDescription: string;
   facility: Facility[];
   policy: Policy[];
   openDays: OpenDays[];

@@ -7,4 +7,6 @@ export class ItemDto {
   serviceUserId: any;
   itemOptionValues: number[];
   itemValues: ItemValues[];
+  itemName: string;
+  simpleDescription:string;
 }
