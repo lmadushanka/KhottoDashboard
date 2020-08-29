@@ -135,7 +135,7 @@ export class AddItemComponent implements OnInit {
 
       // add provider
       if (this.providerId == 0) {
-        this.itemDto.providerId = this.addItemForm.value.provider;
+        this.itemDto.providerId = Number(this.addItemForm.value.provider);
       } else if (this.providerId == 0) {
         this.itemDto.providerId = Number(this.providerId);
       }

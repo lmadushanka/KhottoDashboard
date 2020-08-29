@@ -16,6 +16,8 @@ import { AddUserComponent } from './Components/modules/add-user/add-user.compone
 import { UsersComponent } from './Components/modules/users/users.component';
 import { BannerComponent } from './Components/modules/banner/banner.component';
 import { AddBannerComponent } from './Components/modules/add-banner/add-banner.component';
+import { DiscountComponent } from './Components/modules/discount/discount.component';
+import { AddDiscountComponent } from './Components/modules/add-discount/add-discount.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -37,6 +39,8 @@ const routes: Routes = [
       { path: 'users', component: UsersComponent },
       { path: 'banner', component: BannerComponent },
       { path: 'add-banner', component: AddBannerComponent },
+      { path: 'discount', component: DiscountComponent },
+      { path: 'add-discount', component: AddDiscountComponent },
     ],
   },
 ];

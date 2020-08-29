@@ -21,6 +21,16 @@
     <i class="fa fa-cart-plus nav-icon"></i>
     Items</a
   >
+
+  <a
+    mat-list-item
+    routerLinkActive="list-item-active"
+    routerLink="/discount"
+  >
+    <i class="fa fa-money nav-icon"></i>
+    Discount</a
+  >
+
   <a
     mat-list-item
     routerLinkActive="list-item-active"
@@ -34,11 +44,11 @@
     routerLinkActive="list-item-active"
     routerLink="/banner"
   >
-    <i class="fa fa-file-o fa-lg nav-icon"></i>
+    <i class="fa fa-file-o  nav-icon"></i>
     Banner</a
   >
   <button id="sideTitle" mat-button [matMenuTriggerFor]="menu" class="btn">
-    <i class="fa fa-cog fa-lg nav-icon"></i>Settings
+    <i class="fa fa-cog  nav-icon"></i>Settings
   </button>
   <mat-menu #menu="matMenu" style="width: 100%">
     <button
