@@ -23,7 +23,7 @@ export class ProviderComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[] = [];
   deleteElement: any = { name: '', providerId: 0 };
 
-  nextCount:number = 1;
+  nextCount: number = 1;
 
   providerTypeList = [
     { name: 'Resturent', value: 1 },
@@ -51,6 +51,8 @@ export class ProviderComponent implements OnInit {
   ];
   dataSource = this.ELEMENT_DATA;
 
+  viewProviderId: string;
+
   // getProviderList(providerTypeId: number) {
 
   //   this.dataSource = this.ELEMENT_DATA;
@@ -62,64 +64,53 @@ export class ProviderComponent implements OnInit {
   //   });
   // }
 
-    getAllProvider(value) {
+  getAllProvider(value) {
+    this.session.sessionCheck();
 
-      this.session.sessionCheck();
+    this.providerService.getAllProviderList(value).subscribe((res) => {
+      console.log(res);
+      this.ELEMENT_DATA = res.data;
+      this.dataSource = this.ELEMENT_DATA;
 
-      this.providerService.getAllProviderList(value).subscribe((res) => {
-        console.log(res);
-        this.ELEMENT_DATA = res.data;
-        this.dataSource = this.ELEMENT_DATA;
+      // console.log(this.dataSource);
+    });
+  }
 
-        // console.log(this.dataSource);
+  onNextButton() {
+    let i = 0;
 
-        
-      });
-    }
+    i++;
 
-    onNextButton(){
+    this.nextCount += i;
+    // console.log(this.nextCount);
 
-      let i = 0;
+    this.providerService.getAllProviderList(this.nextCount).subscribe((res) => {
+      console.log(res);
+      this.ELEMENT_DATA = res.data;
+      this.dataSource = this.ELEMENT_DATA;
 
-      i++;
+      // console.log(this.dataSource);
+    });
+  }
 
-      this.nextCount += i; 
+  onPreviewButton() {
+    let i = 0;
+
+    i--;
+
+    if (this.nextCount != 1) {
+      this.nextCount += i;
       // console.log(this.nextCount);
-
-      this.providerService.getAllProviderList(this.nextCount).subscribe((res) => {
-        console.log(res);
-        this.ELEMENT_DATA = res.data;
-        this.dataSource = this.ELEMENT_DATA;
-
-        // console.log(this.dataSource);
-
-        
-      });
-
     }
 
-    onPreviewButton(){
-      let i = 0;
+    this.providerService.getAllProviderList(this.nextCount).subscribe((res) => {
+      console.log(res);
+      this.ELEMENT_DATA = res.data;
+      this.dataSource = this.ELEMENT_DATA;
 
-      i--;
-
-      if(this.nextCount != 1){
-        this.nextCount += i; 
-      // console.log(this.nextCount);
-      }
-
-      this.providerService.getAllProviderList(this.nextCount).subscribe((res) => {
-        console.log(res);
-        this.ELEMENT_DATA = res.data;
-        this.dataSource = this.ELEMENT_DATA;
-
-        // console.log(this.dataSource);
-
-        
-      });
-      
-    }
-  
+      // console.log(this.dataSource);
+    });
+  }
 
   setDeleteProvider(element) {
     this.deleteElement.name = element.name;
@@ -128,9 +119,15 @@ export class ProviderComponent implements OnInit {
 
   deleteProvider() {
     console.log(this.deleteElement.providerId);
-    this.providerService.deleteProviderById(this.deleteElement.providerId).subscribe((res) =>{
-      console.log(res);
-      this.getAllProvider(this.nextCount);
-    });
+    this.providerService
+      .deleteProviderById(this.deleteElement.providerId)
+      .subscribe((res) => {
+        console.log(res);
+        this.getAllProvider(this.nextCount);
+      });
+  }
+
+  setViewProvider(element) {
+    this.viewProviderId = element.providerId;
   }
 }
