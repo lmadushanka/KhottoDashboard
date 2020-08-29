@@ -1,4 +1,4 @@
-import { FormControl,FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from 'src/app/services/session/session.service';
 import { Provider } from 'src/app/entity/provider';
@@ -56,6 +56,10 @@ export class AddProviderComponent implements OnInit {
   coverFile: File = null;
   bannerFile: File = null;
 
+  logoIf: boolean = false;
+  coverIf: boolean = false;
+  bannerIf: boolean = false;
+
   providerTypeList = [
     { name: 'Resturent', value: 1 },
     { name: 'Hotel', value: 2 },
@@ -102,7 +106,7 @@ export class AddProviderComponent implements OnInit {
     private session: SessionService,
     private providerService: ProviderService,
     private categoryService: CategoryService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -110,20 +114,23 @@ export class AddProviderComponent implements OnInit {
   }
 
   onSubmit() {
-    var _this = this;
-    let serviceUserId = localStorage.getItem('serviceUserId');
+    var nullIf: boolean = true;
 
-    if (this.facilityArray.length != 0) {
-      this.facilities = this.facilityArray;
+    if (this.newProvider.logoImage == null) {
+      this.logoIf = true;
+      nullIf = false;
     }
 
-    if (this.policyArray.length != 0) {
-      this.policies = this.policyArray;
+    if (this.newProvider.coverImage == null) {
+      this.coverIf = true;
+      nullIf = false;
     }
 
-    this.days = this.dayList;
+    if (this.newProvider.coverImage == null) {
+      this.bannerIf = true;
+      nullIf = false;
+    }
 
-    // FORM SUBMISSION SET
     this.newProvider.name = this.addProviderForm.value.name;
     this.newProvider.providerType = this.addProviderForm.value.providerType;
     this.newProvider.location = this.addProviderForm.value.location;
@@ -135,47 +142,114 @@ export class AddProviderComponent implements OnInit {
     this.newProvider.serviceCharge = this.addProviderForm.value.serviceCharge;
     this.newProvider.mapUrl = this.addProviderForm.value.mapUrl;
     this.newProvider.simpleDescription = this.addProviderForm.value.description;
-    this.newProvider.facility = this.facilities;
-    this.newProvider.policy = this.policies;
-    this.newProvider.openDays = this.days;
 
-    // PROVIDER VALUES ENTITY SET < Form Submission^^
-    // this.addProviderInfo('name', this.newProvider.name);
-    // this.addProviderInfo('locationName', this.newProvider.location);
-    this.addProviderInfo('address', this.newProvider.address);
-    this.addProviderInfo('callNumber', this.newProvider.phone);
-    // this.addProviderInfo('luxuryCategory',Number(this.newProvider.luxuryCategory));
-    this.addProviderInfo('taxRate', this.newProvider.taxRate);
-    this.addProviderInfo('serviceCharge', this.newProvider.serviceCharge);
-    this.addProviderInfo('mapUrl', this.newProvider.mapUrl);
-    // this.addProviderInfo('simpleDescription', this.newProvider.description);
-    this.addProviderInfo('facility', this.newProvider.facility);
-    this.addProviderInfo('policy', this.newProvider.policy);
-    this.addProviderInfo('openDays', this.newProvider.openDays);
-    this.addProviderInfo('logoImage', 'logoImage');
-    this.addProviderInfo('coverImage', 'coverImage');
-    this.addProviderInfo('bannerImage', 'bannerImage');
-    this.addProviderDto.serviceUserId = Number(serviceUserId);
-    this.addProviderDto.simpleDescription = this.newProvider.simpleDescription;
-    this.addProviderDto.providerValues = this.providerValues;
-    this.addProviderDto.categoryId = Number(this.newProvider.category);
-    this.addProviderDto.providerTypeId = Number(this.newProvider.providerType);
+    if (this.newProvider.name == null || this.newProvider.name == '') {
+      nullIf = false;
+    }
 
-    this.addProviderDto.providerName = this.newProvider.name;
-    this.addProviderDto.luxuryCategory = this.newProvider.luxuryCategory;
-    this.addProviderDto.location = this.newProvider.location;
-    this.providerInfo.logoImage = this.newProvider.logoImage;
-    this.providerInfo.coverImage = this.newProvider.coverImage;
-    this.providerInfo.bannerImage = this.newProvider.bannerImage;
-    this.providerInfo.providerInfo = this.addProviderDto;
+    if (
+      this.newProvider.providerType == null ||
+      this.newProvider.providerType == ''
+    ) {
+      nullIf = false;
+    }
 
-    console.log(this.newProvider);
-    console.log(this.providerInfo);
-    this.providerService.addProvider(this.providerInfo).subscribe((res) => {
+    if (this.newProvider.location == null || this.newProvider.location == '') {
+      nullIf = false;
+    }
 
-      this.resetForm();
-      this.router.navigateByUrl('/provider');
-    });
+    if (this.newProvider.address == null || this.newProvider.address == '') {
+      nullIf = false;
+    }
+
+    if (this.newProvider.phone == null || this.newProvider.phone == '') {
+      nullIf = false;
+    }
+    if (this.newProvider.category == null) {
+      nullIf = false;
+    }
+
+    if (this.newProvider.luxuryCategory == null) {
+      nullIf = false;
+    }
+
+    if (this.newProvider.taxRate == null) {
+      nullIf = false;
+    }
+
+    if (this.newProvider.serviceCharge == null) {
+      nullIf = false;
+    }
+
+    if (this.newProvider.mapUrl == null || this.newProvider.mapUrl == '') {
+      nullIf = false;
+    }
+
+    if (
+      this.newProvider.simpleDescription == null ||
+      this.newProvider.simpleDescription == ''
+    ) {
+      nullIf = false;
+    }
+
+    if (nullIf == true) {
+      var _this = this;
+      let serviceUserId = localStorage.getItem('serviceUserId');
+
+      if (this.facilityArray.length != 0) {
+        this.facilities = this.facilityArray;
+      }
+
+      if (this.policyArray.length != 0) {
+        this.policies = this.policyArray;
+      }
+
+      this.days = this.dayList;
+
+      // FORM SUBMISSION SET
+      this.newProvider.facility = this.facilities;
+      this.newProvider.policy = this.policies;
+      this.newProvider.openDays = this.days;
+
+      // PROVIDER VALUES ENTITY SET < Form Submission^^
+      // this.addProviderInfo('name', this.newProvider.name);
+      // this.addProviderInfo('locationName', this.newProvider.location);
+      this.addProviderInfo('address', this.newProvider.address);
+      this.addProviderInfo('callNumber', this.newProvider.phone);
+      // this.addProviderInfo('luxuryCategory',Number(this.newProvider.luxuryCategory));
+      this.addProviderInfo('taxRate', this.newProvider.taxRate);
+      this.addProviderInfo('serviceCharge', this.newProvider.serviceCharge);
+      this.addProviderInfo('mapUrl', this.newProvider.mapUrl);
+      // this.addProviderInfo('simpleDescription', this.newProvider.description);
+      this.addProviderInfo('facility', this.newProvider.facility);
+      this.addProviderInfo('policy', this.newProvider.policy);
+      this.addProviderInfo('openDays', this.newProvider.openDays);
+      this.addProviderInfo('logoImage', 'logoImage');
+      this.addProviderInfo('coverImage', 'coverImage');
+      this.addProviderInfo('bannerImage', 'bannerImage');
+      this.addProviderDto.serviceUserId = Number(serviceUserId);
+      this.addProviderDto.simpleDescription = this.newProvider.simpleDescription;
+      this.addProviderDto.providerValues = this.providerValues;
+      this.addProviderDto.categoryId = Number(this.newProvider.category);
+      this.addProviderDto.providerTypeId = Number(
+        this.newProvider.providerType
+      );
+
+      this.addProviderDto.providerName = this.newProvider.name;
+      this.addProviderDto.luxuryCategory = this.newProvider.luxuryCategory;
+      this.addProviderDto.location = this.newProvider.location;
+      this.providerInfo.logoImage = this.newProvider.logoImage;
+      this.providerInfo.coverImage = this.newProvider.coverImage;
+      this.providerInfo.bannerImage = this.newProvider.bannerImage;
+      this.providerInfo.providerInfo = this.addProviderDto;
+
+      console.log(this.newProvider);
+      console.log(this.providerInfo);
+      this.providerService.addProvider(this.providerInfo).subscribe((res) => {
+        this.resetForm();
+        this.router.navigateByUrl('/provider');
+      });
+    }
   }
 
   addProviderInfo(type, name) {
@@ -274,9 +348,12 @@ export class AddProviderComponent implements OnInit {
     this.newProvider.logoImage = null;
     this.newProvider.coverImage = null;
     this.newProvider.bannerImage = null;
+    this.logoIf = false;
+    this.coverIf = false;
+    this.bannerIf = false;
   }
 
-  onClear(){
+  onClear() {
     this.addProviderForm.reset();
     this.dayList = this.baseDayList;
     this.facilityArray = [];
@@ -295,6 +372,9 @@ export class AddProviderComponent implements OnInit {
     this.newProvider.logoImage = null;
     this.newProvider.coverImage = null;
     this.newProvider.bannerImage = null;
+    this.logoIf = false;
+    this.coverIf = false;
+    this.bannerIf = false;
   }
 
   onLogoSelected(event) {
@@ -306,6 +386,8 @@ export class AddProviderComponent implements OnInit {
     reader.onload = (_event) => {
       this.imgURLLogo = reader.result;
     };
+
+    this.logoIf = false;
 
     var file: File = <File>event.target.files[0];
     this.logoFile = file;
@@ -322,6 +404,8 @@ export class AddProviderComponent implements OnInit {
       this.imgURLCover = reader.result;
     };
 
+    this.coverIf = false;
+
     var file: File = <File>event.target.files[0];
     this.coverFile = file;
     this.newProvider.coverImage = this.coverFile;
@@ -336,6 +420,8 @@ export class AddProviderComponent implements OnInit {
     reader.onload = (_event) => {
       this.imgURLBanner = reader.result;
     };
+
+    this.bannerIf = false;
 
     var file: File = <File>event.target.files[0];
     this.bannerFile = file;

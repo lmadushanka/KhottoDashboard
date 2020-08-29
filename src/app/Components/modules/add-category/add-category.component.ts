@@ -20,6 +20,7 @@ export class AddCategoryComponent implements OnInit {
   //For Images
   public imagePathCover;
   imgURLCover: any;
+  coverIf: boolean = false;
 
   addCategoryForm = new FormGroup({
     providerType: new FormControl(),
@@ -45,39 +46,57 @@ export class AddCategoryComponent implements OnInit {
   }
 
   onSubmit() {
-    var _this = this;
+    var nullIf: boolean = true;
+
+    if (this.newCategory.cover == null) {
+      this.coverIf = true;
+      nullIf = false;
+    }
 
     this.newCategory.id = this.addCategoryForm.value.providerType;
     this.newCategory.type = this.addCategoryForm.value.categoryName;
-    this.newCategory.cover = this.coverFile;
-    console.log(this.newCategory);
 
-    this.categoryDto.providerTypeId = Number(this.newCategory.id);
-    this.categoryDto.categoryName = this.newCategory.type;
-    this.categoryDto.categoryImage = this.newCategory.cover;
+    if (this.newCategory.id == null) {
+      nullIf = false;
+    }
 
-    this.addCategoryDto.categoryCardImage = this.newCategory.cover;
-    this.addCategoryDto.categoryInfo = this.categoryDto;
+    if (this.newCategory.type == null || this.newCategory.type == '') {
+      nullIf = false;
+    }
 
-    console.log(this.addCategoryDto);
-    this.categoryService.addCategory(this.addCategoryDto).subscribe((res) => {
+    if (nullIf == true) {
+      var _this = this;
 
-      this.resetForm();
-      this.router.navigateByUrl('/category')
-      
-    });
+      this.newCategory.cover = this.coverFile;
+      console.log(this.newCategory);
+
+      this.categoryDto.providerTypeId = Number(this.newCategory.id);
+      this.categoryDto.categoryName = this.newCategory.type;
+      this.categoryDto.categoryImage = this.newCategory.cover;
+
+      this.addCategoryDto.categoryCardImage = this.newCategory.cover;
+      this.addCategoryDto.categoryInfo = this.categoryDto;
+
+      console.log(this.addCategoryDto);
+      this.categoryService.addCategory(this.addCategoryDto).subscribe((res) => {
+        this.resetForm();
+        this.router.navigateByUrl('/category');
+      });
+    }
   }
 
   resetForm() {
     this.addCategoryForm.reset();
     this.coverFile = null;
     this.imgURLCover = null;
+    this.coverIf = false;
   }
 
-  onClear(){
+  onClear() {
     this.addCategoryForm.reset();
     this.coverFile = null;
     this.imgURLCover = null;
+    this.coverIf = false;
   }
 
   onCoverSelected(event) {
@@ -89,6 +108,8 @@ export class AddCategoryComponent implements OnInit {
     reader.onload = (_event) => {
       this.imgURLCover = reader.result;
     };
+
+    this.coverIf = false;
 
     var file: File = <File>event.target.files[0];
     this.coverFile = file;
