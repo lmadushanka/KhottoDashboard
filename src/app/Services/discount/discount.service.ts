@@ -16,7 +16,7 @@ export class DiscountService {
   constructor(private http: HttpClient, private globals: Globals) { }
 
   getAllDiscount(): Observable<any>{
-    let signinUrl = this.baseUrl + '/discount/all/1081';
+    let signinUrl = this.baseUrl + '/discount/all';
     return this.http.get<any>(signinUrl, httpOptions);
   }
 }

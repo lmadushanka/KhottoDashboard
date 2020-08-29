@@ -49,7 +49,7 @@ export class DiscountComponent implements OnInit {
 
   getAllDiscount(){
     this.discountService.getAllDiscount().subscribe((res) =>{
-      console.log(res);
+      console.log(res.data);
 
       this.ELEMENT_DATA = res.data;
       this.dataSource = this.ELEMENT_DATA;
