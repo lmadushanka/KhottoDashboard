@@ -56,6 +56,7 @@ import { AddBannerComponent } from './Components/modules/add-banner/add-banner.c
 import { NgSwitcheryModule } from 'angular-switchery-ios';
 import { DiscountComponent } from './Components/modules/discount/discount.component';
 import { AddDiscountComponent } from './Components/modules/add-discount/add-discount.component';
+import { ViewProviderComponent } from './Components/modules/view-provider/view-provider.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { AddDiscountComponent } from './Components/modules/add-discount/add-disc
     AddBannerComponent,
     DiscountComponent,
     AddDiscountComponent,
+    ViewProviderComponent,
   ],
   imports: [
     BrowserModule,
