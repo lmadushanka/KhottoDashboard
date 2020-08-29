@@ -26,6 +26,7 @@ export class AddItemComponent implements OnInit {
   //For Images
   public imagePathCover;
   imgURLCover: any;
+  coverIf: boolean = false;
 
   newItem: Item = new Item();
   terms: Term[];
@@ -62,7 +63,7 @@ export class AddItemComponent implements OnInit {
   constructor(
     private session: SessionService,
     private ItemService: ItemService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -78,60 +79,83 @@ export class AddItemComponent implements OnInit {
   }
 
   onSubmit() {
-    var _this = this;
-    let serviceUserId = localStorage.getItem('serviceUserId');
+    var nullIf: boolean = true;
 
-    if (this.termArray.length != 0) {
-      this.terms = this.termArray;
-    }
-
-    if (this.itemOptions.length != 0) {
-      for (var i = 0; i < this.itemOptions.length; i++) {
-        if (this.itemOptions[i].isActiveOption == true) {
-          this.selectedOption.push(this.itemOptions[i].optionId);
-        }
-      }
+    if (this.newItem.coverImage == null) {
+      this.coverIf = true;
+      nullIf = false;
     }
 
     this.newItem.name = this.addItemForm.value.itemName;
     this.newItem.type = this.addItemForm.value.itemType;
     this.newItem.price = this.addItemForm.value.itemPrice;
-    this.newItem.coverImage = this.coverFile;
     this.newItem.description = this.addItemForm.value.description;
-    this.newItem.terms = this.terms;
-    this.newItem.availability = this.addItemForm.value.itemAvailability;
-    // console.log(this.newItem);
 
-
-    this.itemDto.itemTypeId = Number(this.newItem.type);
-    this.itemDto.price = Number(this.newItem.price);
-    this.itemDto.serviceUserId = Number(serviceUserId);
-    this.itemDto.itemOptionValues = this.selectedOption;
-
-    // add provider
-    if (this.providerId == 0) {
-      this.itemDto.providerId = this.addItemForm.value.provider;
-    } else if (this.providerId == 0) {
-      this.itemDto.providerId = Number(this.providerId);
+    if (this.newItem.name == null || this.newItem.name == '') {
+      nullIf = false;
     }
 
-    this.addItemInfo('name', this.newItem.name);
-    this.addItemInfo('coverImage', this.coverFile);
-    this.addItemInfo('simpleDescription', this.newItem.description);
-    this.addItemInfo('terms', this.newItem.terms);
-    this.addItemInfo('availability', Number(this.newItem.availability));
-    this.itemDto.itemValues = this.itemValues;
+    if (this.newItem.type == null || this.newItem.type == '') {
+      nullIf = false;
+    }
 
-    this.addItemDto.coverImage = this.newItem.coverImage;
-    this.addItemDto.itemInfo = this.itemDto;
+    if (this.newItem.price == null || this.newItem.price == '') {
+      nullIf = false;
+    }
 
-    console.log(this.addItemDto);
-    this.ItemService.addItem(this.addItemDto).subscribe((res) => {
+    if (this.newItem.description == null || this.newItem.description == '') {
+      nullIf = false;
+    }
 
-      this.resetForm();
-      this.router.navigateByUrl('/items');
-    });
+    if (nullIf == true) {
+      var _this = this;
+      let serviceUserId = localStorage.getItem('serviceUserId');
 
+      if (this.termArray.length != 0) {
+        this.terms = this.termArray;
+      }
+
+      if (this.itemOptions.length != 0) {
+        for (var i = 0; i < this.itemOptions.length; i++) {
+          if (this.itemOptions[i].isActiveOption == true) {
+            this.selectedOption.push(this.itemOptions[i].optionId);
+          }
+        }
+      }
+
+      this.newItem.coverImage = this.coverFile;
+      this.newItem.terms = this.terms;
+      this.newItem.availability = this.addItemForm.value.itemAvailability;
+      // console.log(this.newItem);
+
+      this.itemDto.itemTypeId = Number(this.newItem.type);
+      this.itemDto.price = Number(this.newItem.price);
+      this.itemDto.serviceUserId = Number(serviceUserId);
+      this.itemDto.itemOptionValues = this.selectedOption;
+
+      // add provider
+      if (this.providerId == 0) {
+        this.itemDto.providerId = this.addItemForm.value.provider;
+      } else if (this.providerId == 0) {
+        this.itemDto.providerId = Number(this.providerId);
+      }
+
+      this.addItemInfo('name', this.newItem.name);
+      this.addItemInfo('coverImage', this.coverFile);
+      this.addItemInfo('simpleDescription', this.newItem.description);
+      this.addItemInfo('terms', this.newItem.terms);
+      this.addItemInfo('availability', Number(this.newItem.availability));
+      this.itemDto.itemValues = this.itemValues;
+
+      this.addItemDto.coverImage = this.newItem.coverImage;
+      this.addItemDto.itemInfo = this.itemDto;
+
+      console.log(this.addItemDto);
+      this.ItemService.addItem(this.addItemDto).subscribe((res) => {
+        this.resetForm();
+        this.router.navigateByUrl('/items');
+      });
+    }
   }
 
   addItemInfo(type, name) {
@@ -145,9 +169,7 @@ export class AddItemComponent implements OnInit {
 
   addTerm(termA) {
     if (termA != '') {
-      this.termArray.push(
-        termA
-      );
+      this.termArray.push(termA);
       let t = <HTMLInputElement>document.getElementById('term');
       t.value = '';
     } else {
@@ -169,6 +191,7 @@ export class AddItemComponent implements OnInit {
     this.selectedOption = [];
     this.coverFile = null;
     this.imgURLCover = null;
+    this.coverIf = false;
   }
 
   onClear() {
@@ -181,6 +204,7 @@ export class AddItemComponent implements OnInit {
     this.terms = null;
     this.coverFile = null;
     this.imgURLCover = null;
+    this.coverIf = false;
   }
 
   onCoverSelected(event) {
@@ -192,6 +216,8 @@ export class AddItemComponent implements OnInit {
     reader.onload = (_event) => {
       this.imgURLCover = reader.result;
     };
+
+    this.coverIf = false;
 
     var file: File = <File>event.target.files[0];
     this.coverFile = file;
@@ -205,7 +231,7 @@ export class AddItemComponent implements OnInit {
     });
   }
 
-  onItemrTypeSelect(value) {
+  onItemTypeSelect(value) {
     if (value == 2) {
       this.itemType = true;
     } else if (value == 1) {

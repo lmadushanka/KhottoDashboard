@@ -9,16 +9,16 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-banner',
   templateUrl: './add-banner.component.html',
-  styleUrls: ['./add-banner.component.scss']
+  styleUrls: ['./add-banner.component.scss'],
 })
 export class AddBannerComponent implements OnInit {
-
   addBannerDto: AddBannerDto = new AddBannerDto();
   bannerDto: BannerDto = new BannerDto();
 
   //For Images
   public imagePathCover;
   imgURLCover: any;
+  bannerIf: boolean = false;
 
   addBannerForm = new FormGroup({
     bannerName: new FormControl(),
@@ -37,40 +37,56 @@ export class AddBannerComponent implements OnInit {
   constructor(
     private session: SessionService,
     private BannerService: BannerService,
-    private router: Router,
-  ) { }
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 
   onSubmit() {
-    var _this = this;
+    var nullIf: boolean = true;
+
+    if (this.bannerDto.bannerImage == null) {
+      this.bannerIf = true;
+      nullIf = false;
+    }
 
     this.bannerDto.bannerName = this.addBannerForm.value.bannerName;
     this.bannerDto.bannerDescription = this.addBannerForm.value.description;
-    this.bannerDto.bannerImage = this.bannerFile;
-    this.bannerDto.visible = Number(this.addBannerForm.value.visible);
-    this.bannerDto.serviceUserId = Number(localStorage.getItem('serviceUserId'));
 
-    this.addBannerDto.bannerImage = this.bannerDto.bannerImage;
-    this.addBannerDto.bannerInfo = this.bannerDto;
+    if (this.bannerDto.bannerName == null || this.bannerDto.bannerName == '') {
+      nullIf = false;
+    }
 
-    console.log(this.addBannerDto);
+    if (
+      this.bannerDto.bannerDescription == null ||
+      this.bannerDto.bannerDescription == ''
+    ) {
+      nullIf = false;
+    }
 
-    this.BannerService.addNewBanner(this.addBannerDto).subscribe((res) => {
-      console.log(res);
-      this.resetForm();
-      this.router.navigateByUrl('/banner');
-    })
+    if (nullIf == true) {
+      var _this = this;
 
-    
+      this.bannerDto.bannerImage = this.bannerFile;
+      this.bannerDto.visible = Number(this.addBannerForm.value.visible);
+      this.bannerDto.serviceUserId = Number(
+        localStorage.getItem('serviceUserId')
+      );
 
-    
+      this.addBannerDto.bannerImage = this.bannerDto.bannerImage;
+      this.addBannerDto.bannerInfo = this.bannerDto;
+
+      console.log(this.addBannerDto);
+
+      this.BannerService.addNewBanner(this.addBannerDto).subscribe((res) => {
+        console.log(res);
+        this.resetForm();
+        this.router.navigateByUrl('/banner');
+      });
+    }
   }
 
-
-  onCoverSelected(event){
+  onCoverSelected(event) {
     if (event.target.files.length === 0) return;
 
     var reader = new FileReader();
@@ -79,6 +95,8 @@ export class AddBannerComponent implements OnInit {
     reader.onload = (_event) => {
       this.imgURLCover = reader.result;
     };
+
+    this.bannerIf = false;
 
     var file: File = <File>event.target.files[0];
     this.bannerFile = file;
@@ -89,12 +107,13 @@ export class AddBannerComponent implements OnInit {
     this.addBannerForm.reset();
     this.bannerFile = null;
     this.imgURLCover = null;
+    this.bannerIf = false;
   }
 
-  onClear(){
+  onClear() {
     this.addBannerForm.reset();
     this.bannerFile = null;
     this.imgURLCover = null;
+    this.bannerIf = false;
   }
-
 }

@@ -1,4 +1,6 @@
-<button mat-button class="btn btn-primary" routerLink="/provider">View Provider</button>
+<button mat-button class="btn btn-primary" routerLink="/provider">
+  View Provider
+</button>
 <br />
 <mat-divider></mat-divider>
 <br />
@@ -161,11 +163,11 @@
       />
     </mat-form-field>
 
-    <hr style="width: 100%;" />
+    <hr style="width: 100%" />
 
     <!-- Logo Image -->
     <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-      <label>Upload Logo Image</label>
+      <label class="col-12">Upload Logo Image</label>
       <input
         type="file"
         name="logo"
@@ -173,12 +175,13 @@
         (change)="onLogoSelected($event)"
         formControlName="logo"
       />
+      <label class="col-12 err" *ngIf="logoIf">Please upload logo...</label>
       <img [src]="imgURLLogo" height="140" *ngIf="imgURLLogo" />
     </div>
 
     <!-- Cover Image -->
     <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-      <label>Upload Cover Image</label>
+      <label class="col-12">Upload Cover Image</label>
       <input
         type="file"
         name="cover"
@@ -186,12 +189,13 @@
         (change)="onCoverSelected($event)"
         formControlName="cover"
       />
+      <label class="col-12 err" *ngIf="coverIf">Please upload cover...</label>
       <img [src]="imgURLCover" height="140" *ngIf="imgURLCover" />
     </div>
 
     <!-- Banner Image -->
     <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-      <label>Upload Banner Image</label>
+      <label class="col-12">Upload Banner Image</label>
       <input
         type="file"
         name="banner"
@@ -199,16 +203,17 @@
         (change)="onBannerSelected($event)"
         formControlName="banner"
       />
+      <label class="col-12 err" *ngIf="bannerIf">Please upload banner...</label>
       <img [src]="imgURLBanner" height="140" *ngIf="imgURLBanner" />
     </div>
 
-    <hr style="width: 100%;" />
+    <hr style="width: 100%" />
 
     <!-- Description -->
     <mat-form-field
       class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
       appearance="fill"
-      style="margin-top: 0.5%;"
+      style="margin-top: 0.5%"
     >
       <mat-label>Description</mat-label>
       <input
@@ -221,7 +226,7 @@
       />
     </mat-form-field>
 
-    <hr style="width: 100%;" />
+    <hr style="width: 100%" />
 
     <!-- Facility -->
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -282,9 +287,9 @@
       <table class="table" *ngIf="facilityArray.length != 0">
         <thead>
           <tr>
-            <th scope="col" style="width: 40%;">Title</th>
-            <th scope="col" style="width: 50%;">Description</th>
-            <th scope="col" style="width: 10%;"></th>
+            <th scope="col" style="width: 40%">Title</th>
+            <th scope="col" style="width: 50%">Description</th>
+            <th scope="col" style="width: 10%"></th>
           </tr>
         </thead>
         <tbody>
@@ -305,7 +310,7 @@
       </table>
     </div>
 
-    <hr style="width: 100%;" />
+    <hr style="width: 100%" />
 
     <!-- Policy -->
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -363,9 +368,9 @@
       <table class="table" *ngIf="policyArray.length != 0">
         <thead>
           <tr>
-            <th scope="col" style="width: 40%;">Title</th>
-            <th scope="col" style="width: 50%;">Description</th>
-            <th scope="col" style="width: 10%;"></th>
+            <th scope="col" style="width: 40%">Title</th>
+            <th scope="col" style="width: 50%">Description</th>
+            <th scope="col" style="width: 10%"></th>
           </tr>
         </thead>
         <tbody>
@@ -386,7 +391,7 @@
       </table>
     </div>
 
-    <hr style="width: 100%;" />
+    <hr style="width: 100%" />
 
     <!-- Open Days -->
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -398,10 +403,10 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col" style="width: 40%;">Day</th>
-            <th scope="col" style="width: 30%;">Is Open</th>
-            <th scope="col" style="width: 15%;">Open Time</th>
-            <th scope="col" style="width: 15%;">Close Time</th>
+            <th scope="col" style="width: 40%">Day</th>
+            <th scope="col" style="width: 30%">Is Open</th>
+            <th scope="col" style="width: 15%">Open Time</th>
+            <th scope="col" style="width: 15%">Close Time</th>
           </tr>
         </thead>
         <tbody>
@@ -449,7 +454,7 @@
       </table>
     </div>
 
-    <hr style="width: 100%;" />
+    <hr style="width: 100%" />
 
     <!-- Submit Button -->
     <mat-card-actions class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
@@ -459,7 +464,7 @@
         color="danger"
         type="submit"
         (click)="onClear()"
-        style="margin: 15px; padding: 5px 20px;"
+        style="margin: 15px; padding: 5px 20px"
       >
         Clear
       </button>
@@ -469,7 +474,7 @@
         color="primary"
         type="submit"
         (click)="onSubmit()"
-        style="margin: 15px; padding: 5px 20px;"
+        style="margin: 15px; padding: 5px 20px"
       >
         Submit
       </button>

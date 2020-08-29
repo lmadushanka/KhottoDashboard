@@ -1,4 +1,6 @@
-<button mat-button class="btn btn-primary" routerLink="/banner">View Banner</button>
+<button mat-button class="btn btn-primary" routerLink="/banner">
+  View Banner
+</button>
 <mat-divider></mat-divider>
 <br />
 
@@ -36,7 +38,7 @@
 
     <!-- Cover Image -->
     <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <label>Upload Banner Image</label>
+      <label class="col-12">Upload Banner Image</label>
       <input
         type="file"
         name="cover"
@@ -44,6 +46,7 @@
         (change)="onCoverSelected($event)"
         formControlName="banner"
       />
+      <label class="col-12 err" *ngIf="bannerIf">Please upload cover...</label>
       <img [src]="imgURLCover" height="120" *ngIf="imgURLCover" />
     </div>
 
@@ -54,11 +57,9 @@
     >
       <mat-label>Select Visibility</mat-label>
       <mat-select formControlName="visible" required>
-        <mat-option
-          *ngFor="let item of visibleList"
-          value="{{ item.value }}"
-          >{{ item.name }}</mat-option
-        >
+        <mat-option *ngFor="let item of visibleList" value="{{ item.value }}">{{
+          item.name
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -66,10 +67,9 @@
     <mat-form-field
       class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
       appearance="fill"
-      style="margin-top: 0.5%;"
+      style="margin-top: 0.5%"
     >
-
-    <mat-label>Description</mat-label>
+      <mat-label>Description</mat-label>
       <input
         matInput
         placeholder="Description"
@@ -80,30 +80,30 @@
       />
     </mat-form-field>
 
-    <hr style="width: 100%;" />
+    <hr style="width: 100%" />
 
     <!-- Submit Button -->
     <mat-card-actions class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
       <button
-      class="btn btn-danger"
-      mat-raised-button
-      color="danger"
-      type="submit"
-      (click)="onClear()"
-      style="margin: 15px; padding: 5px 20px;"
-    >
-      Clear
-    </button>
-    <button
-      class="btn btn-sucess"
-      mat-raised-button
-      color="primary"
-      type="submit"
-      (click)="onSubmit()"
-      style="margin: 15px; padding: 5px 20px;"
-    >
-      Submit
-    </button>
+        class="btn btn-danger"
+        mat-raised-button
+        color="danger"
+        type="submit"
+        (click)="onClear()"
+        style="margin: 15px; padding: 5px 20px"
+      >
+        Clear
+      </button>
+      <button
+        class="btn btn-sucess"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="onSubmit()"
+        style="margin: 15px; padding: 5px 20px"
+      >
+        Submit
+      </button>
     </mat-card-actions>
   </form>
 </div>
