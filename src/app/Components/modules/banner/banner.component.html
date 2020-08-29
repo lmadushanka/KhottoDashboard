@@ -8,7 +8,7 @@
 
   <!-- firstName Column -->
   <ng-container matColumnDef="bannerName">
-    <th mat-header-cell *matHeaderCellDef style="width: 20%">Banner Name</th>
+    <th mat-header-cell *matHeaderCellDef style="width: 40%">Banner Name</th>
     <td mat-cell *matCellDef="let element">{{ element.bannerName }}</td>
   </ng-container>
 
@@ -20,9 +20,10 @@
 
   <!-- email Column -->
   <ng-container matColumnDef="bannerImage">
-    <th mat-header-cell *matHeaderCellDef style="width: 60%">Image</th>
+    <th mat-header-cell *matHeaderCellDef style="width: 20%">Image</th>
     <td mat-cell *matCellDef="let element">
-      <img src="{{ element.bannerImage }}" height="120" style="padding: 5px" />
+      <img src="{{ element.bannerImage }}" height="60"
+      width="100" style="padding: 5px" />
     </td>
   </ng-container>
 

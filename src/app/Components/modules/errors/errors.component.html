@@ -1,6 +1,6 @@
 <!-- Provider Type -->
 <mat-form-field
-  class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 float-right"
+  class="col-4 float-left"
   appearance="fill"
 >
   <mat-label>Select API Type...</mat-label>
@@ -13,6 +13,19 @@
     >
   </mat-select>
 </mat-form-field>
+
+<mat-card-actions class="col-4 float-left">
+  <button
+  class="btn btn-success"
+  mat-raised-button
+  type="submit"
+  (click)="onRefresh()"
+  style="margin-top: 4px; padding: 5px 20px;"
+>
+  Refresh
+</button>
+
+</mat-card-actions>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <!--- Note that these columns can be defined in any order.

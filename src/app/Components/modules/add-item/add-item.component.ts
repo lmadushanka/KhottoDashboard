@@ -11,6 +11,7 @@ import { ItemValues } from 'src/app/entity/itemValues';
 import { OpenDays } from 'src/app/entity/open-days';
 import { ProviderService } from '../../../Services/provider/provider.service';
 import { ItemOption } from 'src/app/entity/itemOption';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-item',
@@ -60,7 +61,8 @@ export class AddItemComponent implements OnInit {
 
   constructor(
     private session: SessionService,
-    private ItemService: ItemService
+    private ItemService: ItemService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -124,11 +126,12 @@ export class AddItemComponent implements OnInit {
     this.addItemDto.itemInfo = this.itemDto;
 
     console.log(this.addItemDto);
-    this.ItemService.addItem(this.addItemDto).subscribe((res) => {});
+    this.ItemService.addItem(this.addItemDto).subscribe((res) => {
 
-    setTimeout(function () {
-      _this.resetForm();
-    }, 2000);
+      this.resetForm();
+      this.router.navigateByUrl('/items');
+    });
+
   }
 
   addItemInfo(type, name) {

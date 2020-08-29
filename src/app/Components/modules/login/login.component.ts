@@ -22,15 +22,11 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private session: SessionService
+    
   ) {}
 
   ngOnInit() {
-    // this.session.sessionCheck();
-    var user = JSON.parse(localStorage.getItem('user'));
-    if (user != null) {
-      window.localStorage.removeItem('user');
-      localStorage.removeItem('refresh');
-    }
+    this.checkLogin();
   }
 
   login() {
@@ -64,6 +60,7 @@ export class LoginComponent implements OnInit {
 
             // this.router.navigateByUrl('/dashboard');
             location.replace('/dashboard');
+
           }
         },
         (error) => {
@@ -72,6 +69,14 @@ export class LoginComponent implements OnInit {
       );
     } else {
       this.emailValidation = 'You have entered an invalid email address!';
+    }
+  }
+
+  checkLogin(){
+
+    var user = JSON.parse(localStorage.getItem('user'));
+    if(user !== null){
+      location.replace('/dashboard');
     }
   }
 }

@@ -9,6 +9,8 @@ export interface ErrorsElement {
   logHitAt: string;
 }
 
+
+
 @Component({
   selector: 'app-errors',
   templateUrl: './errors.component.html',
@@ -16,6 +18,8 @@ export interface ErrorsElement {
 })
 export class ErrorsComponent implements OnInit {
   ELEMENT_DATA: ErrorsElement[] = [];
+
+  errorType:any = null;
 
   apiTypeList = [
     { name: 'Web API', value: 'w' },
@@ -36,6 +40,9 @@ export class ErrorsComponent implements OnInit {
   dataSource = this.ELEMENT_DATA;
 
   getErrors(type: string) {
+
+    this.errorType = type;
+
     this.errorService.getErrorsByApi(type).subscribe((res) => {
       console.log(res);
       this.ELEMENT_DATA = res.data;
@@ -50,5 +57,17 @@ export class ErrorsComponent implements OnInit {
       this.dataSource = this.ELEMENT_DATA;
       console.log(this.dataSource);
     });
+  }
+
+  onRefresh(){
+    if(this.errorType !== null){
+      this.errorService.getErrorsByApi(this.errorType).subscribe((res) => {
+        console.log(res);
+        this.ELEMENT_DATA = res.data;
+        this.dataSource = this.ELEMENT_DATA;
+      });
+    }else{
+      this.getAll();
+    }
   }
 }

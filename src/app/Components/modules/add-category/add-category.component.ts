@@ -5,6 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { AddCategoryDto } from 'src/app/entity/addCategoryDto';
 import { CategoryDto } from 'src/app/entity/categoryDto';
 import { CategoryService } from 'src/app/services/category/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-category',
@@ -35,7 +36,8 @@ export class AddCategoryComponent implements OnInit {
 
   constructor(
     private session: SessionService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -58,13 +60,12 @@ export class AddCategoryComponent implements OnInit {
     this.addCategoryDto.categoryInfo = this.categoryDto;
 
     console.log(this.addCategoryDto);
-    this.categoryService
-      .addCategory(this.addCategoryDto)
-      .subscribe((res) => {});
+    this.categoryService.addCategory(this.addCategoryDto).subscribe((res) => {
 
-    setTimeout(function () {
-      _this.resetForm();
-    }, 2000);
+      this.resetForm();
+      this.router.navigateByUrl('/category')
+      
+    });
   }
 
   resetForm() {

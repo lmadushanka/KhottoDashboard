@@ -21,6 +21,8 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 export class BannerComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[] = [];
   deleteElement: any = { name: '', itemTypeId: 0 };
+
+  visibility:any;
   // truthyValue: boolean = true;
 
   constructor(private bannerService: BannerService) {}

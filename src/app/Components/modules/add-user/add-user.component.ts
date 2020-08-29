@@ -5,6 +5,7 @@ import { AddUserDto } from 'src/app/Entity/addUserDto';
 import { UserService } from 'src/app/Services/user/user.service';
 import { ItemService } from 'src/app/services/Item/item.service';
 import { ProviderInfo } from '../../../Entity/providerInfo';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -36,7 +37,8 @@ export class AddUserComponent implements OnInit {
   constructor(
     private session: SessionService,
     private userService: UserService,
-    private ItemService: ItemService
+    private ItemService: ItemService,
+    private router: Router,
     
     ) { }
 
@@ -79,6 +81,9 @@ export class AddUserComponent implements OnInit {
 
     this.userService.addUser(this.addUserDto).subscribe((res) =>{
       console.log(res);
+
+      this.addUserForm.reset();
+      this.router.navigateByUrl('/users')
     });
   }
 

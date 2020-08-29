@@ -8,4 +8,5 @@ export class AddProviderDto {
   providerName:any;
   luxuryCategory:any;
   location:any;
+  simpleDescription:any;
 }

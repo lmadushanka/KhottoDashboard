@@ -1,10 +1,4 @@
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-  FormBuilder,
-  FormArray,
-} from '@angular/forms';
+import { FormControl,FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from 'src/app/services/session/session.service';
 import { Provider } from 'src/app/entity/provider';
@@ -16,6 +10,7 @@ import { ProviderValues } from 'src/app/entity/providerValues';
 import { AddProviderDto } from 'src/app/entity/addProviderDto';
 import { ProviderInfo } from 'src/app/entity/providerInfo';
 import { CategoryService } from 'src/app/services/category/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-provider',
@@ -106,7 +101,8 @@ export class AddProviderComponent implements OnInit {
   constructor(
     private session: SessionService,
     private providerService: ProviderService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -152,7 +148,7 @@ export class AddProviderComponent implements OnInit {
     this.addProviderInfo('taxRate', this.newProvider.taxRate);
     this.addProviderInfo('serviceCharge', this.newProvider.serviceCharge);
     this.addProviderInfo('mapUrl', this.newProvider.mapUrl);
-    this.addProviderInfo('simpleDescription', this.newProvider.description);
+    // this.addProviderInfo('simpleDescription', this.newProvider.description);
     this.addProviderInfo('facility', this.newProvider.facility);
     this.addProviderInfo('policy', this.newProvider.policy);
     this.addProviderInfo('openDays', this.newProvider.openDays);
@@ -160,6 +156,7 @@ export class AddProviderComponent implements OnInit {
     this.addProviderInfo('coverImage', 'coverImage');
     this.addProviderInfo('bannerImage', 'bannerImage');
     this.addProviderDto.serviceUserId = Number(serviceUserId);
+    this.addProviderDto.simpleDescription = this.newProvider.description;
     this.addProviderDto.providerValues = this.providerValues;
     this.addProviderDto.categoryId = Number(this.newProvider.category);
     this.addProviderDto.providerTypeId = Number(this.newProvider.providerType);
@@ -174,11 +171,11 @@ export class AddProviderComponent implements OnInit {
 
     console.log(this.newProvider);
     console.log(this.providerInfo);
-    this.providerService.addProvider(this.providerInfo).subscribe((res) => {});
+    this.providerService.addProvider(this.providerInfo).subscribe((res) => {
 
-    setTimeout(function () {
-      _this.resetForm();
-    }, 2000);
+      this.resetForm();
+      this.router.navigateByUrl('/provider');
+    });
   }
 
   addProviderInfo(type, name) {

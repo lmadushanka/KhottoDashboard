@@ -4,6 +4,7 @@ import { SessionService } from 'src/app/services/session/session.service';
 import { AddBannerDto } from 'src/app/Entity/addBannerDto';
 import { BannerDto } from 'src/app/Entity/bannerDto';
 import { BannerService } from 'src/app/Services/banner/banner.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-banner',
@@ -35,7 +36,8 @@ export class AddBannerComponent implements OnInit {
 
   constructor(
     private session: SessionService,
-    private BannerService: BannerService
+    private BannerService: BannerService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -58,7 +60,13 @@ export class AddBannerComponent implements OnInit {
 
     this.BannerService.addNewBanner(this.addBannerDto).subscribe((res) => {
       console.log(res);
+      this.resetForm();
+      this.router.navigateByUrl('/banner');
     })
+
+    
+
+    
   }
 
 
