@@ -18,6 +18,7 @@ import { BannerComponent } from './Components/modules/banner/banner.component';
 import { AddBannerComponent } from './Components/modules/add-banner/add-banner.component';
 import { DiscountComponent } from './Components/modules/discount/discount.component';
 import { AddDiscountComponent } from './Components/modules/add-discount/add-discount.component';
+import { ViewProviderComponent } from 'src/app/Components/modules/view-provider/view-provider.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
       { path: 'add-banner', component: AddBannerComponent },
       { path: 'discount', component: DiscountComponent },
       { path: 'add-discount', component: AddDiscountComponent },
+      { path: 'view-provider', component: ViewProviderComponent },
     ],
   },
 ];

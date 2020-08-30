@@ -14,5 +14,6 @@ export class ViewProviderComponent implements OnInit {
 
   ngOnInit() {
     this.provider = this.providerId;
+    console.log(this.provider);
   }
 }

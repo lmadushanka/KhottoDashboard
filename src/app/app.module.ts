@@ -57,6 +57,7 @@ import { NgSwitcheryModule } from 'angular-switchery-ios';
 import { DiscountComponent } from './Components/modules/discount/discount.component';
 import { AddDiscountComponent } from './Components/modules/add-discount/add-discount.component';
 import { ViewProviderComponent } from './Components/modules/view-provider/view-provider.component';
+import { OrderComponent } from './Components/modules/order/order.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { ViewProviderComponent } from './Components/modules/view-provider/view-p
     DiscountComponent,
     AddDiscountComponent,
     ViewProviderComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
