@@ -20,6 +20,7 @@ export interface PeriodicElement {
   styleUrls: ['./provider.component.scss'],
 })
 export class ProviderComponent implements OnInit {
+  
   ELEMENT_DATA: PeriodicElement[] = [];
   deleteElement: any = { name: '', providerId: 0 };
 
