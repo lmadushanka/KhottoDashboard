@@ -7,6 +7,8 @@ export class Provider {
   providerType: string;
   location: string;
   address: string;
+  businessRegNo:any;
+  nicNo:any;
   phone: string;
   category: number;
   luxuryCategory: number;

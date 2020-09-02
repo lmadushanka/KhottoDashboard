@@ -24,7 +24,6 @@ export class ResetPasswordComponent implements OnInit {
     this.loginService.resetPassword(this.passwordResetDto).subscribe(res=>{
       console.log(res);
       if(res.success = true){
-        alert(res.message);
         this.router.navigate(['login']);
       }
     },

@@ -9,4 +9,6 @@ export class AddProviderDto {
   luxuryCategory:any;
   location:any;
   simpleDescription:any;
+  businessRegNo:any;
+  nicNo:any;
 }

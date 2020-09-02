@@ -58,6 +58,7 @@ import { DiscountComponent } from './Components/modules/discount/discount.compon
 import { AddDiscountComponent } from './Components/modules/add-discount/add-discount.component';
 import { ViewProviderComponent } from './Components/modules/view-provider/view-provider.component';
 import { OrderComponent } from './Components/modules/order/order.component';
+import { ViewOrderComponent } from './Components/modules/view-order/view-order.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { OrderComponent } from './Components/modules/order/order.component';
     AddDiscountComponent,
     ViewProviderComponent,
     OrderComponent,
+    ViewOrderComponent,
   ],
   imports: [
     BrowserModule,

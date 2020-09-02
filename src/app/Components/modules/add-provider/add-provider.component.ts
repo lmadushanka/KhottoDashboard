@@ -50,6 +50,8 @@ export class AddProviderComponent implements OnInit {
     logo: new FormControl(),
     cover: new FormControl(),
     banner: new FormControl(),
+    nic: new FormControl(),
+    BRNumber: new FormControl(),
   });
 
   logoFile: File = null;
@@ -142,6 +144,8 @@ export class AddProviderComponent implements OnInit {
     this.newProvider.serviceCharge = this.addProviderForm.value.serviceCharge;
     this.newProvider.mapUrl = this.addProviderForm.value.mapUrl;
     this.newProvider.simpleDescription = this.addProviderForm.value.description;
+    this.newProvider.businessRegNo = this.addProviderForm.value.BRNumber;
+    this.newProvider.nicNo = this.addProviderForm.value.nic;
 
     if (this.newProvider.name == null || this.newProvider.name == '') {
       nullIf = false;
@@ -242,6 +246,8 @@ export class AddProviderComponent implements OnInit {
       this.providerInfo.coverImage = this.newProvider.coverImage;
       this.providerInfo.bannerImage = this.newProvider.bannerImage;
       this.providerInfo.providerInfo = this.addProviderDto;
+      this.addProviderDto.businessRegNo = this.newProvider.businessRegNo;
+      this.addProviderDto.nicNo = this.newProvider.nicNo;
 
       console.log(this.newProvider);
       console.log(this.providerInfo);
