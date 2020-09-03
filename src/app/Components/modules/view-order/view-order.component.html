@@ -1,0 +1,134 @@
+<div class="lightgray-back form-container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+      <mat-label class="col-12">
+        Order Id :
+        <span class="lbl-value">{{ order.id }}</span>
+      </mat-label>
+    </div>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+      <mat-label class="col-12">
+        Order By :
+        <span class="lbl-value">{{ order.by }}</span>
+      </mat-label>
+    </div>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+      <mat-label class="col-12">
+        Order Confirmed (by customer) At :
+        <span class="lbl-value">{{ order.confirmedAt }}</span>
+      </mat-label>
+    </div>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+      <mat-label class="col-12">
+        Order Confirmed (by customer) Location :
+        <span class="lbl-value">{{ order.confirmedLocation }}</span>
+      </mat-label>
+    </div>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+      <mat-label class="col-12">
+        Tax Rate :
+        <span class="lbl-value">{{ order.taxRate }}</span>
+      </mat-label>
+    </div>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+      <mat-label class="col-12">
+        Tax Charges :
+        <span class="lbl-value">{{ order.taxCharges }}</span>
+      </mat-label>
+    </div>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+      <mat-label class="col-12">
+        Service Charges :
+        <span class="lbl-value">{{ order.serviceCharges }}</span>
+      </mat-label>
+    </div>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+      <mat-label class="col-12">
+        Order Total :
+        <span class="lbl-value">{{ order.orderTotal }}</span>
+      </mat-label>
+    </div>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+      <mat-label class="col-12">
+        Bill Total :
+        <span class="lbl-value">{{ order.billTotal }}</span>
+      </mat-label>
+    </div>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+      <mat-label class="col-12">
+        Order Status :
+        <span class="lbl-value">{{ order.orderStatus }}</span>
+      </mat-label>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+      <mat-label class="col-12">
+        Type of Order Confirmation :
+        <select>
+          <option>Cash</option>
+          <option>Credit Card</option>
+        </select>
+      </mat-label>
+    </div>
+
+    <!-- Order Item Table -->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 lbl-field">
+      <mat-label class="col-12 lbl-field"> Ordered Items : </mat-label>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 40%">Item Name</th>
+            <th scope="col" style="width: 30%">Qty</th>
+            <th scope="col" style="width: 15%">Price</th>
+            <th scope="col" style="width: 15%">Reduced Price</th>
+            <th scope="col" style="width: 15%">Sub Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of orderItemList; let i = index">
+            <td scope="row">
+              {{ item.name }}
+            </td>
+            <td scope="row">
+              {{ item.qty }}
+            </td>
+            <td scope="row">
+              {{ item.price }}
+            </td>
+            <td scope="row">
+              {{ item.reducePrice }}
+            </td>
+            <td scope="row">
+              {{ item.subTotal }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 lbl-field">
+      <mat-label class="col-12 lbl-field"> Transaction Info : </mat-label>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+        <mat-label class="col-12">
+          Received :
+          <input type="text" placeholder="Enter amount" />
+        </mat-label>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+        <mat-label class="col-12">
+          Amount to be paid :
+          <span class="lbl-value">125.35</span>
+        </mat-label>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+        <mat-label class="col-12">
+          Balance :
+          <span class="lbl-value">4567.25</span>
+        </mat-label>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+        <button class="btn btn-success">Complete Order</button>
+      </div>
+    </div>
+  </div>
+</div>
