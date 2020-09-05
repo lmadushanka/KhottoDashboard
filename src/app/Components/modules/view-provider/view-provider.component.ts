@@ -79,7 +79,7 @@ export class ViewProviderComponent implements OnInit {
   setProviderId:any;
 
   providerDetails:any = {
-    name: '',
+    providerName: '',
     providerTypeName: '',
     locationName: '',
     address: '',

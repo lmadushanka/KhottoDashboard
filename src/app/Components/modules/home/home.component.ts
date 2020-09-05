@@ -29,6 +29,8 @@ export class HomeComponent implements OnInit {
       window.localStorage.removeItem('orderId');
       window.localStorage.removeItem('serviceUserTypeId');
       window.localStorage.removeItem('email');
+      window.localStorage.removeItem('viewProviderId');
+      window.localStorage.removeItem('itemId');
 
       this.router.navigateByUrl('/login');
     });
