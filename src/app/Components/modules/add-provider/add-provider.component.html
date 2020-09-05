@@ -39,20 +39,35 @@
       </mat-select>
     </mat-form-field>
 
+    <!-- Provider Districts -->
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>Select District</mat-label>
+      <mat-select formControlName="district" required>
+        <mat-option
+          *ngFor="let item of districtList"
+          value="{{ item.districtId }}"
+          (click)="onDistrictSelect(item.districtId)"
+          >{{ item.districtName }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
     <!-- Location -->
     <mat-form-field
       class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
       appearance="fill"
     >
-      <mat-label>Location</mat-label>
-      <input
-        matInput
-        placeholder="Enter Location"
-        type="text"
-        autocomplete="off"
-        formControlName="location"
-        required
-      />
+      <mat-label>Select Location</mat-label>
+      <mat-select formControlName="location" required>
+        <mat-option
+          *ngFor="let item of locationList"
+          value="{{ item.locationName }}"
+          >{{ item.locationName }}</mat-option
+        >
+      </mat-select>
     </mat-form-field>
 
     <!-- Address -->

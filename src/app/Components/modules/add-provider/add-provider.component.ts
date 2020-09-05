@@ -52,6 +52,7 @@ export class AddProviderComponent implements OnInit {
     banner: new FormControl(),
     nic: new FormControl(),
     BRNumber: new FormControl(),
+    district: new FormControl(),
   });
 
   logoFile: File = null;
@@ -66,6 +67,10 @@ export class AddProviderComponent implements OnInit {
     { name: 'Resturent', value: 1 },
     { name: 'Hotel', value: 2 },
   ];
+
+  districtList = [];
+
+  locationList = [];
 
   categoryList = [];
   categoryShow: boolean = false;
@@ -448,6 +453,14 @@ export class AddProviderComponent implements OnInit {
   onGetAllDistricts(){
     this.providerService.getAllDistricts().subscribe((res) => {
       console.log(res);
+      this.districtList = res.data;
+    })
+  }
+
+  onDistrictSelect(value){
+    this.providerService.getLocationByDistrictId(value).subscribe((res) =>{
+      console.log(res);
+      this.locationList = res.data;
     })
   }
 }

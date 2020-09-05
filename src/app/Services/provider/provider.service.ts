@@ -72,4 +72,10 @@ export class ProviderService {
 
     return this.http.get<any>(districsUrl, httpOptions);
   }
+
+  getLocationByDistrictId(value){
+    let locationUrl = this.baseUrl + '/location/location/';
+
+    return this.http.get<any>(locationUrl + value, httpOptions);
+  }
 }
