@@ -66,4 +66,10 @@ export class ProviderService {
     
 
   }
+
+  getAllDistricts(){
+    let districsUrl = this.baseUrl + '/location/activeDistrict';
+
+    return this.http.get<any>(districsUrl, httpOptions);
+  }
 }

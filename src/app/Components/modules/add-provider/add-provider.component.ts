@@ -113,6 +113,8 @@ export class AddProviderComponent implements OnInit {
 
   ngOnInit() {
     this.session.sessionCheck();
+
+    this.onGetAllDistricts();
   }
 
   onSubmit() {
@@ -441,5 +443,11 @@ export class AddProviderComponent implements OnInit {
       console.log(categoryData);
       console.log(this.categoryList);
     });
+  }
+
+  onGetAllDistricts(){
+    this.providerService.getAllDistricts().subscribe((res) => {
+      console.log(res);
+    })
   }
 }

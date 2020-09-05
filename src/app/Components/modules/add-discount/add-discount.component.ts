@@ -7,6 +7,7 @@ import { DiscountService } from 'src/app/Services/discount/discount.service';
 import { AddDiscountDto } from 'src/app/Entity/addDiscountDto';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-add-discount',
   templateUrl: './add-discount.component.html',
@@ -42,7 +43,7 @@ export class AddDiscountComponent implements OnInit {
     private session:SessionService,
     private ItemService: ItemService,
     private DiscountService: DiscountService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -57,6 +58,8 @@ export class AddDiscountComponent implements OnInit {
     }
 
     this.onProviderSelect();
+    
+    
   }
 
   onSubmit(){
@@ -100,6 +103,8 @@ export class AddDiscountComponent implements OnInit {
       console.log(this.items);
     })
   }
+
+  
 
 
 

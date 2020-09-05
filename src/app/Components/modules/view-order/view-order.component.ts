@@ -51,6 +51,7 @@ export class ViewOrderComponent implements OnInit {
       this.order.serviceCharges = this.commonOrderInfo.serviceCharge;
       this.order.by = this.commonOrderInfo.fullName;
       this.order.orderTotal = this.commonOrderInfo.orderTotal;
+      this.order.taxCharges = this.commonOrderInfo.taxCharge;
 
       if(this.commonOrderInfo.orderStatus == false){
         this.order.orderStatus = '';
