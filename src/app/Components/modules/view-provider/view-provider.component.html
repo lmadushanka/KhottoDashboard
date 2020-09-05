@@ -283,7 +283,6 @@
               <th scope="col" style="width: 40%">Day</th>
               <th scope="col" style="width: 30%">Is Open</th>
               <th scope="col" style="width: 15%">Open Time</th>
-              <th scope="col" style="width: 15%">Close Time</th>
             </tr>
           </thead>
           <tbody>
@@ -299,6 +298,7 @@
                     type="checkbox"
                     [checked]="day.isOpen"
                     value="{{ day.isOpen }}"
+                    readonly
                   />
                 </div>
               </td>
@@ -308,18 +308,9 @@
                     id="{{ day.day }}Open"
                     class="time-select"
                     placeholder="Enter Time"
-                    type="time"
-                    [disabled]="!day.isOpen"
-                  />
-                </div>
-              </td>
-              <td>
-                <div class="col-12 td-cell" appearance="fill">
-                  <input
-                    id="{{ day.day }}Close"
-                    placeholder="Enter Time"
-                    type="time"
-                    [disabled]="!day.isOpen"
+                    type="text"
+                    value="{{day.hours}}"
+                    readonly
                   />
                 </div>
               </td>
