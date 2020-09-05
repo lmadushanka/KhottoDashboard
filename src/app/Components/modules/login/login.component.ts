@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
           }
         },
         (error) => {
-          this.Validating = 'Enter Valid Informations.';
+          this.Validating = 'Enter Valid Information.';
         }
       );
     } else {

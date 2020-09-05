@@ -208,7 +208,7 @@
         formControlName="logo"
       />
       <label class="col-12 err" *ngIf="logoIf">Please upload logo...</label>
-      <img [src]="imgURLLogo" height="140" *ngIf="imgURLLogo" />
+      <img [src]="imgURLLogo" height="140" width="180" *ngIf="imgURLLogo" />
     </div>
 
     <!-- Cover Image -->
@@ -222,7 +222,7 @@
         formControlName="cover"
       />
       <label class="col-12 err" *ngIf="coverIf">Please upload cover...</label>
-      <img [src]="imgURLCover" height="140" *ngIf="imgURLCover" />
+      <img [src]="imgURLCover" height="140" width="180" *ngIf="imgURLCover" />
     </div>
 
     <!-- Banner Image -->
@@ -236,7 +236,7 @@
         formControlName="banner"
       />
       <label class="col-12 err" *ngIf="bannerIf">Please upload banner...</label>
-      <img [src]="imgURLBanner" height="140" *ngIf="imgURLBanner" />
+      <img [src]="imgURLBanner" height="140" width="180" *ngIf="imgURLBanner" />
     </div>
 
     <hr style="width: 100%" />

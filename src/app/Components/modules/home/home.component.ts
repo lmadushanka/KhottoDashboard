@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from 'src/app/services/session/session.service';
+import { RefreshTokenService } from 'src/app/Services/refresh-token/refresh-token.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,27 @@ import { SessionService } from 'src/app/services/session/session.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private router: Router, private session: SessionService) {}
+  constructor(private router: Router, private session: SessionService, private refreshTokenService: RefreshTokenService) {}
 
   ngOnInit() {
     this.session.sessionCheck();
+    this.setRefreshToken();
+  }
+
+  setRefreshToken(){
+    this.refreshTokenService.OnRefreshToken().subscribe((res) =>{
+      console.log(res.data);
+      this.router.navigateByUrl('/dashboard');
+    },
+    (error) => {
+      window.localStorage.removeItem('user');
+      window.localStorage.removeItem('token');
+      window.localStorage.removeItem('serviceUserId');
+      window.localStorage.removeItem('providerId');
+      window.localStorage.removeItem('serviceUserTypeId');
+      window.localStorage.removeItem('email');
+
+      this.router.navigateByUrl('/login');
+    });
   }
 }

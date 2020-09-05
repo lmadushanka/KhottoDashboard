@@ -1,7 +1,7 @@
 <div fxLayoutAlign="center center" fxFlexFill class="main-div">
   <mat-card fxFlex="25">
     <label id="logo" fxLayoutAlign="center center">
-      <img class="row" src="../../../../assets/images/Logo (1).png" height="250" />
+      <img class="row" src="../../../../assets/images/Logo (1).png" height="250 auto" />
     </label>
     <form
       class="login-form"
@@ -9,6 +9,13 @@
       fxLayout="column"
       autocomplete="off"
     >
+    <p class="text-danger">
+      {{Validating}}
+    </p>
+
+    <!-- <p class="text-danger">
+      {{emailValidation}}
+    </p> -->
       <mat-form-field>
         <input
           type="email"
@@ -19,13 +26,6 @@
           matInput
           placeholder="E-mail"
         />
-        <p class="text-danger">
-          {{emailValidation}}
-        </p>
-
-        <p class="text-danger">
-          {{Validating}}
-        </p>
       </mat-form-field>
 
       <mat-form-field>
@@ -38,10 +38,6 @@
           required
           placeholder="Password"
         />
-
-        <p class="text-danger">
-          {{Validating}}
-        </p>
 
       </mat-form-field>
       
