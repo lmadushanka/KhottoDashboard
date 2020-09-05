@@ -129,6 +129,7 @@ export class ProviderComponent implements OnInit {
   }
 
   setViewProvider(element) {
+    localStorage.setItem('viewProviderId', element);
     this.viewProviderId = element.providerId;
     this.router.navigateByUrl('/view-provider');
   }
