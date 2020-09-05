@@ -169,7 +169,7 @@
     <td mat-cell *matCellDef="let element">
       <i 
       class="btn fa fa-external-link"
-      (click)="setViewOrder(element)"
+      (click)="setViewOrder(element.orderId)"
       data-toggle="modal"
       data-target="#viewModal"
       ></i>
@@ -180,3 +180,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+

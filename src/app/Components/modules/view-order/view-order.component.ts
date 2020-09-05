@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from 'src/app/Services/order/order.service';
 
 @Component({
   selector: 'app-view-order',
@@ -6,44 +7,61 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-order.component.scss'],
 })
 export class ViewOrderComponent implements OnInit {
+
+  getOrderId:any;
+
+  commonOrderInfo:any;
+  orderRecords:any;
+  
   order: any = {
-    id: '001523',
-    by: 'Sashika',
-    confirmedAt: '20/08/2020',
-    confirmedLocation: 'Colombo',
-    taxRate: 2.3,
-    taxCharges: 45.6,
-    serviceCharges: 125.7,
-    orderTotal: 1024.56,
-    billTotal: 5623.56,
-    orderStatus: 'Queued',
+    orderId: '',
+    by: '',
+    confirmedAt: '',
+    confirmedLocation: '',
+    taxRate: '',
+    taxCharges: '',
+    serviceCharges: '',
+    orderTotal: '',
+    billTotal: '',
+    orderStatus: '',
+    itemName:''
   };
 
-  orderItemList: any = [
-    {
-      name: 'ABC',
-      qty: 3,
-      price: 50.56,
-      reducePrice: 48.51,
-      subTotal: 1563.59,
-    },
-    {
-      name: 'DEF',
-      qty: 5,
-      price: 75.85,
-      reducePrice: 62.35,
-      subTotal: 25889.59,
-    },
-    {
-      name: 'IJK',
-      qty: 20,
-      price: 99.56,
-      reducePrice: 54.578,
-      subTotal: 10235.25,
-    },
-  ];
+  orderItemList: any = [];
 
-  constructor() {}
+  constructor(private OrderService: OrderService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getOrderId = Number(localStorage.getItem('orderId'));
+    this.getOrderDetails();
+  }
+
+  getOrderDetails(){
+    this.OrderService.getOrderById(this.getOrderId).subscribe((res) => {
+      console.log(res.data);
+      this.commonOrderInfo = res.data.commonOrderInfo;
+      this.orderRecords = res.data.orderRecords;
+      // console.log(Number(this.orderDetails.billTotal));
+
+      this.order.billTotal = Number(this.commonOrderInfo.billTotal);
+      this.order.orderId = this.commonOrderInfo.orderId;
+      this.order.confirmedAt = this.commonOrderInfo.customerConfirmedAt;
+      this.order.confirmedLocation = this.commonOrderInfo.customerConfirmedLocation;
+      this.order.taxRate = this.commonOrderInfo.taxRate;
+      this.order.serviceCharges = this.commonOrderInfo.serviceCharge;
+      this.order.by = this.commonOrderInfo.fullName;
+      this.order.orderTotal = this.commonOrderInfo.orderTotal;
+
+      if(this.commonOrderInfo.orderStatus == false){
+        this.order.orderStatus = '';
+      }else{
+        this.order.orderStatus = this.commonOrderInfo.orderStatus;
+      }
+
+      this.orderItemList = this.orderRecords;
+
+
+
+    });
+  }
 }

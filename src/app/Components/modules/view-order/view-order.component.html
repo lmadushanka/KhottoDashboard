@@ -3,7 +3,7 @@
     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
       <mat-label class="col-12">
         Order Id :
-        <span class="lbl-value">{{ order.id }}</span>
+        <span class="lbl-value">{{ order.orderId }}</span>
       </mat-label>
     </div>
     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
@@ -87,7 +87,7 @@
         <tbody>
           <tr *ngFor="let item of orderItemList; let i = index">
             <td scope="row">
-              {{ item.name }}
+              {{ item.itemName }}
             </td>
             <td scope="row">
               {{ item.qty }}
@@ -96,7 +96,7 @@
               {{ item.price }}
             </td>
             <td scope="row">
-              {{ item.reducePrice }}
+              {{ item.reducedPrice }}
             </td>
             <td scope="row">
               {{ item.subTotal }}
@@ -117,13 +117,13 @@
       <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
         <mat-label class="col-12">
           Amount to be paid :
-          <span class="lbl-value">125.35</span>
+          <span class="lbl-value">{{ order.billTotal }}</span>
         </mat-label>
       </div>
       <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
         <mat-label class="col-12">
           Balance :
-          <span class="lbl-value">4567.25</span>
+          <span class="lbl-value"></span>
         </mat-label>
       </div>
       <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">

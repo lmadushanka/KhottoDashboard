@@ -23,4 +23,9 @@ export class OrderService {
     let signinUrl = this.baseUrl +'/order/searchOrder';
     return this.http.post<any>(signinUrl,value, httpOptions);
   }
+
+  getOrderById(value){
+    let signinUrl = this.baseUrl +'/order/';
+    return this.http.get<any>(signinUrl + value, httpOptions);
+  }
 }

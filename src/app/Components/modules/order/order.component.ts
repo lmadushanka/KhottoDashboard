@@ -29,6 +29,7 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 export class OrderComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[] = [];
   filterOrderDto: FilterOrderDto = new FilterOrderDto();
+  orderId:any;
   
 
   filterOrderForm = new FormGroup({
@@ -165,6 +166,8 @@ export class OrderComponent implements OnInit {
   }
 
   setViewOrder(element){
+    localStorage.setItem('orderId', element);
+    console.log(element);
     this.router.navigateByUrl('/view-order');
   }
 
