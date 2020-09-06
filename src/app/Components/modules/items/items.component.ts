@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from 'src/app/services/session/session.service';
 import { ItemService } from 'src/app/services/Item/item.service';
+import { Router } from '@angular/router';
 
 export interface PeriodicElement {
   type: string;
@@ -27,7 +28,8 @@ export class ItemsComponent implements OnInit {
 
   constructor(
     private session: SessionService,
-    private ItemService: ItemService
+    private ItemService: ItemService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -102,5 +104,11 @@ export class ItemsComponent implements OnInit {
     this.ItemService.deleteItemById(this.deleteElement.itemId).subscribe((res) => {
       this.getAllItems(this.nextCount);
     });
+  }
+
+  setViewItem(value){
+    localStorage.setItem('itemId', value);
+    console.log(value);
+    // this.router.navigateByUrl('/view-item');
   }
 }

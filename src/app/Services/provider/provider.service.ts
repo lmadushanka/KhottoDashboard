@@ -78,4 +78,10 @@ export class ProviderService {
 
     return this.http.get<any>(locationUrl + value, httpOptions);
   }
+
+  getProviderViewById(value){
+    let locationUrl = this.baseUrl + '/provider/';
+
+    return this.http.get<any>(locationUrl + value, httpOptions);
+  }
 }

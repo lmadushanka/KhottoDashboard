@@ -4,6 +4,7 @@ import { OpenDays } from 'src/app/entity/open-days';
 import { Facility } from 'src/app/entity/facility';
 import { Policy } from 'src/app/entity/policy';
 import { Provider } from 'src/app/entity/provider';
+import { ProviderService } from 'src/app/services/provider/provider.service';
 
 @Component({
   selector: 'app-view-provider',
@@ -52,11 +53,6 @@ export class ViewProviderComponent implements OnInit {
   coverIf: boolean = false;
   bannerIf: boolean = false;
 
-  providerTypeList = [
-    { name: 'Resturent', value: 1 },
-    { name: 'Hotel', value: 2 },
-  ];
-
   categoryList = [];
   categoryShow: boolean = false;
 
@@ -68,25 +64,7 @@ export class ViewProviderComponent implements OnInit {
     { name: 'රුරුරුරුරු', value: 5 },
   ];
 
-  dayList: OpenDays[] = [
-    { day: 'Monday', isOpen: false, hours: '00:00-00:00' },
-    { day: 'Tuesday', isOpen: false, hours: '00:00-00:00' },
-    { day: 'Wednesday', isOpen: false, hours: '00:00-00:00' },
-    { day: 'Thursday', isOpen: false, hours: '00:00-00:00' },
-    { day: 'Friday', isOpen: false, hours: '00:00-00:00' },
-    { day: 'Saturday', isOpen: false, hours: '00:00-00:00' },
-    { day: 'Sunday', isOpen: false, hours: '00:00-00:00' },
-  ];
-
-  baseDayList: OpenDays[] = [
-    { day: 'Monday', isOpen: false, hours: '00:00-00:00' },
-    { day: 'Tuesday', isOpen: false, hours: '00:00-00:00' },
-    { day: 'Wednesday', isOpen: false, hours: '00:00-00:00' },
-    { day: 'Thursday', isOpen: false, hours: '00:00-00:00' },
-    { day: 'Friday', isOpen: false, hours: '00:00-00:00' },
-    { day: 'Saturday', isOpen: false, hours: '00:00-00:00' },
-    { day: 'Sunday', isOpen: false, hours: '00:00-00:00' },
-  ];
+  dayList: OpenDays[] = [];
 
   facilityArray: Facility[] = [];
   policyArray: Policy[] = [];
@@ -98,175 +76,67 @@ export class ViewProviderComponent implements OnInit {
 
   provider: string;
 
-  constructor() {}
+  setProviderId:any;
+
+  providerDetails:any = {
+    providerName: '',
+    providerTypeName: '',
+    locationName: '',
+    address: '',
+    callNumber: '',
+    categoryName: '',
+    luxuryCategory: '',
+    taxRate: '',
+    serviceCharge: '',
+    mapUrl: '',
+    simpleDescription: '',
+    logoImage: '',
+    coverImage: '',
+    bannerImage: '',
+    
+  }
+
+  luxuryCategoryName ='';
+
+  constructor(
+    private providerService: ProviderService
+  ) {}
 
   ngOnInit() {
-    this.provider = this.providerId;
-    console.log(this.provider);
+
+    this.setProviderId = localStorage.getItem('viewProviderId');
+
+    this.onGetProviderById(this.setProviderId);
+
   }
 
-  onLogoSelected(event) {
-    if (event.target.files.length === 0) return;
+  onGetProviderById(value){
+    this.providerService.getProviderViewById(value).subscribe((res) =>{
+      console.log(res);
+      this.providerDetails =res.data;
 
-    var reader = new FileReader();
-    this.imagePathLogo = event.target.files;
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (_event) => {
-      this.imgURLLogo = reader.result;
-    };
+      if(Number(this.providerDetails.luxuryCategory) == 1){
+        this.luxuryCategoryName = 'රු';
+      }
+      if(Number(this.providerDetails.luxuryCategory) == 2){
+        this.luxuryCategoryName = 'රුරු';
+      }
+      if(Number(this.providerDetails.luxuryCategory) == 3){
+        this.luxuryCategoryName = 'රුරුරු';
+      }
+      if(Number(this.providerDetails.luxuryCategory) == 4){
+        this.luxuryCategoryName = 'රුරුරුරු';
+      }
+      if(Number(this.providerDetails.luxuryCategory) == 5){
+        this.luxuryCategoryName = 'රුරුරුරුරු';
+      }
+      if(Number(this.providerDetails.luxuryCategory) == 6){
+        this.luxuryCategoryName = 'රුරුරුරුරුරු';
+      }
 
-    this.logoIf = false;
+      this.dayList = res.data.openDays;
 
-    var file: File = <File>event.target.files[0];
-    this.logoFile = file;
-    this.newProvider.logoImage = this.logoFile;
+    })
   }
 
-  onCoverSelected(event) {
-    if (event.target.files.length === 0) return;
-
-    var reader = new FileReader();
-    this.imagePathCover = event.target.files;
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (_event) => {
-      this.imgURLCover = reader.result;
-    };
-
-    this.coverIf = false;
-
-    var file: File = <File>event.target.files[0];
-    this.coverFile = file;
-    this.newProvider.coverImage = this.coverFile;
-  }
-
-  onBannerSelected(event) {
-    if (event.target.files.length === 0) return;
-
-    var reader = new FileReader();
-    this.imagePathBanner = event.target.files;
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (_event) => {
-      this.imgURLBanner = reader.result;
-    };
-
-    this.bannerIf = false;
-
-    var file: File = <File>event.target.files[0];
-    this.bannerFile = file;
-    this.newProvider.bannerImage = this.bannerFile;
-  }
-
-  addFacility(title, description) {
-    if (title != '' || description != '') {
-      this.facilityArray.push({
-        title: title,
-        description: description,
-      });
-      let t = <HTMLInputElement>document.getElementById('facilityTitle');
-      let d = <HTMLInputElement>document.getElementById('facilityDescription');
-      t.value = '';
-      d.value = '';
-    } else {
-      this.errFacility.show = true;
-    }
-  }
-
-  addPolicy(title, description) {
-    if (title != '' || description != '') {
-      this.policyArray.push({
-        title: title,
-        description: description,
-      });
-      let t = <HTMLInputElement>document.getElementById('policyTitle');
-      let d = <HTMLInputElement>document.getElementById('policyDescription');
-      t.value = '';
-      d.value = '';
-    } else {
-      this.errPolicy.show = true;
-    }
-  }
-
-  removeFacility(i) {
-    this.facilityArray.splice(i, 1);
-  }
-
-  removePolicy(i) {
-    this.policyArray.splice(i, 1);
-  }
-
-  updateIsOpen(day, i) {
-    let d = <HTMLInputElement>document.getElementById(day);
-    let value = d.checked;
-    this.dayList[i].isOpen = value;
-  }
-
-  updateTime(day, type, i) {
-    if (type == 'Open') {
-      let o = <HTMLInputElement>document.getElementById(day + type);
-      var value: string = o.value;
-
-      var openStr: string = this.dayList[i].hours.slice(0, 5);
-      var closeStr: string = this.dayList[i].hours.slice(-5);
-      var newTime: string = value + '-' + closeStr;
-
-      this.dayList[i].hours = newTime;
-    }
-
-    if (type == 'Close') {
-      let c = <HTMLInputElement>document.getElementById(day + type);
-      var value: string = c.value;
-
-      var openStr: string = this.dayList[i].hours.slice(0, 5);
-      var closeStr: string = this.dayList[i].hours.slice(-5);
-      var newTime: string = openStr + '-' + value;
-
-      this.dayList[i].hours = newTime;
-    }
-  }
-
-  resetForm() {
-    this.addProviderForm.reset();
-    this.dayList = this.baseDayList;
-    this.facilityArray = [];
-    this.facilities = this.facilityArray;
-    this.policyArray = [];
-    this.policies = this.policyArray;
-    this.categoryList = [];
-    this.categoryShow = false;
-    this.logoFile = null;
-    this.coverFile = null;
-    this.bannerFile = null;
-    this.imgURLLogo = null;
-    this.imgURLCover = null;
-    this.imgURLBanner = null;
-    this.newProvider.logoImage = null;
-    this.newProvider.coverImage = null;
-    this.newProvider.bannerImage = null;
-    this.logoIf = false;
-    this.coverIf = false;
-    this.bannerIf = false;
-  }
-
-  onClear() {
-    this.addProviderForm.reset();
-    this.dayList = this.baseDayList;
-    this.facilityArray = [];
-    this.facilities = this.facilityArray;
-    this.policyArray = [];
-    this.policies = this.policyArray;
-    this.categoryList = [];
-    this.categoryShow = false;
-    this.logoFile = null;
-    this.coverFile = null;
-    this.bannerFile = null;
-    this.imgURLLogo = null;
-    this.imgURLCover = null;
-    this.imgURLBanner = null;
-    this.newProvider.logoImage = null;
-    this.newProvider.coverImage = null;
-    this.newProvider.bannerImage = null;
-    this.logoIf = false;
-    this.coverIf = false;
-    this.bannerIf = false;
-  }
 }

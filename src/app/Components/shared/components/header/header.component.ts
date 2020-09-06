@@ -28,5 +28,10 @@ export class HeaderComponent implements OnInit {
     window.localStorage.removeItem('token');
     window.localStorage.removeItem('serviceUserId');
     window.localStorage.removeItem('providerId');
+    window.localStorage.removeItem('orderId');
+    window.localStorage.removeItem('serviceUserTypeId');
+    window.localStorage.removeItem('email');
+    window.localStorage.removeItem('viewProviderId');
+    window.localStorage.removeItem('itemId');
   }
 }
