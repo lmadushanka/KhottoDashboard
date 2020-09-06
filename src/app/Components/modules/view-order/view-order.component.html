@@ -121,16 +121,17 @@
   </div>
 </div>
 
-<div class="col-12 transaction-div">
-  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 lbl-field">
+<div style="float: right;" class="col-8 transaction-div">
+  <div class="col-12">
     <mat-label class="col-12 lbl-field lbl-topics"
       ><b>Transaction Info,</b></mat-label
     >
-    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+    <br>
+    <div class="col-12">
       <mat-label class="col-12">
         Received :
         <mat-form-field
-          class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
+          class="col-12"
           appearance="fill"
         >
           <mat-label>Amount</mat-label>
@@ -138,22 +139,27 @@
         </mat-form-field>
       </mat-label>
     </div>
-    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+    <div class="col-12">
       <mat-label class="col-12">
         Amount to be paid :
         <span class="lbl-value">{{ order.billTotal }}</span>
       </mat-label>
     </div>
-    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+    <br>
+    <div class="col-12">
       <mat-label class="col-12">
         Balance :
         <span class="lbl-value"></span>
       </mat-label>
     </div>
-    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
-      <button class="btn btn-success">Complete Order</button>
-    </div>
+    
+  </div>
+  <br>
+  <div style="float: right;" class="col-6">
+    <button class="btn btn-success">Complete Order</button>
   </div>
 </div>
+
+
 <!-- </div> -->
 <!-- </div> -->

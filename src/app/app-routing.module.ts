@@ -21,6 +21,9 @@ import { AddDiscountComponent } from './Components/modules/add-discount/add-disc
 import { ViewProviderComponent } from 'src/app/Components/modules/view-provider/view-provider.component';
 import { OrderComponent } from 'src/app/Components/modules/order/order.component';
 import { ViewOrderComponent } from 'src/app/Components/modules/view-order/view-order.component';
+import { FacilityComponent } from './Components/modules/facility/facility.component';
+import { AddFacilityComponent } from './Components/modules/add-facility/add-facility.component';
+import { ViewItemComponent } from './Components/modules/view-item/view-item.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -47,6 +50,9 @@ const routes: Routes = [
       { path: 'view-provider', component: ViewProviderComponent },
       { path: 'order', component: OrderComponent },
       { path: 'view-order', component: ViewOrderComponent },
+      { path: 'facility', component: FacilityComponent },
+      { path: 'add-facility', component: AddFacilityComponent },
+      { path: 'view-item', component: ViewItemComponent },
     ],
   },
 ];

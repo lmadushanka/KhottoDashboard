@@ -59,6 +59,9 @@ import { AddDiscountComponent } from './Components/modules/add-discount/add-disc
 import { ViewProviderComponent } from './Components/modules/view-provider/view-provider.component';
 import { OrderComponent } from './Components/modules/order/order.component';
 import { ViewOrderComponent } from './Components/modules/view-order/view-order.component';
+import { FacilityComponent } from './Components/modules/facility/facility.component';
+import { AddFacilityComponent } from './Components/modules/add-facility/add-facility.component';
+import { ViewItemComponent } from './Components/modules/view-item/view-item.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +85,9 @@ import { ViewOrderComponent } from './Components/modules/view-order/view-order.c
     ViewProviderComponent,
     OrderComponent,
     ViewOrderComponent,
+    FacilityComponent,
+    AddFacilityComponent,
+    ViewItemComponent,
   ],
   imports: [
     BrowserModule,
