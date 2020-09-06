@@ -1,5 +1,5 @@
 .lbl-field {
-  margin-top: 12px;
+  margin-top: 10px;
   margin-bottom: 15px;
 }
 
@@ -10,5 +10,53 @@
 }
 
 table {
+  width: 100%;
+  border-radius: 5px;
+  border: solid 1px #000000;
+}
+
+tr {
+  border: solid 1px #000000;
+}
+
+td {
+  border: solid 1px #000000;
+}
+
+thead {
+  border: solid 1px #000000;
+}
+
+th {
+  border: solid 1px #000000;
+}
+
+tbody {
+  border: solid 1px #000000;
+}
+
+.table-head {
+  background: #9e9e9e;
+  border-bottom: solid #636363;
+}
+
+.odd-row {
+  background: #aaaaaa;
+}
+
+.even-row {
+  background: #cccccc;
+}
+
+.transaction-div {
+  background: #adadad40;
+  padding: 10px;
+  margin: 5px;
   width: auto;
+  border: solid 2px #adadad70;
+  border-radius: 10px;
+}
+
+.lbl-topics {
+  font-size: 17px;
 }

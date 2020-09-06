@@ -7,12 +7,11 @@ import { OrderService } from 'src/app/Services/order/order.service';
   styleUrls: ['./view-order.component.scss'],
 })
 export class ViewOrderComponent implements OnInit {
+  getOrderId: any;
 
-  getOrderId:any;
+  commonOrderInfo: any;
+  orderRecords: any;
 
-  commonOrderInfo:any;
-  orderRecords:any;
-  
   order: any = {
     orderId: '',
     by: '',
@@ -24,7 +23,7 @@ export class ViewOrderComponent implements OnInit {
     orderTotal: '',
     billTotal: '',
     orderStatus: '',
-    itemName:''
+    itemName: '',
   };
 
   orderItemList: any = [];
@@ -36,7 +35,7 @@ export class ViewOrderComponent implements OnInit {
     this.getOrderDetails();
   }
 
-  getOrderDetails(){
+  getOrderDetails() {
     this.OrderService.getOrderById(this.getOrderId).subscribe((res) => {
       console.log(res.data);
       this.commonOrderInfo = res.data.commonOrderInfo;
@@ -53,16 +52,13 @@ export class ViewOrderComponent implements OnInit {
       this.order.orderTotal = this.commonOrderInfo.orderTotal;
       this.order.taxCharges = this.commonOrderInfo.taxCharge;
 
-      if(this.commonOrderInfo.orderStatus == false){
+      if (this.commonOrderInfo.orderStatus == false) {
         this.order.orderStatus = '';
-      }else{
+      } else {
         this.order.orderStatus = this.commonOrderInfo.orderStatus;
       }
 
       this.orderItemList = this.orderRecords;
-
-
-
     });
   }
 }
