@@ -1,1 +1,165 @@
-<p>view-item works!</p>
+<button mat-button class="btn btn-primary" routerLink="/items">
+    View Item
+  </button>
+  <br />
+  <mat-divider></mat-divider>
+  <br />
+  
+  <div class="lightgray-back form-container">
+    <form class="row" [formGroup]="addItemForm" autocomplete="off">
+      <!-- Item Type -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Item Type</mat-label>
+        <input
+          matInput
+          placeholder="Enter Item Name"
+          type="text"
+          formControlName="itemType"
+          value="{{itemTypeSelected}}"
+          readonly
+        />
+      </mat-form-field>
+  
+      <!-- Name -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Item Name</mat-label>
+        <input
+          matInput
+          placeholder="Enter Item Name"
+          type="text"
+          formControlName="itemName"
+          value="{{itemList.itemName}}"
+          readonly
+        />
+      </mat-form-field>
+  
+      <!-- Price -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Price</mat-label>
+        <input
+          matInput
+          placeholder="Enter Item Price"
+          type="number"
+          formControlName="itemPrice"
+          value="{{itemList.price}}"
+          readonly
+        />
+      </mat-form-field>
+
+      <!-- Description -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+        appearance="fill"
+        style="margin-top: 0.5%"
+      >
+        <mat-label>Description</mat-label>
+        <input
+          matInput
+          placeholder="Description"
+          type="text"
+          formControlName="description"
+          value="{{itemList.simpleDescription}}"
+          readonly
+        />
+      </mat-form-field>
+  
+      <hr style="width: 100%" />
+  
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+        *ngIf="providerType"
+      >
+        <mat-label>Provider</mat-label>
+        <input
+          matInput
+          placeholder=""
+          type="text"
+          formControlName="description"
+          value="{{itemList.providerName}}"
+          readonly
+        />
+      </mat-form-field>
+
+      <hr style="width: 100%" *ngIf="itemOptions.length != 0" />
+  
+      <!-- Cover Image -->
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        <label class="col-12">Cover Image</label>
+        <img [src]="imgURLCover" height="120" width="180" *ngIf="imgURLCover" />
+      </div>
+  
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+        *ngIf="itemType"
+      >
+        <mat-label>Item Availabilty</mat-label>
+        <input
+          matInput
+          placeholder="Enter Availabilty"
+          type="text"
+          formControlName="itemAvailability"
+          required
+        />
+      </mat-form-field>
+  
+      <hr style="width: 100%" />
+  
+      <div
+        class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+        *ngIf="itemOptions.length != 0"
+      >
+        <label class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+          >Options</label
+        >
+        <div
+          class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 float-left"
+          appearance="fill"
+          *ngFor="let itemOption of itemOptions; let ioIndex = index"
+        >
+          <input
+            id="{{ itemOption.optionName }}{{ itemOption.optionId }}"
+            type="checkbox"
+            [checked]="true"
+          />
+          {{itemOption.optionName }}
+        </div>
+      </div>
+  
+      <hr style="width: 100%" *ngIf="itemOptions.length != 0" />
+  
+      <!-- Terms -->
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <mat-label class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+          >Terms</mat-label
+        ><br />
+  
+        <!-- Term Table -->
+        <table class="table" *ngIf="termArray.length != 0">
+          <!-- <thead>
+            <tr>
+              <th scope="col" style="width: 20%"></th>
+            </tr>
+          </thead> -->
+          <tbody>
+            <tr *ngFor="let term of termArray; let pIndex = index">
+              <td scope="row">
+                {{termArray}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </div>
+  

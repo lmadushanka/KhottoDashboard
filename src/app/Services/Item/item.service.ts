@@ -52,4 +52,9 @@ export class ItemService {
     return this.http.delete<any>(signingUrl + value + '/' + serviceUserId, httpOptions);
   }
 
+  getItemByItemId(value){
+    let signingUrl = this.baseUrl +'/item/';
+    return this.http.get<any>(signingUrl + value,httpOptions);
+  }
+
 }
