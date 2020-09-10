@@ -24,6 +24,7 @@ import { ViewOrderComponent } from 'src/app/Components/modules/view-order/view-o
 import { FacilityComponent } from './Components/modules/facility/facility.component';
 import { AddFacilityComponent } from './Components/modules/add-facility/add-facility.component';
 import { ViewItemComponent } from './Components/modules/view-item/view-item.component';
+import { EditProviderComponent } from './Components/modules/edit-provider/edit-provider.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -53,6 +54,7 @@ const routes: Routes = [
       { path: 'facility', component: FacilityComponent },
       { path: 'add-facility', component: AddFacilityComponent },
       { path: 'view-item', component: ViewItemComponent },
+      { path: 'edit-provider', component: EditProviderComponent },
     ],
   },
 ];

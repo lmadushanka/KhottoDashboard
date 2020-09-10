@@ -62,6 +62,7 @@ import { ViewOrderComponent } from './Components/modules/view-order/view-order.c
 import { FacilityComponent } from './Components/modules/facility/facility.component';
 import { AddFacilityComponent } from './Components/modules/add-facility/add-facility.component';
 import { ViewItemComponent } from './Components/modules/view-item/view-item.component';
+import { EditProviderComponent } from './Components/modules/edit-provider/edit-provider.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { ViewItemComponent } from './Components/modules/view-item/view-item.comp
     FacilityComponent,
     AddFacilityComponent,
     ViewItemComponent,
+    EditProviderComponent,
   ],
   imports: [
     BrowserModule,

@@ -51,7 +51,8 @@
         class="switch-btn"
         size="switchery-xs"
         color="switchery-info"
-        [(ngModel)]="element.visible"
+        [(ngModel)]="visibility"
+        (click)="onCancel(element.bannerId)"
       ></ng-switchery>
     </td>
   </ng-container>

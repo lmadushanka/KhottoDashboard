@@ -1,0 +1,531 @@
+<button mat-button class="btn btn-primary" routerLink="/provider">
+    View Provider
+  </button>
+  <br />
+  <mat-divider></mat-divider>
+  <br />
+  
+  <div class="lightgray-back form-container">
+    <form class="row" [formGroup]="addProviderForm" autocomplete="off">
+      <!-- Name -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          placeholder="Enter Name"
+          type="text"
+          autocomplete="off"
+          formControlName="name"
+          value="{{providerDetails.providerName}}"
+        />
+      </mat-form-field>
+  
+      <!-- Provider Type -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Select Provider Type</mat-label>
+        <mat-select [(value)]="ProvidertypeSelected"  formControlName="providerType">
+          <mat-option value="1">Resturent</mat-option>
+          <mat-option value="2">Hotel</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <!-- Provider Districts -->
+      <!-- <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Select District</mat-label>
+        <mat-select formControlName="district" required>
+          <mat-option
+            *ngFor="let item of districtList"
+            value="{{ item.districtId }}"
+            (click)="onDistrictSelect(item.districtId)"
+            >{{ item.districtName }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field> -->
+  
+      <!-- Location -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Select Location</mat-label>
+        <mat-select formControlName="location">
+          <mat-option
+            *ngFor="let item of locationList"
+            value="{{ item.locationName }}"
+            >{{ item.locationName }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+  
+      <!-- Address -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Address</mat-label>
+        <input
+          matInput
+          placeholder="Enter Address"
+          type="text"
+          autocomplete="off"
+          formControlName="address"
+          value="{{providerDetails.address}}"
+        />
+      </mat-form-field>
+  
+      <!-- nic -->
+      <!-- <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Nic</mat-label>
+        <input
+          matInput
+          placeholder="Enter NIC"
+          type="text"
+          autocomplete="off"
+          formControlName="nic"
+          required
+        />
+      </mat-form-field> -->
+  
+      <!-- BR number -->
+      <!-- <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Business Regitration No</mat-label>
+        <input
+          matInput
+          placeholder="Enter Business Regitration No"
+          type="text"
+          autocomplete="off"
+          formControlName="BRNumber"
+          required
+        />
+      </mat-form-field> -->
+  
+      <!-- Phone Number -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Phone Number</mat-label>
+        <input
+          matInput
+          placeholder="Enter Phone Number"
+          type="text"
+          autocomplete="off"
+          formControlName="phone"
+          value="{{providerDetails.callNumber}}"
+        />
+      </mat-form-field>
+  
+      <!-- Category Select -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Select Category</mat-label>
+        <mat-select [(value)]="categorySelected" formControlName="categoryType">
+            <mat-option value="1">{{providerDetails.categoryName}}</mat-option>
+          <mat-option
+            *ngFor="let item of categoryList"
+            value="{{ item.categoryId }}"
+            >{{ item.categoryName }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+  
+      <!-- Luxury Select -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Luxury Category</mat-label>
+        <mat-select [(value)]="luxuryCategorySelected" formControlName="luxuryType">
+          <mat-option value="1">රු</mat-option>
+          <mat-option value="2">රුරු</mat-option>
+          <mat-option value="3">රුරුරු</mat-option>
+          <mat-option value="4">රුරුරුරු</mat-option>
+          <mat-option value="5">රුරුරුරුරු</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <!-- Tax Rate -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Tax Rate</mat-label>
+        <input
+          matInput
+          placeholder="Enter Tax Rate"
+          type="number"
+          autocomplete="off"
+          formControlName="taxRate"
+          value="{{providerDetails.taxRate}}"
+        />
+      </mat-form-field>
+  
+      <!-- Service Charge -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Service Charge</mat-label>
+        <input
+          matInput
+          placeholder="Enter Service Charge"
+          type="number"
+          autocomplete="off"
+          formControlName="serviceCharge"
+          value="{{providerDetails.serviceCharge}}"
+        />
+      </mat-form-field>
+  
+      <!-- Map -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9"
+        appearance="fill"
+      >
+        <mat-label>Map URL</mat-label>
+        <input
+          matInput
+          placeholder="Enter Map URL"
+          type="text"
+          autocomplete="off"
+          formControlName="mapUrl"
+          value="{{providerDetails.mapUrl}}"
+        />
+      </mat-form-field>
+  
+      <hr style="width: 100%" />
+  
+      <!-- Logo Image -->
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <label class="col-12">Upload Logo Image</label>
+        <input
+          type="file"
+          name="logo"
+          accept="image/*"
+          (change)="onLogoSelected($event)"
+          formControlName="logo"
+        />
+        <label class="col-12 err" *ngIf="logoIf">Please upload logo...</label>
+        <img [src]="imgURLLogo" height="140" width="180" *ngIf="imgURLLogo" />
+      </div>
+  
+      <!-- Cover Image -->
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <label class="col-12">Upload Cover Image</label>
+        <input
+          type="file"
+          name="cover"
+          accept="image/*"
+          (change)="onCoverSelected($event)"
+          formControlName="cover"
+        />
+        <label class="col-12 err" *ngIf="coverIf">Please upload cover...</label>
+        <img [src]="imgURLCover" height="140" width="180" *ngIf="imgURLCover" />
+      </div>
+  
+      <!-- Banner Image -->
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <label class="col-12">Upload Banner Image</label>
+        <input
+          type="file"
+          name="banner"
+          accept="image/*"
+          (change)="onBannerSelected($event)"
+          formControlName="banner"
+        />
+        <label class="col-12 err" *ngIf="bannerIf">Please upload banner...</label>
+        <img [src]="imgURLBanner" height="140" width="180" *ngIf="imgURLBanner" />
+      </div>
+  
+      <hr style="width: 100%" />
+  
+      <!-- Description -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+        appearance="fill"
+        style="margin-top: 0.5%"
+      >
+        <mat-label>Description</mat-label>
+        <input
+          matInput
+          placeholder="Description"
+          type="text"
+          autocomplete="off"
+          formControlName="description"
+          value="{{providerDetails.simpleDescription}}"
+        />
+      </mat-form-field>
+  
+      <hr style="width: 100%" />
+  
+      <!-- Facility -->
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <mat-label
+          class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 label-custom"
+          (click)="resetForm()"
+          >Facility</mat-label
+        ><br />
+        <!-- Facility Title -->
+        <mat-form-field
+          class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+          appearance="fill"
+        >
+          <mat-label>Title</mat-label>
+          <input
+            id="facilityTitle"
+            matInput
+            placeholder="Enter Title"
+            type="text"
+            autocomplete="off"
+            #facilityTitle
+            (click)="errFacility.show = false"
+          />
+        </mat-form-field>
+  
+        <!-- Facility Description -->
+        <mat-form-field
+          class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+          appearance="fill"
+        >
+          <mat-label>Description</mat-label>
+          <input
+            id="facilityDescription"
+            matInput
+            placeholder="Description"
+            type="text"
+            autocomplete="off"
+            #facilityDescription
+            (click)="errFacility.show = false"
+          />
+        </mat-form-field>
+  
+        <mat-card-actions
+          class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 btn-plus"
+        >
+          <button
+            class="btn btn-success btn-round"
+            (click)="addFacility(facilityTitle.value, facilityDescription.value)"
+            
+          >
+            +
+          </button>
+        </mat-card-actions>
+        <span class="err-msg" *ngIf="errFacility.show">{{
+          errFacility.value
+        }}</span>
+  
+        <!-- Facility Table -->
+        <table class="table" *ngIf="facilityArray.length != 0">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 40%">Title</th>
+              <th scope="col" style="width: 50%">Description</th>
+              <th scope="col" style="width: 10%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let facility of facilityArray; let fIndex = index">
+              <td scope="row">
+                {{ facility.title }}
+              </td>
+              <td scope="row">
+                {{ facility.description }}
+              </td>
+              <td scope="row">
+                <button class="btn btn-danger" (click)="removeFacility(fIndex)">
+                  -
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <hr style="width: 100%" />
+  
+      <!-- Policy -->
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <mat-label
+          class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 label-custom"
+          >Policy</mat-label
+        ><br />
+        <!-- Policy Title -->
+        <mat-form-field
+          class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+          appearance="fill"
+        >
+          <mat-label>Title</mat-label>
+          <input
+            id="policyTitle"
+            matInput
+            placeholder="Enter Title"
+            type="text"
+            autocomplete="off"
+            #policyTitle
+            (click)="errPolicy.show = false"
+          />
+        </mat-form-field>
+  
+        <!-- Policy Description -->
+        <mat-form-field
+          class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+          appearance="fill"
+        >
+          <mat-label>Description</mat-label>
+          <input
+            id="policyDescription"
+            matInput
+            placeholder="Description"
+            type="text"
+            autocomplete="off"
+            #policyDescription
+            (click)="errPolicy.show = false"
+          />
+        </mat-form-field>
+  
+        <mat-card-actions
+          class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 btn-plus"
+        >
+          <button
+            class="btn btn-success btn-round"
+            (click)="addPolicy(policyTitle.value, policyDescription.value)"
+          >
+            +
+          </button>
+        </mat-card-actions>
+        <span class="err-msg" *ngIf="errPolicy.show">{{ errPolicy.value }}</span>
+  
+        <!-- Policy Table -->
+        <table class="table" *ngIf="policyArray.length != 0">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 40%">Title</th>
+              <th scope="col" style="width: 50%">Description</th>
+              <th scope="col" style="width: 10%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let policy of policyArray; let pIndex = index">
+              <td scope="row">
+                {{ policy.title }}
+              </td>
+              <td scope="row">
+                {{ policy.description }}
+              </td>
+              <td scope="row">
+                <button class="btn btn-danger" (click)="removePolicy(pIndex)">
+                  -
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <hr style="width: 100%" />
+  
+      <!-- Open Days -->
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <mat-label
+          class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 label-custom"
+          >Open Days</mat-label
+        ><br />
+  
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 40%">Day</th>
+              <th scope="col" style="width: 30%">Is Open</th>
+              <th scope="col" style="width: 15%">Open Time</th>
+              <th scope="col" style="width: 15%">Close Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let day of dayList; let d = index">
+              <td scope="row">
+                {{ day.day }}
+              </td>
+              <td>
+                <div class="col-12" appearance="fill">
+                  <input
+                    id="{{ day.day }}"
+                    placeholder="Open"
+                    type="checkbox"
+                    [checked]="day.isOpen"
+                    value="{{ day.isOpen }}"
+                    (change)="updateIsOpen(day.day, d)"
+                  />
+                </div>
+              </td>
+              <td>
+                <div class="col-12 td-cell" appearance="fill">
+                  <input
+                    id="{{ day.day }}Open"
+                    class="time-select"
+                    placeholder="Enter Time"
+                    type="time"
+                    [disabled]="!day.isOpen"
+                    (change)="updateTime(day.day, 'Open', d)"
+                  />
+                </div>
+              </td>
+              <td>
+                <div class="col-12 td-cell" appearance="fill">
+                  <input
+                    id="{{ day.day }}Close"
+                    placeholder="Enter Time"
+                    type="time"
+                    [disabled]="!day.isOpen"
+                    (change)="updateTime(day.day, 'Close', d)"
+                  />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <hr style="width: 100%" />
+  
+      <!-- Submit Button -->
+      <mat-card-actions class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+        <button
+          class="btn btn-danger"
+          mat-raised-button
+          color="danger"
+          type="submit"
+          (click)="onClear()"
+          style="margin: 15px; padding: 5px 20px"
+        >
+          Clear
+        </button>
+        <button
+          class="btn btn-sucess"
+          mat-raised-button
+          color="primary"
+          type="submit"
+          (click)="onSubmit()"
+          style="margin: 15px; padding: 5px 20px"
+        >
+          Edit
+        </button>
+      </mat-card-actions>
+    </form>
+  </div>
+  

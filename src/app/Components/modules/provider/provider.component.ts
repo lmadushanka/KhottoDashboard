@@ -133,4 +133,10 @@ export class ProviderComponent implements OnInit {
     this.viewProviderId = element.providerId;
     this.router.navigateByUrl('/view-provider');
   }
+
+  setEditProvider(element){
+    localStorage.setItem('viewProviderId', element);
+    this.viewProviderId = element.providerId;
+    this.router.navigateByUrl('/edit-provider');
+  }
 }

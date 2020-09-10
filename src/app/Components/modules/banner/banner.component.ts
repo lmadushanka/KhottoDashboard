@@ -23,6 +23,7 @@ export class BannerComponent implements OnInit {
   deleteElement: any = { name: '', itemTypeId: 0 };
 
   visibility:any;
+  bannerDetails:any;
   // truthyValue: boolean = true;
 
   constructor(private bannerService: BannerService) {}
@@ -47,13 +48,27 @@ export class BannerComponent implements OnInit {
       this.ELEMENT_DATA = res.data;
       this.dataSource = this.ELEMENT_DATA;
 
-      console.log(this.dataSource);
+      this.bannerDetails = res.data;
+
+      if(res.data.visible = 1){
+        this.visibility = 'visible';
+      }else if(res.data.visible = 0){
+        this.visibility = 'unVisible';
+      }
     });
   }
 
   setDeleteItem(element) {
     this.deleteElement.name = element.name;
     this.deleteElement.itemId = element.itemId;
+  }
+
+  onCancel(value){
+    if(this.bannerDetails.visible == 1){
+
+    }else if(this.bannerDetails.visible == 0){
+      
+    }
   }
 
   // deleteItem() {
