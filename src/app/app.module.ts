@@ -63,6 +63,8 @@ import { FacilityComponent } from './Components/modules/facility/facility.compon
 import { AddFacilityComponent } from './Components/modules/add-facility/add-facility.component';
 import { ViewItemComponent } from './Components/modules/view-item/view-item.component';
 import { EditProviderComponent } from './Components/modules/edit-provider/edit-provider.component';
+import { ResourceComponent } from './Components/modules/resource/resource.component';
+import { AddResourceComponent } from './Components/modules/add-resource/add-resource.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +92,8 @@ import { EditProviderComponent } from './Components/modules/edit-provider/edit-p
     AddFacilityComponent,
     ViewItemComponent,
     EditProviderComponent,
+    ResourceComponent,
+    AddResourceComponent,
   ],
   imports: [
     BrowserModule,

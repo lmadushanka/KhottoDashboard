@@ -104,8 +104,6 @@ export class ViewItemComponent implements OnInit {
       this.itemOptions = res.data.itemOption;
 
       this.termArray = res.data.terms;
-
-      console.log(this.termArray);
     })
   }
 

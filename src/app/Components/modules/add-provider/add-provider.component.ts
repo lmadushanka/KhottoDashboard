@@ -53,6 +53,7 @@ export class AddProviderComponent implements OnInit {
     nic: new FormControl(),
     BRNumber: new FormControl(),
     district: new FormControl(),
+    freeCancelationDateCount: new FormControl(),
   });
 
   logoFile: File = null;
@@ -153,6 +154,7 @@ export class AddProviderComponent implements OnInit {
     this.newProvider.simpleDescription = this.addProviderForm.value.description;
     this.newProvider.businessRegNo = this.addProviderForm.value.BRNumber;
     this.newProvider.nicNo = this.addProviderForm.value.nic;
+    this.newProvider.freeCancelationDateCount = this.addProviderForm.value.freeCancelationDateCount;
 
     if (this.newProvider.name == null || this.newProvider.name == '') {
       nullIf = false;
