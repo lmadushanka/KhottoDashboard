@@ -15,10 +15,9 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-edit-provider',
   templateUrl: './edit-provider.component.html',
-  styleUrls: ['./edit-provider.component.scss']
+  styleUrls: ['./edit-provider.component.scss'],
 })
 export class EditProviderComponent implements OnInit {
-
   //For Images
   public imagePathLogo;
   public imagePathCover;
@@ -73,7 +72,7 @@ export class EditProviderComponent implements OnInit {
 
   locationList = [];
 
-  categoryList:any;
+  categoryList: any;
   categoryShow: boolean = false;
 
   luxuryList = [
@@ -110,7 +109,7 @@ export class EditProviderComponent implements OnInit {
   errFacility: any = { show: false, value: 'Enter details... !' };
   errPolicy: any = { show: false, value: 'Enter details... !' };
 
-  providerDetails:any = {
+  providerDetails: any = {
     providerName: '',
     providerTypeName: '',
     locationName: '',
@@ -125,17 +124,16 @@ export class EditProviderComponent implements OnInit {
     logoImage: '',
     coverImage: '',
     bannerImage: '',
-    
-  }
+  };
 
-  luxuryCategoryName ='';
+  luxuryCategoryName = '';
 
-  setProviderId:any;
+  setProviderId: any;
 
-  ProvidertypeSelected = '';
+  ProviderTypeSelected = '';
   categorySelected = '';
 
-  luxuryCategorySelected= '';
+  luxuryCategorySelected = '';
 
   constructor(
     private session: SessionService,
@@ -145,10 +143,12 @@ export class EditProviderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.session.sessionCheck();
 
     this.onGetAllDistricts();
+
+    this.setFacility();
+    this.setPolicy();
 
     this.setProviderId = localStorage.getItem('viewProviderId');
 
@@ -483,41 +483,37 @@ export class EditProviderComponent implements OnInit {
     });
   }
 
-  
-
-  onGetAllDistricts(){
+  onGetAllDistricts() {
     this.providerService.getAllDistricts().subscribe((res) => {
       console.log(res);
       this.districtList = res.data;
-    })
+    });
   }
 
-  onDistrictSelect(value){
-    this.providerService.getLocationByDistrictId(value).subscribe((res) =>{
-      console.log(res);
+  onDistrictSelect(value) {
+    this.providerService.getLocationByDistrictId(value).subscribe((res) => {
+      // console.log(res);
       this.locationList = res.data;
-    })
+    });
   }
 
-  onGetProviderById(value){
-    this.providerService.getProviderViewById(value).subscribe((res) =>{
-      console.log(res);
-      this.providerDetails =res.data;
+  onGetProviderById(value) {
+    this.providerService.getProviderViewById(value).subscribe((res) => {
+      console.log(res.data);
 
-      if(this.providerDetails.providerTypeName == 'Hotel'){
+      // if (res.data.providerTypeName == 'Hotel') {
+      //   this.ProviderTypeSelected = '2';
+      //   console.log('s2');
+      //   this.onGetDefaultCategory(2);
+      // }
 
-        this.ProvidertypeSelected = '2';
+      // if (res.data.providerTypeName == 'Resturent') {
+      //   this.ProviderTypeSelected = '1';
+      //   console.log('s1');
+      //   this.onGetDefaultCategory(1);
+      // }
 
-        this.onGetDefaultCategory(2);
-
-
-      }else if(this.providerDetails.providerTypeName == 'Resturent'){
-
-        this.ProvidertypeSelected = '1';
-
-        this.onGetDefaultCategory(1);
-        
-      }
+      this.providerDetails = res.data;
 
       // if(Number(this.providerDetails.luxuryCategory) == 1){
       //   this.luxuryCategoryName = 'රු';
@@ -537,25 +533,64 @@ export class EditProviderComponent implements OnInit {
       // }
 
       this.luxuryCategorySelected = String(this.providerDetails.luxuryCategory);
+      this.ProviderTypeSelected = String(this.providerDetails.providerTypeName);
+      this.categorySelected = String(this.providerDetails.categoryName);
 
       this.dayList = res.data.openDays;
 
       this.imgURLLogo = res.data.logoImage;
       this.imgURLCover = res.data.coverImage;
       this.imgURLBanner = res.data.bannerImage;
-
-      
-
-    })
-  }
-
-
-  onGetDefaultCategory(value){
-    this.categoryService.getCategoryByType(value).subscribe((res) => {
-      let categoryData = res.data;
-      this.categoryList = categoryData;
-      console.log(this.categoryList);
     });
   }
 
+  onGetDefaultCategory(value) {
+    this.categoryService.getCategoryByType(value).subscribe((res) => {
+      let categoryData = res.data;
+      this.categoryList = categoryData;
+      // console.log(this.categoryList);
+    });
+  }
+
+  setFacility() {
+    this.facilityArray = [
+      {
+        title: 'Abc',
+        description: 'aabbcc',
+      },
+      {
+        title: 'DEF',
+        description: 'DDEEFF',
+      },
+    ];
+  }
+
+  setPolicy() {
+    this.policyArray = [
+      {
+        title: '123',
+        description: 'cde789',
+      },
+      {
+        title: '456',
+        description: 'abc456',
+      },
+      {
+        title: '789',
+        description: 'dfghsty546',
+      },
+    ];
+  }
+
+  setDays() {
+    this.baseDayList = [
+      { day: 'Monday', isOpen: false, hours: '00:00-00:00' },
+      { day: 'Tuesday', isOpen: false, hours: '00:00-00:00' },
+      { day: 'Wednesday', isOpen: false, hours: '00:00-00:00' },
+      { day: 'Thursday', isOpen: false, hours: '00:00-00:00' },
+      { day: 'Friday', isOpen: false, hours: '00:00-00:00' },
+      { day: 'Saturday', isOpen: false, hours: '00:00-00:00' },
+      { day: 'Sunday', isOpen: false, hours: '00:00-00:00' },
+    ];
+  }
 }
