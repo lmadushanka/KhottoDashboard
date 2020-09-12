@@ -1,1 +1,101 @@
-<p>resource works!</p>
+<button mat-button class="btn btn-primary" routerLink="/add-resource">Add Resource</button>
+<mat-divider></mat-divider>
+<br />
+
+<table
+  mat-table
+  [dataSource]="dataSource"
+  class="mat-elevation-z8"
+  *ngIf="ELEMENT_DATA.length != 0"
+>
+  <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Category Id Column -->
+  <ng-container matColumnDef="resourceId">
+    <th mat-header-cell *matHeaderCellDef style="width: 30%;">Resource Id</th>
+    <td mat-cell *matCellDef="let element">{{ element.resourceId }}</td>
+  </ng-container>
+
+  <!-- Type Column -->
+  <ng-container matColumnDef="resourceName">
+    <th mat-header-cell *matHeaderCellDef style="width: 30%;">Resource Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.resourceName }}</td>
+  </ng-container>
+
+  
+  <!-- View Column -->
+  <ng-container matColumnDef="view">
+    <th mat-header-cell *matHeaderCellDef>View</th>
+    <td mat-cell *matCellDef="let element">
+      <i class="btn fa fa-external-link"></i>
+    </td>
+  </ng-container>
+
+  <!-- Edit Column -->
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef>Edit</th>
+    <td mat-cell *matCellDef="let element">
+      <i class="btn fa fa-edit"></i>
+    </td>
+  </ng-container>
+
+  <!-- Delete Column -->
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef>Delete</th>
+    <td mat-cell *matCellDef="let element">
+      <i
+        class="btn fa fa-trash"
+        data-toggle="modal"
+        data-target="#confirmationModal"
+      ></i>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="confirmationModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="confirmationModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmationModalLabel">
+          <span class="modal-text-head">Do you want to delete the Resource ?</span>
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span class="modal-text">You are deleting </span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          No
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-dismiss="modal"
+        >
+          Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

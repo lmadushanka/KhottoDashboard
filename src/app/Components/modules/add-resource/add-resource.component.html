@@ -1,1 +1,140 @@
-<p>add-resource works!</p>
+<button mat-button class="btn btn-primary" routerLink="/resource">
+    View Resource
+  </button>
+  <mat-divider></mat-divider>
+  <br />
+  
+  <div class="lightgray-back form-container">
+    <form class="row" [formGroup]="addResourceForm" autocomplete="off">
+
+        <!-- Resource Name -->
+      <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>Resource Name</mat-label>
+      <input
+        matInput
+        placeholder="Enter Category Name"
+        type="text"
+        formControlName="resourceName"
+        required
+      />
+    </mat-form-field>
+
+     <!-- Icon Class -->
+     <mat-form-field
+     class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+     appearance="fill"
+   >
+     <mat-label>Icon Class</mat-label>
+     <input
+       matInput
+       placeholder="Enter Category Name"
+       type="text"
+       formControlName="iconClass"
+       required
+     />
+   </mat-form-field>
+
+      <!-- Resource Type -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Select Resource Type</mat-label>
+        <mat-select formControlName="resourceTypeId" required>
+            <mat-option
+            *ngFor="let item of resourceTypeList"
+            value="{{ item.value }}"
+            >{{ item.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Router Path -->
+     <mat-form-field
+     class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+     appearance="fill"
+   >
+     <mat-label>Router Path</mat-label>
+     <input
+       matInput
+       placeholder="Enter Router Path"
+       type="text"
+       formControlName="routePath"
+       required
+     />
+   </mat-form-field>
+
+   <!-- Parent Resource Id -->
+   <mat-form-field
+   class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+   appearance="fill"
+ >
+   <mat-label>Parent Resource Id</mat-label>
+   <mat-select formControlName="parentResourceId" required>
+       <mat-option
+       *ngFor="let item of parentResource"
+       value="{{ item.resourceId }}"
+       >{{ item.resourceName }}</mat-option
+     >
+   </mat-select>
+ </mat-form-field>
+
+ <!-- Precedence Lavel -->
+ <mat-form-field
+ class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+ appearance="fill"
+>
+ <mat-label>Precedence Lavel</mat-label>
+ <input
+   matInput
+   placeholder="Enter Precedence Lavel"
+   type="text"
+   formControlName="precedenceLevel"
+   required
+ />
+</mat-form-field>
+
+<!-- Resource Order -->
+<mat-form-field
+class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+appearance="fill"
+>
+<mat-label>Resource Orde</mat-label>
+<input
+  matInput
+  placeholder="Enter Resource Orde"
+  type="text"
+  formControlName="resourceOrder"
+  required
+/>
+</mat-form-field>
+  
+      <hr style="width: 100%" />
+  
+      <!-- Submit Button -->
+      <mat-card-actions class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        <button
+          class="btn btn-danger"
+          mat-raised-button
+          color="danger"
+          type="submit"
+          style="margin: 15px; padding: 5px 20px"
+        >
+          Clear
+        </button>
+        <button
+          class="btn btn-sucess"
+          mat-raised-button
+          color="primary"
+          type="submit"
+          style="margin: 15px; padding: 5px 20px"
+        >
+          Submit
+        </button>
+      </mat-card-actions>
+    </form>
+  </div>
+  

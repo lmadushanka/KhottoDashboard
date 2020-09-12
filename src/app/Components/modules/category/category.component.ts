@@ -35,7 +35,7 @@ export class CategoryComponent implements OnInit {
     this.getAllCategory();
   }
 
-  displayedColumns: string[] = ['categoryId', 'categoryName', 'categoryImage','view','edit','delete'];
+  displayedColumns: string[] = ['categoryId', 'categoryName','view','edit','delete'];
   dataSource = this.ELEMENT_DATA;
 
   getCategory(type: number) {

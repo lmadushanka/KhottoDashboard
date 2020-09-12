@@ -25,6 +25,8 @@ import { FacilityComponent } from './Components/modules/facility/facility.compon
 import { AddFacilityComponent } from './Components/modules/add-facility/add-facility.component';
 import { ViewItemComponent } from './Components/modules/view-item/view-item.component';
 import { EditProviderComponent } from './Components/modules/edit-provider/edit-provider.component';
+import { ResourceComponent } from './Components/modules/resource/resource.component';
+import { AddResourceComponent } from './Components/modules/add-resource/add-resource.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -55,6 +57,8 @@ const routes: Routes = [
       { path: 'add-facility', component: AddFacilityComponent },
       { path: 'view-item', component: ViewItemComponent },
       { path: 'edit-provider', component: EditProviderComponent },
+      { path: 'resource', component: ResourceComponent},
+      { path: 'add-resource', component: AddResourceComponent},
     ],
   },
 ];
