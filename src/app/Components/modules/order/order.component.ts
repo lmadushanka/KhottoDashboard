@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ItemService } from 'src/app/services/Item/item.service';
+import { ItemService } from 'src/app/Services/Item/item.service';
 import { ProviderInfo } from '../../../Entity/providerInfo';
-import { SessionService } from 'src/app/services/session/session.service';
+import { SessionService } from 'src/app/Services/session/session.service';
 import { FilterOrderDto } from 'src/app/Entity/filterOrderDto';
 import { MinMaxDate } from 'src/app/Entity/minMaxDate';
 import { MinMaxPrice } from 'src/app/Entity/minMaxPrice';

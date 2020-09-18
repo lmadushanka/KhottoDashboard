@@ -1,9 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { LoginService } from 'src/app/services/login.service';
+import { LoginService } from 'src/app/Services/login.service';
 import { Router } from '@angular/router';
-import { LoginDto } from 'src/app/entity/loginDto';
-import { SessionService } from 'src/app/services/session/session.service';
-import { CategoryService } from 'src/app/services/category/category.service';
+import { LoginDto } from 'src/app/Entity/loginDto';
+import { SessionService } from 'src/app/Services/session/session.service';
 
 @Component({
   selector: 'app-login',

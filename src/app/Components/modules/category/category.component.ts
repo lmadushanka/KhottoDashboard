@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from 'src/app/services/session/session.service';
-import { CategoryService } from 'src/app/services/category/category.service';
+import { SessionService } from 'src/app/Services/session/session.service';
+import { CategoryService } from 'src/app/Services/category/category.service';
 
 export interface CategoryElement {
   categoryId: number;

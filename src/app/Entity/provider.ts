@@ -1,6 +1,6 @@
-import { Facility } from 'src/app/entity/facility';
-import { Policy } from 'src/app/entity/policy';
-import { OpenDays } from 'src/app/entity/open-days';
+import { Facility } from 'src/app/Entity/facility';
+import { Policy } from 'src/app/Entity/policy';
+import { OpenDays } from 'src/app/Entity/open-days';
 
 export class Provider {
   name: string;

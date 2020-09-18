@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SessionService } from 'src/app/services/session/session.service';
+import { SessionService } from 'src/app/Services/session/session.service';
 import { RefreshTokenService } from 'src/app/Services/refresh-token/refresh-token.service';
 
 @Component({

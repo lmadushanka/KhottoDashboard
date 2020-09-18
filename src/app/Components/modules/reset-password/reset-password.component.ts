@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PasswordRestDto } from 'src/app/entity/passwordRestDto';
-import { LoginService } from 'src/app/services/login.service';
+import { PasswordRestDto } from 'src/app/Entity/passwordRestDto';
+import { LoginService } from 'src/app/Services/login.service';
 import { Router } from '@angular/router';
 
 @Component({

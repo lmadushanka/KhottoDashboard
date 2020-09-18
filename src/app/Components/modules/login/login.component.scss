@@ -12,6 +12,8 @@ a {
     text-decoration: none;
     font-size: 11px;
     margin: 5px;
+    margin-left: -30px;
+    width: 100% auto;
 }
 
 #logo {
@@ -23,6 +25,12 @@ a {
 .login-form {
     padding: 20px;
 }
+
+img {
+    width: 65%;
+}
+
+
 
 // #loginButton {
 //     background-color: #e1713f;

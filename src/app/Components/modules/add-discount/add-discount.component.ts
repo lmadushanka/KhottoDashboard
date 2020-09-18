@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { SessionService } from 'src/app/services/session/session.service';
-import { ItemService } from 'src/app/services/Item/item.service';
+import { SessionService } from 'src/app/Services/session/session.service';
+import { ItemService } from 'src/app/Services/Item/item.service';
 import { ProviderInfo } from '../../../Entity/providerInfo';
 import { DiscountService } from 'src/app/Services/discount/discount.service';
 import { AddDiscountDto } from 'src/app/Entity/addDiscountDto';

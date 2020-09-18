@@ -1,4 +1,4 @@
-<button mat-button class="btn btn-primary" routerLink="/add-resource">Add Resource</button>
+<button mat-button class="btn btn-primary" routerLink="/add-permission">Add Permission</button>
 <mat-divider></mat-divider>
 <br />
 
@@ -11,9 +11,9 @@
   <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
 
-  <!-- Resource Id -->
-  <ng-container matColumnDef="resourceId">
-    <th mat-header-cell *matHeaderCellDef style="width: 30%;">Resource Id</th>
+  <!-- Resource Permission Id -->
+  <ng-container matColumnDef="resourcePermissionId">
+    <th mat-header-cell *matHeaderCellDef style="width: 30%;">Resource Permission Id</th>
     <td mat-cell *matCellDef="let element">{{ element.resourceId }}</td>
   </ng-container>
 
@@ -23,13 +23,11 @@
     <td mat-cell *matCellDef="let element">{{ element.resourceName }}</td>
   </ng-container>
 
-
-  <!-- Route Path -->
-  <ng-container matColumnDef="routePath">
-    <th mat-header-cell *matHeaderCellDef style="width: 30%;">Router Path</th>
-    <td mat-cell *matCellDef="let element">{{ element.routePath }}</td>
+  <!-- Access -->
+  <ng-container matColumnDef="access">
+    <th mat-header-cell *matHeaderCellDef style="width: 30%;">Access</th>
+    <td mat-cell *matCellDef="let element">{{ element.access }}</td>
   </ng-container>
-
   
   <!-- View Column -->
   <ng-container matColumnDef="view">

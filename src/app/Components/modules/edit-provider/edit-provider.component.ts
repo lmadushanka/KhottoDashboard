@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { SessionService } from 'src/app/services/session/session.service';
-import { Provider } from 'src/app/entity/provider';
-import { Facility } from 'src/app/entity/facility';
-import { Policy } from 'src/app/entity/policy';
-import { OpenDays } from 'src/app/entity/open-days';
-import { ProviderService } from 'src/app/services/provider/provider.service';
-import { ProviderValues } from 'src/app/entity/providerValues';
-import { AddProviderDto } from 'src/app/entity/addProviderDto';
-import { ProviderInfo } from 'src/app/entity/providerInfo';
-import { CategoryService } from 'src/app/services/category/category.service';
+import { SessionService } from 'src/app/Services/session/session.service';
+import { Provider } from 'src/app/Entity/provider';
+import { Facility } from 'src/app/Entity/facility';
+import { Policy } from 'src/app/Entity/policy';
+import { OpenDays } from 'src/app/Entity/open-days';
+import { ProviderService } from 'src/app/Services/provider/provider.service';
+import { ProviderValues } from 'src/app/Entity/providerValues';
+import { AddProviderDto } from 'src/app/Entity/addProviderDto';
+import { ProviderInfo } from 'src/app/Entity/providerInfo';
+import { CategoryService } from 'src/app/Services/category/category.service';
 import { Router } from '@angular/router';
+import { utf8Encode } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-edit-provider',
@@ -124,6 +125,7 @@ export class EditProviderComponent implements OnInit {
     logoImage: '',
     coverImage: '',
     bannerImage: '',
+    businessRegNo: '',
   };
 
   luxuryCategoryName = '';
@@ -155,7 +157,11 @@ export class EditProviderComponent implements OnInit {
     this.onGetProviderById(this.setProviderId);
   }
 
+  
+
   onSubmit() {
+
+    
     var nullIf: boolean = true;
 
     if (this.newProvider.logoImage == null) {
@@ -500,37 +506,7 @@ export class EditProviderComponent implements OnInit {
   onGetProviderById(value) {
     this.providerService.getProviderViewById(value).subscribe((res) => {
       console.log(res.data);
-
-      // if (res.data.providerTypeName == 'Hotel') {
-      //   this.ProviderTypeSelected = '2';
-      //   console.log('s2');
-      //   this.onGetDefaultCategory(2);
-      // }
-
-      // if (res.data.providerTypeName == 'Resturent') {
-      //   this.ProviderTypeSelected = '1';
-      //   console.log('s1');
-      //   this.onGetDefaultCategory(1);
-      // }
-
       this.providerDetails = res.data;
-
-      // if(Number(this.providerDetails.luxuryCategory) == 1){
-      //   this.luxuryCategoryName = 'රු';
-      // }
-      // if(Number(this.providerDetails.luxuryCategory) == 2){
-      //   this.luxuryCategoryName = 'රුරු';
-      // }
-      // if(Number(this.providerDetails.luxuryCategory) == 3){
-      //   this.luxuryCategoryName = 'රුරුරු';
-      // }
-      // if(Number(this.providerDetails.luxuryCategory) == 4){
-      //   this.luxuryCategoryName = 'රුරුරුරු';
-      // }
-      // if(Number(this.providerDetails.luxuryCategory) == 5){
-      // }
-      // if(Number(this.providerDetails.luxuryCategory) == 6){
-      // }
 
       this.luxuryCategorySelected = String(this.providerDetails.luxuryCategory);
       this.ProviderTypeSelected = String(this.providerDetails.providerTypeName);
@@ -542,6 +518,194 @@ export class EditProviderComponent implements OnInit {
       this.imgURLCover = res.data.coverImage;
       this.imgURLBanner = res.data.bannerImage;
     });
+  }
+
+  onSubmit2(){
+
+    if(this.addProviderForm.value.name == null){
+
+      this.newProvider.name = this.providerDetails.providerName;
+
+    }else if(this.addProviderForm.value.name !== null){
+
+      this.newProvider.name = this.addProviderForm.value;utf8Encode.name;
+
+    }
+
+    if(this.addProviderForm.value.providerType == null){
+
+      if(this.providerDetails.providerTypeName == 'Restaurant'){
+
+        let getProviderTypeId = '1';
+        this.newProvider.providerType = getProviderTypeId;
+
+      }else if(this.providerDetails.providerTypeName == 'Hotel'){
+        let getProviderTypeId = '2';
+        this.newProvider.providerType = getProviderTypeId;
+      }
+
+    }else if(this.addProviderForm.value.providerType !== null){
+
+      this.newProvider.providerType = this.addProviderForm.value.providerType;
+
+    }
+
+    if(this.addProviderForm.value.location == null){
+
+      this.newProvider.location = this.providerDetails.locationName;
+
+    }else if(this.addProviderForm.value.location !== null){
+
+      this.newProvider.location = this.addProviderForm.value.location;
+
+    }
+
+    if(this.addProviderForm.value.address == null){
+
+      this.newProvider.address = this.providerDetails.address;
+
+    }else if(this.addProviderForm.value.address!== null){
+
+      this.newProvider.address = this.addProviderForm.value.address;
+
+    }
+
+    if(this.addProviderForm.value.phone == null){
+
+      this.newProvider.phone = this.providerDetails.callNumber;
+
+    }else if(this.addProviderForm.value.phone !== null){
+
+      this.newProvider.phone = this.addProviderForm.value.phone;
+
+    }
+
+    if(this.addProviderForm.value.categoryType == null){
+
+      this.newProvider.category = this.providerDetails.categoryName;
+
+    }else if(this.addProviderForm.value.categoryType !== null){
+
+      this.newProvider.category = this.addProviderForm.value.categoryType;
+
+    }
+
+    if(this.addProviderForm.value.luxuryType == null){
+
+      this.newProvider.luxuryCategory = this.providerDetails.luxuryCategory;
+
+    }else if(this.addProviderForm.value.luxuryType !== null){
+
+      this.newProvider.luxuryCategory = this.addProviderForm.value.luxuryType;
+
+    }
+
+    if(this.addProviderForm.value.taxRate == null){
+
+      this.newProvider.taxRate = this.providerDetails.taxRate;
+
+    }else if(this.addProviderForm.value.taxRate !== null){
+
+      this.newProvider.taxRate = this.addProviderForm.value.taxRate;
+
+    }
+
+    if(this.addProviderForm.value.serviceCharge == null){
+
+      this.newProvider.serviceCharge = this.providerDetails.serviceCharge;
+
+    }else if(this.addProviderForm.value.serviceCharge !== null){
+
+      this.newProvider.serviceCharge = this.addProviderForm.value.serviceCharge;
+
+    }
+
+    if(this.addProviderForm.value.mapUrl == null){
+
+      this.newProvider.mapUrl = this.providerDetails.mapUrl;
+
+    }else if(this.addProviderForm.value.mapUrl !== null){
+
+      this.newProvider.mapUrl = this.addProviderForm.value.mapUrl;
+
+    }
+
+    if(this.addProviderForm.value.description == null){
+
+      this.newProvider.simpleDescription = this.providerDetails.simpleDescription;
+
+    }else if(this.addProviderForm.value.description !== null){
+
+      this.newProvider.simpleDescription = this.addProviderForm.value.description;
+
+    }
+
+    if (this.facilityArray.length != 0) {
+      this.facilities = this.facilityArray;
+    }
+
+    if (this.policyArray.length != 0) {
+      this.policies = this.policyArray;
+    }
+
+    this.days = this.dayList;
+
+
+    this.newProvider.facility = this.facilities;
+    this.newProvider.policy = this.policies;
+    this.newProvider.openDays = this.days;
+
+    let serviceUserId = localStorage.getItem('serviceUserId');
+
+
+    this.addProviderInfo('address', this.newProvider.address);
+    this.addProviderInfo('callNumber', this.newProvider.phone);
+    // this.addProviderInfo('luxuryCategory',Number(this.newProvider.luxuryCategory));
+    this.addProviderInfo('taxRate', this.newProvider.taxRate);
+    this.addProviderInfo('serviceCharge', this.newProvider.serviceCharge);
+    this.addProviderInfo('mapUrl', this.newProvider.mapUrl);
+    // this.addProviderInfo('simpleDescription', this.newProvider.description);
+    this.addProviderInfo('facility', this.newProvider.facility);
+    this.addProviderInfo('policy', this.newProvider.policy);
+    this.addProviderInfo('openDays', this.newProvider.openDays);
+    this.addProviderInfo('logoImage', 'logoImage');
+    this.addProviderInfo('coverImage', 'coverImage');
+    this.addProviderInfo('bannerImage', 'bannerImage');
+    this.addProviderDto.serviceUserId = Number(serviceUserId);
+    this.addProviderDto.simpleDescription = this.newProvider.simpleDescription;
+    this.addProviderDto.providerValues = this.providerValues;
+    this.addProviderDto.categoryId = Number(this.newProvider.category);
+    this.addProviderDto.providerTypeId = Number(
+      this.newProvider.providerType
+    );
+
+    this.addProviderDto.providerName = this.newProvider.name;
+    this.addProviderDto.luxuryCategory = this.newProvider.luxuryCategory;
+    this.addProviderDto.location = this.newProvider.location;
+    this.providerInfo.logoImage = this.newProvider.logoImage;
+    this.providerInfo.coverImage = this.newProvider.coverImage;
+    this.providerInfo.bannerImage = this.newProvider.bannerImage;
+    this.providerInfo.providerInfo = this.addProviderDto;
+    // this.addProviderDto.businessRegNo = this.newProvider.businessRegNo;
+    // this.addProviderDto.nicNo = this.newProvider.nicNo;
+
+    // if(this.addProviderForm.value.BRNumber == null){
+
+    //   this.newProvider.businessRegNo = this.providerDetails.businessRegNo;
+
+    // }else if(this.addProviderForm.value.BRNumber !== null){
+
+    //   this.newProvider.businessRegNo = this.addProviderForm.value.BRNumber;
+
+    // }
+
+    
+    console.log(this.providerInfo);
+
+
+    console.log(this.newProvider);
+
+    
   }
 
   onGetDefaultCategory(value) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from 'src/app/services/session/session.service';
-import { ItemService } from 'src/app/services/Item/item.service';
+import { SessionService } from 'src/app/Services/session/session.service';
+import { ItemService } from 'src/app/Services/Item/item.service';
 import { Router } from '@angular/router';
 
 export interface PeriodicElement {

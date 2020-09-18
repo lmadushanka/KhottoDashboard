@@ -1,0 +1,81 @@
+<button mat-button class="btn btn-primary" routerLink="/permission">
+    View Permission
+  </button>
+  <mat-divider></mat-divider>
+  <br />
+  
+  <div class="lightgray-back form-container">
+    <form class="row" [formGroup]="addPermissionForm" autocomplete="off">
+
+    <!-- Select User Type -->
+    <mat-form-field
+    class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+    appearance="fill"
+  >
+    <mat-label>Select User Type</mat-label>
+    <mat-select formControlName="serviceUserTypeId">
+      <mat-option
+          *ngFor="let item of serviceUserTypeList"
+          value="{{ item.serviceUserTypeId }}"
+        >{{ item.serviceUserTypeName }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+
+      <!-- Resource Id -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Select Resource</mat-label>
+        <mat-select formControlName="resourceId" required>
+            <mat-option
+            *ngFor="let item of resourceIdList"
+            value="{{ item.resourceId }}"
+            >{{ item.resourceName }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+   <!-- Access-->
+   <mat-form-field
+   class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+   appearance="fill"
+ >
+   <mat-label>Access</mat-label>
+   <mat-select formControlName="access" required>
+       <mat-option
+       *ngFor="let item of access"
+       value="{{ item.value }}"
+       >{{ item.accessName }}</mat-option
+     >
+   </mat-select>
+ </mat-form-field>
+  
+      <hr style="width: 100%" />
+  
+      <!-- Submit Button -->
+      <mat-card-actions class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        <button
+          class="btn btn-danger"
+          mat-raised-button
+          color="danger"
+          type="submit"
+          style="margin: 15px; padding: 5px 20px"
+        >
+          Clear
+        </button>
+        <button
+          class="btn btn-sucess"
+          mat-raised-button
+          color="primary"
+          type="submit"
+          (click)= "onSubmit()"
+          style="margin: 15px; padding: 5px 20px"
+        >
+          Submit
+        </button>
+      </mat-card-actions>
+    </form>
+  </div>
+  

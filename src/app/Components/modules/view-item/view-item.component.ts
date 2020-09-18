@@ -1,16 +1,14 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from 'src/app/services/session/session.service';
-import { Item } from 'src/app/entity/item';
-import { Term } from 'src/app/entity/term';
+import { SessionService } from 'src/app/Services/session/session.service';
+import { Item } from 'src/app/Entity/item';
+import { Term } from 'src/app/Entity/term';
 import { ProviderInfo } from '../../../Entity/providerInfo';
-import { ItemService } from 'src/app/services/Item/item.service';
-import { AddItemDto } from 'src/app/entity/addItemDto';
-import { ItemDto } from 'src/app/entity/itemDto';
-import { ItemValues } from 'src/app/entity/itemValues';
-import { OpenDays } from 'src/app/entity/open-days';
-import { ProviderService } from '../../../Services/provider/provider.service';
-import { ItemOption } from 'src/app/entity/itemOption';
+import { ItemService } from 'src/app/Services/Item/item.service';
+import { AddItemDto } from 'src/app/Entity/addItemDto';
+import { ItemDto } from 'src/app/Entity/itemDto';
+import { ItemValues } from 'src/app/Entity/itemValues';
+import { ItemOption } from 'src/app/Entity/itemOption';
 import { Router } from '@angular/router';
 
 @Component({

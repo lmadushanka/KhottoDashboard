@@ -1,15 +1,15 @@
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from 'src/app/services/session/session.service';
-import { Provider } from 'src/app/entity/provider';
-import { Facility } from 'src/app/entity/facility';
-import { Policy } from 'src/app/entity/policy';
-import { OpenDays } from 'src/app/entity/open-days';
-import { ProviderService } from 'src/app/services/provider/provider.service';
-import { ProviderValues } from 'src/app/entity/providerValues';
-import { AddProviderDto } from 'src/app/entity/addProviderDto';
-import { ProviderInfo } from 'src/app/entity/providerInfo';
-import { CategoryService } from 'src/app/services/category/category.service';
+import { SessionService } from 'src/app/Services/session/session.service';
+import { Provider } from 'src/app/Entity/provider';
+import { Facility } from 'src/app/Entity/facility';
+import { Policy } from 'src/app/Entity/policy';
+import { OpenDays } from 'src/app/Entity/open-days';
+import { ProviderService } from 'src/app/Services/provider/provider.service';
+import { ProviderValues } from 'src/app/Entity/providerValues';
+import { AddProviderDto } from 'src/app/Entity/addProviderDto';
+import { ProviderInfo } from 'src/app/Entity/providerInfo';
+import { CategoryService } from 'src/app/Services/category/category.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -258,7 +258,7 @@ export class AddProviderComponent implements OnInit {
       this.addProviderDto.businessRegNo = this.newProvider.businessRegNo;
       this.addProviderDto.nicNo = this.newProvider.nicNo;
 
-      console.log(this.newProvider);
+      // console.log(this.newProvider);
       console.log(this.providerInfo);
       this.providerService.addProvider(this.providerInfo).subscribe((res) => {
         this.resetForm();

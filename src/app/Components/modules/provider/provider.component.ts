@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-import { SessionService } from 'src/app/services/session/session.service';
-import { ProviderService } from 'src/app/services/provider/provider.service';
+import { SessionService } from 'src/app/Services/session/session.service';
+import { ProviderService } from 'src/app/Services/provider/provider.service';
 
 export interface PeriodicElement {
   provider: string;

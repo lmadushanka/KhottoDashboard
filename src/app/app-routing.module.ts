@@ -27,6 +27,8 @@ import { ViewItemComponent } from './Components/modules/view-item/view-item.comp
 import { EditProviderComponent } from './Components/modules/edit-provider/edit-provider.component';
 import { ResourceComponent } from './Components/modules/resource/resource.component';
 import { AddResourceComponent } from './Components/modules/add-resource/add-resource.component';
+import { AddPermissionComponent } from './Components/modules/add-permission/add-permission.component';
+import { PermissionComponent } from './Components/modules/permission/permission.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -59,6 +61,8 @@ const routes: Routes = [
       { path: 'edit-provider', component: EditProviderComponent },
       { path: 'resource', component: ResourceComponent},
       { path: 'add-resource', component: AddResourceComponent},
+      { path: 'add-permission', component: AddPermissionComponent},
+      { path: 'permission', component: PermissionComponent},
     ],
   },
 ];

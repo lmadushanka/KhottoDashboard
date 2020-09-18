@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { OpenDays } from 'src/app/entity/open-days';
-import { Facility } from 'src/app/entity/facility';
-import { Policy } from 'src/app/entity/policy';
-import { Provider } from 'src/app/entity/provider';
-import { ProviderService } from 'src/app/services/provider/provider.service';
+import { OpenDays } from 'src/app/Entity/open-days';
+import { Facility } from 'src/app/Entity/facility';
+import { Policy } from 'src/app/Entity/policy';
+import { Provider } from 'src/app/Entity/provider';
+import { ProviderService } from 'src/app/Services/provider/provider.service';
 
 @Component({
   selector: 'app-view-provider',

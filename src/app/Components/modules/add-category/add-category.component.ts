@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from 'src/app/services/session/session.service';
-import { Category } from 'src/app/entity/category';
+import { SessionService } from 'src/app/Services/session/session.service';
+import { Category } from 'src/app/Entity/category';
 import { FormGroup, FormControl } from '@angular/forms';
-import { AddCategoryDto } from 'src/app/entity/addCategoryDto';
-import { CategoryDto } from 'src/app/entity/categoryDto';
-import { CategoryService } from 'src/app/services/category/category.service';
+import { AddCategoryDto } from 'src/app/Entity/addCategoryDto';
+import { CategoryDto } from 'src/app/Entity/categoryDto';
+import { CategoryService } from 'src/app/Services/category/category.service';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Globals } from 'src/app/entity/globals';
-import { AddProviderDto } from 'src/app/entity/addProviderDto';
-import { ProviderInfo } from 'src/app/entity/providerInfo';
-import { FileObject } from 'src/app/entity/fileObject';
+import { Globals } from 'src/app/Entity/globals';
+import { ProviderInfo } from 'src/app/Entity/providerInfo';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Authorization': `${localStorage.getItem('token')}` })

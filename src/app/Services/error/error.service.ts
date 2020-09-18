@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Globals } from 'src/app/entity/globals';
+import { Globals } from 'src/app/Entity/globals';
 import { Observable } from 'rxjs/internal/Observable';
 
 const httpOptions = {

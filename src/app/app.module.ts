@@ -22,33 +22,33 @@ import { AddProviderComponent } from './Components/modules/add-provider/add-prov
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { LoginDto } from './entity/loginDto';
-import { LoginService } from './services/login.service';
-import { Globals } from './entity/globals';
+import { LoginDto } from 'src/app/Entity/loginDto';
+import { LoginService } from 'src/app/Services/login.service';
+import { Globals } from 'src/app/Entity/globals';
 import { ItemsComponent } from './Components/modules/items/items.component';
 import { AddItemComponent } from './Components/modules/add-item/add-item.component';
-import { Provider } from './entity/provider';
-import { Facility } from './entity/facility';
-import { Policy } from './entity/policy';
-import { OpenDays } from './entity/open-days';
-import { Otp } from './entity/otp';
-import { PasswordRestDto } from './entity/passwordRestDto';
-import { Item } from './entity/item';
-import { Term } from './entity/term';
+import { Provider } from 'src/app/Entity/provider';
+import { Facility } from 'src/app/Entity/facility';
+import { Policy } from 'src/app/Entity/policy';
+import { OpenDays } from 'src/app/Entity/open-days';
+import { Otp } from 'src/app/Entity/otp';
+import { PasswordRestDto } from 'src/app/Entity/passwordRestDto';
+import { Item } from 'src/app/Entity/item';
+import { Term } from 'src/app/Entity/term';
 import { ErrorsComponent } from './Components/modules/errors/errors.component';
 import { CategoryComponent } from './Components/modules/category/category.component';
 import { AddCategoryComponent } from './Components/modules/add-category/add-category.component';
-import { Category } from './entity/category';
-import { AddProviderDto } from './entity/addProviderDto';
-import { ProviderInfo } from './entity/providerInfo';
-import { ProviderValues } from './entity/providerValues';
-import { FileObject } from './entity/fileObject';
-import { ItemValues } from './entity/itemValues';
-import { AddItemDto } from './entity/addItemDto';
-import { ItemDto } from './entity/itemDto';
-import { AddCategoryDto } from './entity/addCategoryDto';
-import { CategoryDto } from './entity/categoryDto';
-import { ItemOption } from './entity/itemOption';
+import { Category } from 'src/app/Entity/category';
+import { AddProviderDto } from 'src/app/Entity/addProviderDto';
+import { ProviderInfo } from 'src/app/Entity/providerInfo';
+import { ProviderValues } from 'src/app/Entity/providerValues';
+import { FileObject } from 'src/app/Entity/fileObject';
+import { ItemValues } from 'src/app/Entity/itemValues';
+import { AddItemDto } from 'src/app/Entity/addItemDto';
+import { ItemDto } from 'src/app/Entity/itemDto';
+import { AddCategoryDto } from 'src/app/Entity/addCategoryDto';
+import { CategoryDto } from 'src/app/Entity/categoryDto';
+import { ItemOption } from 'src/app/Entity/itemOption';
 import { AddUserComponent } from './Components/modules/add-user/add-user.component';
 import { UsersComponent } from './Components/modules/users/users.component';
 import { BannerComponent } from './Components/modules/banner/banner.component';
@@ -65,6 +65,8 @@ import { ViewItemComponent } from './Components/modules/view-item/view-item.comp
 import { EditProviderComponent } from './Components/modules/edit-provider/edit-provider.component';
 import { ResourceComponent } from './Components/modules/resource/resource.component';
 import { AddResourceComponent } from './Components/modules/add-resource/add-resource.component';
+import { PermissionComponent } from './Components/modules/permission/permission.component';
+import { AddPermissionComponent } from './Components/modules/add-permission/add-permission.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +96,8 @@ import { AddResourceComponent } from './Components/modules/add-resource/add-reso
     EditProviderComponent,
     ResourceComponent,
     AddResourceComponent,
+    PermissionComponent,
+    AddPermissionComponent,
   ],
   imports: [
     BrowserModule,

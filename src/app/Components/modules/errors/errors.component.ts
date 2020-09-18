@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from 'src/app/services/session/session.service';
-import { ErrorService } from 'src/app/services/error/error.service';
+import { SessionService } from 'src/app/Services/session/session.service';
+import { ErrorService } from 'src/app/Services/error/error.service';
 
 export interface ErrorsElement {
   logId: number;

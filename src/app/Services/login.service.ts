@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Globals } from '../entity/globals';
-import { LoginDto } from '../entity/loginDto';
-import { PasswordRestDto } from '../entity/passwordRestDto';
-import { Otp } from '../entity/otp';
+import { Globals } from 'src/app/Entity/globals';
+import { LoginDto } from 'src/app/Entity/loginDto';
+import { PasswordRestDto } from 'src/app/Entity/passwordRestDto';
+import { Otp } from 'src/app/Entity/otp';
 
 // const httpOptions = {
 //   header: new HttpHeaders({'X-API-VERSION': 'v1'})
