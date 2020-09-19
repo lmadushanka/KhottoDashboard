@@ -29,6 +29,7 @@ import { ResourceComponent } from './Components/modules/resource/resource.compon
 import { AddResourceComponent } from './Components/modules/add-resource/add-resource.component';
 import { AddPermissionComponent } from './Components/modules/add-permission/add-permission.component';
 import { PermissionComponent } from './Components/modules/permission/permission.component';
+import { EditItemComponent } from './Components/modules/edit-item/edit-item.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -63,6 +64,7 @@ const routes: Routes = [
       { path: 'add-resource', component: AddResourceComponent},
       { path: 'add-permission', component: AddPermissionComponent},
       { path: 'permission', component: PermissionComponent},
+      { path: 'edit-item', component: EditItemComponent},
     ],
   },
 ];

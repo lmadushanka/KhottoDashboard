@@ -40,6 +40,30 @@ export class ProviderService {
     return this.http.post(signinUrl, providerForm, httpOptions);
   }
 
+  editProvider(addprovider: ProviderInfo): Observable<any> {
+    var providerForm = new FormData();
+    var providerInfoStr = JSON.stringify(addprovider.providerInfo);
+
+    providerForm.append(
+      'logoImage',
+      addprovider.logoImage,
+      //addprovider.logoImage.name
+    );
+    providerForm.append(
+      'coverImage',
+      addprovider.coverImage,
+      // addprovider.coverImage.name
+    );
+    providerForm.append(
+      'bannerImage',
+      addprovider.bannerImage,
+    );
+    providerForm.append('providerInfo', providerInfoStr);
+
+    let signinUrl = this.baseUrl + '/provider';
+    return this.http.put(signinUrl, providerForm, httpOptions);
+  }
+
   getProviderList(providerTypeId): Observable<any> {
     
     let signinUrl = this.baseUrl + '/provider/';

@@ -67,6 +67,7 @@ import { ResourceComponent } from './Components/modules/resource/resource.compon
 import { AddResourceComponent } from './Components/modules/add-resource/add-resource.component';
 import { PermissionComponent } from './Components/modules/permission/permission.component';
 import { AddPermissionComponent } from './Components/modules/add-permission/add-permission.component';
+import { EditItemComponent } from './Components/modules/edit-item/edit-item.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { AddPermissionComponent } from './Components/modules/add-permission/add-
     AddResourceComponent,
     PermissionComponent,
     AddPermissionComponent,
+    EditItemComponent,
   ],
   imports: [
     BrowserModule,

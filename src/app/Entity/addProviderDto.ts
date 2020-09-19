@@ -11,4 +11,5 @@ export class AddProviderDto {
   simpleDescription:any;
   businessRegNo:any;
   nicNo:any;
+  providerId:number;
 }

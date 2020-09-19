@@ -126,6 +126,7 @@ export class EditProviderComponent implements OnInit {
     coverImage: '',
     bannerImage: '',
     businessRegNo: '',
+    categoryId: '',
   };
 
   luxuryCategoryName = '';
@@ -517,6 +518,12 @@ export class EditProviderComponent implements OnInit {
       this.imgURLLogo = res.data.logoImage;
       this.imgURLCover = res.data.coverImage;
       this.imgURLBanner = res.data.bannerImage;
+
+      console.log(this.imgURLLogo);
+
+      this.newProvider.logoImage = res.data.logoImage;
+      this.newProvider.bannerImage = res.data.bannerImage;
+      this.newProvider.coverImage = res.data.coverImage;
     });
   }
 
@@ -582,7 +589,7 @@ export class EditProviderComponent implements OnInit {
 
     if(this.addProviderForm.value.categoryType == null){
 
-      this.newProvider.category = this.providerDetails.categoryName;
+      this.newProvider.category = this.providerDetails.categoryId;
 
     }else if(this.addProviderForm.value.categoryType !== null){
 
@@ -640,6 +647,10 @@ export class EditProviderComponent implements OnInit {
 
     }
 
+    if(this.newProvider.logoImage == null){
+      this.newProvider.logoImage = this.imgURLLogo;
+    }
+
     if (this.facilityArray.length != 0) {
       this.facilities = this.facilityArray;
     }
@@ -668,9 +679,9 @@ export class EditProviderComponent implements OnInit {
     this.addProviderInfo('facility', this.newProvider.facility);
     this.addProviderInfo('policy', this.newProvider.policy);
     this.addProviderInfo('openDays', this.newProvider.openDays);
-    this.addProviderInfo('logoImage', 'logoImage');
-    this.addProviderInfo('coverImage', 'coverImage');
-    this.addProviderInfo('bannerImage', 'bannerImage');
+    this.addProviderInfo('logoImage', this.providerDetails.logoImage);
+    this.addProviderInfo('coverImage', this.providerDetails.coverImage);
+    this.addProviderInfo('bannerImage', this.providerDetails.bannerImage);
     this.addProviderDto.serviceUserId = Number(serviceUserId);
     this.addProviderDto.simpleDescription = this.newProvider.simpleDescription;
     this.addProviderDto.providerValues = this.providerValues;
@@ -679,12 +690,18 @@ export class EditProviderComponent implements OnInit {
       this.newProvider.providerType
     );
 
+    this.addProviderDto.providerId = Number(localStorage.getItem('viewProviderId'));
+
     this.addProviderDto.providerName = this.newProvider.name;
     this.addProviderDto.luxuryCategory = this.newProvider.luxuryCategory;
     this.addProviderDto.location = this.newProvider.location;
+
+    
     this.providerInfo.logoImage = this.newProvider.logoImage;
     this.providerInfo.coverImage = this.newProvider.coverImage;
     this.providerInfo.bannerImage = this.newProvider.bannerImage;
+
+    
     this.providerInfo.providerInfo = this.addProviderDto;
     // this.addProviderDto.businessRegNo = this.newProvider.businessRegNo;
     // this.addProviderDto.nicNo = this.newProvider.nicNo;
@@ -704,6 +721,14 @@ export class EditProviderComponent implements OnInit {
 
 
     console.log(this.newProvider);
+
+
+    this.providerService.editProvider(this.providerInfo).subscribe((res) => {
+      console.log(res);
+      this.resetForm();
+      this.router.navigateByUrl('/provider');
+      
+    });
 
     
   }

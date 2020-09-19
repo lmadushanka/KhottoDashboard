@@ -111,4 +111,9 @@ export class ItemsComponent implements OnInit {
     console.log(value);
     this.router.navigateByUrl('/view-item');
   }
+
+  setEditItem(element){
+    localStorage.setItem('itemId', element);
+    this.router.navigateByUrl('/edit-item');
+  }
 }
