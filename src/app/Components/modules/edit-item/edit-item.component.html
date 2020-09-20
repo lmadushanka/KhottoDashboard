@@ -1,1 +1,219 @@
-<p>edit-item works!</p>
+<button mat-button class="btn btn-primary" routerLink="/items">
+    View Item
+  </button>
+  <br />
+  <mat-divider></mat-divider>
+  <br />
+  
+  <div class="lightgray-back form-container">
+    <form class="row" [formGroup]="addItemForm" autocomplete="off">
+      <!-- Item Type -->
+      <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>Item Type</mat-label>
+      <mat-select
+        [(value)]="itemTypeSelected"
+        formControlName="itemType"
+      >
+        <mat-option value="2">Food</mat-option>
+        <mat-option value="1">Accommodation</mat-option>
+        
+      </mat-select>
+    </mat-form-field>
+  
+      <!-- Name -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Item Name</mat-label>
+        <input
+          matInput
+          placeholder="Enter Item Name"
+          type="text"
+          formControlName="itemName"
+          value="{{itemList.itemName}}"
+        />
+      </mat-form-field>
+  
+      <!-- Price -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Price</mat-label>
+        <input
+          matInput
+          placeholder="Enter Item Price"
+          type="number"
+          formControlName="itemPrice"
+          value="{{itemList.price}}"
+        />
+      </mat-form-field>
+
+      <!-- Description -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+        appearance="fill"
+        style="margin-top: 0.5%"
+      >
+        <mat-label>Description</mat-label>
+        <input
+          matInput
+          placeholder="Description"
+          type="text"
+          formControlName="description"
+          value="{{itemList.simpleDescription}}"
+        />
+      </mat-form-field>
+  
+      <hr style="width: 100%" />
+  
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+        *ngIf="providerType"
+      >
+        <mat-label>Select Provider</mat-label>
+      <mat-select formControlName="provider" required>
+        <mat-option
+          *ngFor="let provider of provider"
+          value="{{ provider.providerId }}"
+          >{{ provider.providerName }}</mat-option
+        >
+      </mat-select>
+      </mat-form-field>
+      
+
+      <hr style="width: 100%">
+  
+      <!-- Cover Image -->
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        <label class="col-12">Upload Cover Image</label>
+        <input
+          type="file"
+          name="cover"
+          accept="image/*"
+          (change)="onCoverSelected($event)"
+          formControlName="cover"
+        />
+        <label class="col-12 err" *ngIf="coverIf">Please upload cover...</label>
+        <img [src]="imgURLCover" height="120" width="180" *ngIf="imgURLCover" />
+      </div>
+  
+      <!-- <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+        *ngIf="itemType"
+      >
+        <mat-label>Item Availabilty</mat-label>
+        <input
+          matInput
+          placeholder="Enter Availabilty"
+          type="text"
+          formControlName="itemAvailability"
+        />
+      </mat-form-field> -->
+  
+      <hr style="width: 100%" />
+  
+      <div
+        class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+      >
+        <label class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+          >Options</label
+        >
+        <div
+          class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 float-left"
+          appearance="fill"
+          *ngFor="let itemOption of itemOptions; let ioIndex = index"
+        >
+          <input
+            id="{{ itemOption.optionName }}{{ itemOption.optionId }}"
+            type="checkbox"
+            [checked]=false
+            (change)="
+            updateOption(itemOption.optionName, itemOption.optionId, ioIndex)
+          "
+          />
+          {{itemOption.optionName }}
+        </div>
+      </div>
+  
+      <hr style="width: 100%" />
+  
+     <!-- Terms -->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <mat-label class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+          >Terms</mat-label
+        ><br />
+        <!-- term -->
+        <mat-form-field
+          class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+          appearance="fill"
+        >
+          <mat-label>Term</mat-label>
+          <input
+            id="term"
+            matInput
+            placeholder="Enter Term"
+            type="text"
+            autocomplete="off"
+            #term
+            (click)="errTerm.show = false"
+          />
+        </mat-form-field>
+  
+        <mat-card-actions
+          class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 btn-plus"
+        >
+          <button class="btn btn-success btn-round" (click)="addTerm(term.value)">
+            +
+          </button>
+        </mat-card-actions>
+        <span class="err-msg" *ngIf="errTerm.show">{{ errTerm.value }}</span>
+  
+        <!-- Term Table -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 80%">Title</th>
+              <th scope="col" style="width: 20%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let term of termArray; let pIndex = index">
+              <td scope="row">
+                {{ term }}
+              </td>
+              <td scope="row">
+                <button class="btn btn-danger" (click)="removeTerm(pIndex)">
+                  -
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <hr style="width: 100%" />
+  
+      <!-- Submit Button -->
+      <mat-card-actions class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        
+        <button
+          class="btn btn-sucess"
+          mat-raised-button
+          color="primary"
+          type="submit"
+          (click)="onSubmit()"
+          style="margin: 15px; padding: 5px 20px"
+        >
+          Submit
+        </button>
+      </mat-card-actions>
+    </form>
+  </div>
+  

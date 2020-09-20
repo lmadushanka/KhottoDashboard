@@ -499,7 +499,7 @@ export class EditProviderComponent implements OnInit {
 
   onDistrictSelect(value) {
     this.providerService.getLocationByDistrictId(value).subscribe((res) => {
-      // console.log(res);
+      console.log(res);
       this.locationList = res.data;
     });
   }
@@ -524,6 +524,8 @@ export class EditProviderComponent implements OnInit {
       this.newProvider.logoImage = res.data.logoImage;
       this.newProvider.bannerImage = res.data.bannerImage;
       this.newProvider.coverImage = res.data.coverImage;
+
+      this.onDistrictSelect(res.data.districtId);
     });
   }
 
@@ -718,9 +720,6 @@ export class EditProviderComponent implements OnInit {
 
     
     console.log(this.providerInfo);
-
-
-    console.log(this.newProvider);
 
 
     this.providerService.editProvider(this.providerInfo).subscribe((res) => {

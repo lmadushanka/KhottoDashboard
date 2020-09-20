@@ -63,8 +63,9 @@ export class UsersComponent implements OnInit {
     this.filterUserDto.firstNameString = null;
     this.filterUserDto.lastNameString = null;
     this.filterUserDto.providerNameString = null;
-    this.filterUserDto.myServiceUserTypeId = this.serviceUserId;
+    this.filterUserDto.myServiceUserTypeId = Number(localStorage.getItem('serviceUserId'));
     this.filterUserDto.pageNumber = 1;
+    this.filterUserDto.serviceUserTypeId = Number(localStorage.getItem('serviceUserId'))
 
     this.session.sessionCheck();
     this.serviceUserId = localStorage.getItem('serviceUserId');
@@ -85,6 +86,8 @@ export class UsersComponent implements OnInit {
     }
 
     this.filterUserDto.serviceUserTypeId = serviceUserId;
+
+    
 
     this.filterUserDto.firstNameString = this.filterUser.value.firstName;
     this.filterUserDto.lastNameString = this.filterUser.value.lastName;
