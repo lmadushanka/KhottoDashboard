@@ -30,6 +30,13 @@ import { AddResourceComponent } from './Components/modules/add-resource/add-reso
 import { AddPermissionComponent } from './Components/modules/add-permission/add-permission.component';
 import { PermissionComponent } from './Components/modules/permission/permission.component';
 import { EditItemComponent } from './Components/modules/edit-item/edit-item.component';
+import { PromotionComponent } from './Components/modules/promotion/promotion.component';
+import { AddPromotionComponent } from './Components/modules/add-promotion/add-promotion.component';
+import { LocationComponent } from './Components/modules/location/location.component';
+import { AddLocationComponent } from './Components/modules/add-location/add-location.component';
+import { SmsComponent } from './Components/modules/sms/sms.component';
+import { EmailComponent } from './Components/modules/email/email.component';
+import { ReviewComponent } from './Components/modules/review/review.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -65,6 +72,14 @@ const routes: Routes = [
       { path: 'add-permission', component: AddPermissionComponent},
       { path: 'permission', component: PermissionComponent},
       { path: 'edit-item', component: EditItemComponent},
+      { path: 'promotion', component: PromotionComponent},
+      { path: 'add-promotion', component: AddPromotionComponent},
+      { path: 'location', component: LocationComponent},
+      { path: 'add-location', component: AddLocationComponent},
+      { path: 'sms', component: SmsComponent},
+      { path: 'email', component: EmailComponent},
+      { path: 'review', component: ReviewComponent},
+      
     ],
   },
 ];

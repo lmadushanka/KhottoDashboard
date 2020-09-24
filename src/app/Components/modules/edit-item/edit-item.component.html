@@ -6,7 +6,7 @@
   <br />
   
   <div class="lightgray-back form-container">
-    <form class="row" [formGroup]="addItemForm" autocomplete="off">
+    <form class="row" [formGroup]="editItemForm" autocomplete="off">
       <!-- Item Type -->
       <mat-form-field
       class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
@@ -76,14 +76,24 @@
         appearance="fill"
         *ngIf="providerType"
       >
-        <mat-label>Select Provider</mat-label>
-      <mat-select formControlName="provider" required>
+        <!-- <mat-label>Select Provider</mat-label>
+      <mat-select formControlName="provider">
         <mat-option
           *ngFor="let provider of provider"
           value="{{ provider.providerId }}"
           >{{ provider.providerName }}</mat-option
         >
-      </mat-select>
+      </mat-select> -->
+
+      <mat-label>Provider</mat-label>
+        <input
+          matInput
+          placeholder="Description"
+          type="text"
+          formControlName="provider"
+          value="{{itemList.providerName}}"
+          readonly
+        />
       </mat-form-field>
       
 
@@ -143,60 +153,59 @@
       </div>
   
       <hr style="width: 100%" />
-  
-     <!-- Terms -->
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <mat-label class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
-          >Terms</mat-label
-        ><br />
-        <!-- term -->
-        <mat-form-field
-          class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
-          appearance="fill"
-        >
-          <mat-label>Term</mat-label>
-          <input
-            id="term"
-            matInput
-            placeholder="Enter Term"
-            type="text"
-            autocomplete="off"
-            #term
-            (click)="errTerm.show = false"
-          />
-        </mat-form-field>
-  
-        <mat-card-actions
-          class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 btn-plus"
-        >
-          <button class="btn btn-success btn-round" (click)="addTerm(term.value)">
-            +
-          </button>
-        </mat-card-actions>
-        <span class="err-msg" *ngIf="errTerm.show">{{ errTerm.value }}</span>
-  
-        <!-- Term Table -->
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col" style="width: 80%">Title</th>
-              <th scope="col" style="width: 20%"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let term of termArray; let pIndex = index">
-              <td scope="row">
-                {{ term }}
-              </td>
-              <td scope="row">
-                <button class="btn btn-danger" (click)="removeTerm(pIndex)">
-                  -
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <!-- Terms -->
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <mat-label class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+      >Terms</mat-label
+    ><br />
+    <!-- term -->
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+      appearance="fill"
+    >
+      <mat-label>Term</mat-label>
+      <input
+        id="term"
+        matInput
+        placeholder="Enter Term"
+        type="text"
+        autocomplete="off"
+        #term
+        (click)="errTerm.show = false"
+      />
+    </mat-form-field>
+
+    <mat-card-actions
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 btn-plus"
+    >
+      <button class="btn btn-success btn-round" (click)="addTerm(term.value)">
+        +
+      </button>
+    </mat-card-actions>
+    <span class="err-msg" *ngIf="errTerm.show">{{ errTerm.value }}</span>
+
+    <!-- Term Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 80%">Title</th>
+          <th scope="col" style="width: 20%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let term of termArray; let pIndex = index">
+          <td scope="row">
+            {{ itemList.terms }}
+          </td>
+          <td scope="row">
+            <button class="btn btn-danger" (click)="removeTerm(pIndex)">
+              -
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   
       <hr style="width: 100%" />
   

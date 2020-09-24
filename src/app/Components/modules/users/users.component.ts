@@ -4,6 +4,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { SessionService } from 'src/app/Services/session/session.service';
 import { AddUserDto } from 'src/app/Entity/addUserDto';
 import { FilterUserDto } from 'src/app/Entity/filterUserDto';
+import { ProviderInfo } from '../../../Entity/providerInfo';
+import { ItemService } from 'src/app/Services/Item/item.service';
 
 export interface PeriodicElement {
   fistName: string;
@@ -39,11 +41,14 @@ export class UsersComponent implements OnInit {
 
   serviceUserId:any;
 
+  provider: ProviderInfo;
+
   serviceUserTypeList = [];
 
   constructor(
     private session: SessionService,
     private userService: UserService,
+    private itemService: ItemService
     ) { }
 
     displayedColumns: string[] = [
@@ -63,17 +68,21 @@ export class UsersComponent implements OnInit {
     this.filterUserDto.firstNameString = null;
     this.filterUserDto.lastNameString = null;
     this.filterUserDto.providerNameString = null;
-    this.filterUserDto.myServiceUserTypeId = Number(localStorage.getItem('serviceUserId'));
+    this.filterUserDto.myServiceUserTypeId = Number(localStorage.getItem('serviceUserTypeId'));
     this.filterUserDto.pageNumber = 1;
-    this.filterUserDto.serviceUserTypeId = Number(localStorage.getItem('serviceUserId'))
+    this.filterUserDto.serviceUserTypeId = null;
+
+    console.log(this.filterUserDto);
 
     this.session.sessionCheck();
     this.serviceUserId = localStorage.getItem('serviceUserId');
     this.getUserType(this.serviceUserId);
 
-    console.log(this.serviceUserId)
+    // console.log(this.serviceUserId)
 
     this.getAllUsers(this.filterUserDto);
+
+    this.onProviderSelect();
   }
 
   onSubmit(){
@@ -92,7 +101,7 @@ export class UsersComponent implements OnInit {
     this.filterUserDto.firstNameString = this.filterUser.value.firstName;
     this.filterUserDto.lastNameString = this.filterUser.value.lastName;
     this.filterUserDto.providerNameString = this.filterUser.value.providerName;
-    this.filterUserDto.myServiceUserTypeId = this.serviceUserId;
+    this.filterUserDto.myServiceUserTypeId = Number(this.serviceUserId);
     this.filterUserDto.pageNumber = 1;
     
 
@@ -107,11 +116,15 @@ export class UsersComponent implements OnInit {
       this.filterUser.reset();
     });
   }
+
+  onClear(){
+    this.filterUser.reset();
+  }
   
 
   getUserType(value){
     this.userService.getServiceUserType(value).subscribe((res) =>{
-      console.log(res);
+      // console.log(res);
       this.serviceUserTypeList = res.data;
       
     })
@@ -119,10 +132,17 @@ export class UsersComponent implements OnInit {
 
   getAllUsers(value){
     this.userService.getAllUsers(this.filterUserDto).subscribe((res) =>{
-      console.log(res)
+      // console.log(res)
 
       this.ELEMENT_DATA = res.data;
       this.dataSource = this.ELEMENT_DATA;
+    });
+  }
+
+  onProviderSelect() {
+    this.itemService.getProviders().subscribe((res) => {
+      this.provider = res.data;
+      // console.log(this.provider);
     });
   }
 

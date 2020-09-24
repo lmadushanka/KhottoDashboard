@@ -2,7 +2,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from 'src/app/Services/session/session.service';
 import { Item } from 'src/app/Entity/item';
-import { Term } from 'src/app/Entity/term';
 import { ProviderInfo } from '../../../Entity/providerInfo';
 import { ItemService } from 'src/app/Services/Item/item.service';
 import { AddItemDto } from 'src/app/Entity/addItemDto';
@@ -40,7 +39,7 @@ export class EditItemComponent implements OnInit {
   itemOptions: ItemOption[] = [];
   selectedOption: number[] = [];
 
-  addItemForm = new FormGroup({
+  editItemForm = new FormGroup({
     itemType: new FormControl(),
     itemName: new FormControl(),
     itemPrice: new FormControl(),
@@ -62,7 +61,7 @@ export class EditItemComponent implements OnInit {
   itemTypeSelected = '';
   coverFile: File = null;
 
-  termArray: Term[] = [];
+  termArray = [];
 
   errTerm: any = { show: false, value: 'Enter details... !' };
 
@@ -89,6 +88,13 @@ export class EditItemComponent implements OnInit {
 
 
   onSubmit(){
+
+    this.newItem.name = this.editItemForm.value.itemName;
+    this.newItem.type = this.editItemForm.value.itemType;
+    this.newItem.price = this.editItemForm.value.itemPrice;
+    this.newItem.description = this.editItemForm.value.description;
+
+    console.log(this.newItem);
 
   }
 
@@ -164,12 +170,14 @@ export class EditItemComponent implements OnInit {
     this.itemOptions[i].isActiveOption = value;
   }
 
-  addTerm(termA) {
-    if (termA != '') {
+  addTerm(termA){
+
+    console.log(termA);
+    if(termA != ''){
       this.termArray.push(termA);
       let t = <HTMLInputElement>document.getElementById('term');
       t.value = '';
-    } else {
+    }else{
       this.errTerm.show = true;
     }
   }

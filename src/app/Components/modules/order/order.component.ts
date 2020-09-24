@@ -10,8 +10,8 @@ import { OrderService } from 'src/app/Services/order/order.service';
 import { Router } from '@angular/router';
 
 export interface PeriodicElement {
-  fistName: string;
-  lastName: string;
+  orderId: string;
+  fullName: string;
   mobile: any;
   email: string;
   view: string;
@@ -64,8 +64,8 @@ export class OrderComponent implements OnInit {
   ) { }
 
   displayedColumns: string[] = [
-    'firstName',
-    'lastName',
+    'orderId',
+    'fullName',
     'mobile',
     'billTotal',
     'view',
@@ -125,6 +125,10 @@ export class OrderComponent implements OnInit {
       this.dataSource = this.ELEMENT_DATA;
     })
     
+  }
+
+  onClear(){
+    this.filterOrderForm.reset();
   }
 
   onProviderSelect() {

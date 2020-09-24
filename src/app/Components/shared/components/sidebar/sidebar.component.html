@@ -77,12 +77,30 @@
   >
 
   <a
+  mat-list-item
+  routerLinkActive="list-item-active"
+  routerLink="/promotion"
+>
+  <i class="fa fa-btc nav-icon"></i>
+  Promotion</a
+>
+
+  <a
     mat-list-item
     routerLinkActive="list-item-active"
     routerLink="/facility"
   >
     <i class="fa fa-bath  nav-icon"></i>
     Facility</a
+  >
+
+  <a
+    mat-list-item
+    routerLinkActive="list-item-active"
+    routerLink="/review"
+  >
+    <i class="fa fa-history  nav-icon"></i>
+    Review</a
   >
 
   <button id="sideTitle" mat-button [matMenuTriggerFor]="menu" class="btn">
@@ -99,6 +117,19 @@
     <button class="btn mat-menu-btn custom-btn-1" routerLink="/users">
       <i class="fa fa-user-circle-o fa-lg nav-icon"></i>
       Users
+    </button>
+    <button class="btn mat-menu-btn custom-btn-1" routerLink="/location">
+      <i class="fa fa-map-marker fa-lg nav-icon"></i>
+      Location
+    </button>
+    <button class="btn mat-menu-btn custom-btn-1" routerLink="/email">
+      <i class="fa fa-envelope-o fa-lg nav-icon"></i>
+      Email
+    </button>
+
+    <button class="btn mat-menu-btn custom-btn-1" routerLink="/sms">
+      <i class="fa fa-comment fa-lg nav-icon"></i>
+      SMS
     </button>
   </mat-menu>
   <!-- <mat-divider></mat-divider> -->

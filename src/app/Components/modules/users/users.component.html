@@ -38,14 +38,14 @@
       class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
       appearance="fill"
     >
-      <mat-label>Provider Name</mat-label>
-      <input
-        matInput
-        placeholder="Enter Provider Name "
-        type="text"
-        formControlName="providerName"
-        autocomplete="off"
-      />
+      <mat-label>Select Provider</mat-label>
+      <mat-select formControlName="providerName" required>
+        <mat-option
+          *ngFor="let provider of provider"
+          value="{{ provider.providerName }}"
+          >{{ provider.providerName }}</mat-option
+        >
+      </mat-select>
     </mat-form-field>
 
    <!-- Select User Type -->
@@ -77,6 +77,17 @@
     >
       Filter
     </button>
+
+    <button
+          class="btn btn-danger"
+          mat-raised-button
+          color="danger"
+          type="submit"
+          (click)="onClear()"
+          style="margin-left:15px; margin-bottom: 5px; padding: 0px 20px;"
+        >
+          Clear
+        </button>
     </mat-card-actions>
   </form>
 </div>

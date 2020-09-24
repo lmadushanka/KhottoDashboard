@@ -497,12 +497,12 @@ export class EditProviderComponent implements OnInit {
     });
   }
 
-  onDistrictSelect(value) {
-    this.providerService.getLocationByDistrictId(value).subscribe((res) => {
-      console.log(res);
-      this.locationList = res.data;
-    });
-  }
+  // onDistrictSelect(value) {
+  //   this.providerService.getLocationByDistrictId(value).subscribe((res) => {
+  //     console.log(res);
+  //     this.locationList = res.data;
+  //   });
+  // }
 
   onGetProviderById(value) {
     this.providerService.getProviderViewById(value).subscribe((res) => {
@@ -525,7 +525,7 @@ export class EditProviderComponent implements OnInit {
       this.newProvider.bannerImage = res.data.bannerImage;
       this.newProvider.coverImage = res.data.coverImage;
 
-      this.onDistrictSelect(res.data.districtId);
+      // this.onDistrictSelect(res.data.districtId);
     });
   }
 

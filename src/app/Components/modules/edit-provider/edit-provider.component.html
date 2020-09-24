@@ -28,14 +28,26 @@
       class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
       appearance="fill"
     >
-      <mat-label>Select Provider Type</mat-label>
+      <!-- <mat-label>Select Provider Type</mat-label>
       <mat-select
         [(value)]="ProviderTypeSelected"
         formControlName="providerType"
       >
         <mat-option value="1">Resturent</mat-option>
         <mat-option value="2">Hotel</mat-option>
-      </mat-select>
+      </mat-select> -->
+      
+      <mat-label>Provider Type</mat-label>
+      <input
+        matInput
+        placeholder="Enter Provider Type"
+        type="text"
+        autocomplete="off"
+        formControlName="providerType"
+        value="{{ providerDetails.providerTypeName }}"
+        readonly
+      />
+
     </mat-form-field>
 
     <!-- Provider Districts -->
@@ -59,14 +71,25 @@
       class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
       appearance="fill"
     >
-      <mat-label>Select Location</mat-label>
+      <!-- <mat-label>Select Location</mat-label>
       <mat-select formControlName="location">
         <mat-option
           *ngFor="let item of locationList"
           value="{{ item.locationName }}"
           >{{ item.locationName }}</mat-option
         >
-      </mat-select>
+      </mat-select> -->
+
+      <mat-label>Location</mat-label>
+      <input
+        matInput
+        placeholder="Enter Location"
+        type="text"
+        autocomplete="off"
+        formControlName="location"
+        value="{{ providerDetails.locationName}}"
+        readonly
+      />
     </mat-form-field>
 
     <!-- Address -->
@@ -138,7 +161,7 @@
       class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
       appearance="fill"
     >
-      <mat-label>Select Category</mat-label>
+      <!-- <mat-label>Select Category</mat-label>
       <mat-select [(value)]="categorySelected" formControlName="categoryType">
         <mat-option value="1">{{ providerDetails.categoryName }}</mat-option>
         <mat-option
@@ -147,7 +170,19 @@
         >
           {{ item.categoryName }}
         </mat-option>
-      </mat-select>
+      </mat-select> -->
+
+      <mat-label>Category</mat-label>
+      <input
+        matInput
+        placeholder="Enter Category"
+        type="text"
+        autocomplete="off"
+        formControlName="categoryType"
+        value="{{ providerDetails.categoryName}}"
+        readonly
+      />
+
     </mat-form-field>
 
     <!-- Luxury Select -->

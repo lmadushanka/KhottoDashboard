@@ -68,6 +68,14 @@ import { AddResourceComponent } from './Components/modules/add-resource/add-reso
 import { PermissionComponent } from './Components/modules/permission/permission.component';
 import { AddPermissionComponent } from './Components/modules/add-permission/add-permission.component';
 import { EditItemComponent } from './Components/modules/edit-item/edit-item.component';
+import { PromotionComponent } from './Components/modules/promotion/promotion.component';
+import { AddPromotionComponent } from './Components/modules/add-promotion/add-promotion.component';
+import { LocationComponent } from './Components/modules/location/location.component';
+import { AddLocationComponent } from './Components/modules/add-location/add-location.component';
+import { ReviewComponent } from './Components/modules/review/review.component';
+import { AddReviewComponent } from './Components/modules/add-review/add-review.component';
+import { EmailComponent } from './Components/modules/email/email.component';
+import { SmsComponent } from './Components/modules/sms/sms.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +108,14 @@ import { EditItemComponent } from './Components/modules/edit-item/edit-item.comp
     PermissionComponent,
     AddPermissionComponent,
     EditItemComponent,
+    PromotionComponent,
+    AddPromotionComponent,
+    LocationComponent,
+    AddLocationComponent,
+    ReviewComponent,
+    AddReviewComponent,
+    EmailComponent,
+    SmsComponent,
   ],
   imports: [
     BrowserModule,

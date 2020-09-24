@@ -54,7 +54,7 @@ export class AddItemComponent implements OnInit {
     { value: 2, name: 'Accomadation' },
   ];
 
-  termArray: Term[] = [];
+  termArray = [];
 
   errTerm: any = { show: false, value: 'Enter details... !' };
 
