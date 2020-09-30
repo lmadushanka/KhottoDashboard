@@ -37,6 +37,7 @@ import { AddLocationComponent } from './Components/modules/add-location/add-loca
 import { SmsComponent } from './Components/modules/sms/sms.component';
 import { EmailComponent } from './Components/modules/email/email.component';
 import { ReviewComponent } from './Components/modules/review/review.component';
+import { NotPermissionComponent } from './Components/modules/not-permission/not-permission.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -46,7 +47,7 @@ const routes: Routes = [
   {path: '',
     component: DefaultComponent,
     children: [
-      { path: 'dashboard', component: HomeComponent },
+      { path: 'KhottoDashBoard', component: HomeComponent },
       { path: 'provider', component: ProviderComponent },
       { path: 'add-provider', component: AddProviderComponent },
       { path: 'items', component: ItemsComponent },
@@ -79,6 +80,7 @@ const routes: Routes = [
       { path: 'sms', component: SmsComponent},
       { path: 'email', component: EmailComponent},
       { path: 'review', component: ReviewComponent},
+      { path: 'not-permission', component: NotPermissionComponent},
       
     ],
   },

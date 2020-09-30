@@ -14,9 +14,11 @@ export interface PeriodicElement {
   fullName: string;
   mobile: any;
   email: string;
+  orderStatusLabel: string; 
   view: string;
-  edit: string;
-  delete: string;
+  accept: string;
+  rejectOrder: string;
+  
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [];
@@ -28,6 +30,12 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 })
 export class OrderComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[] = [];
+
+  rejectElement: any = {orderId: 0 , fullName: ''};
+  acceptElement: any = {orderId: 0 , fullName: ''};
+
+  setServiceUser:any = {serviceUserId: ''};
+
   filterOrderDto: FilterOrderDto = new FilterOrderDto();
   orderId:any;
   
@@ -54,6 +62,10 @@ export class OrderComponent implements OnInit {
 
   serviceUserTypeList = [];
 
+  expandingType:any;
+
+  exapndIcon:any;
+
   
 
   constructor(
@@ -68,7 +80,11 @@ export class OrderComponent implements OnInit {
     'fullName',
     'mobile',
     'billTotal',
+    'orderStatusLabel',
     'view',
+    'accept',
+    'rejectOrder',
+    
   ];
 
   dataSource = ELEMENT_DATA;
@@ -76,6 +92,8 @@ export class OrderComponent implements OnInit {
   ngOnInit(): void {
     this.session.sessionCheck();
     this.providerId = localStorage.getItem('providerId');
+
+    this.serviceUserId = localStorage.getItem('serviceUserId');
 
     if (this.providerId == 0) {
       this.providerType = true;
@@ -85,6 +103,9 @@ export class OrderComponent implements OnInit {
     this.onProviderSelect();
 
     this.onGetAllOrder();
+
+    this.expandingType = false;
+    this.exapndIcon = 'fa fa-caret-right';
   }
 
   onSubmit(){
@@ -129,6 +150,7 @@ export class OrderComponent implements OnInit {
 
   onClear(){
     this.filterOrderForm.reset();
+    this.onGetAllOrder();
   }
 
   onProviderSelect() {
@@ -173,6 +195,46 @@ export class OrderComponent implements OnInit {
     localStorage.setItem('orderId', element);
     console.log(element);
     this.router.navigateByUrl('/view-order');
+  }
+
+  setRejectOrder(value){
+    // console.log(value);
+    this.rejectElement.orderId = value.orderId;
+    this.rejectElement.fullName = value.fullName;
+  }
+
+  rejectOrder(){
+
+    this.setServiceUser.serviceUserId = Number(this.serviceUserId); 
+    this.orderService.setRejectOrder(this.rejectElement.orderId , this.setServiceUser).subscribe((res) =>{
+      console.log(res);
+      this.onClear();
+    })
+  }
+
+  expand(){
+    if(this.expandingType == false){
+      this.expandingType = true;
+      this.exapndIcon = 'fa fa-caret-down';
+    }else if(this.expandingType == true){
+      this.expandingType = false;
+      this.exapndIcon = 'fa fa-caret-right';
+    }
+  }
+
+  setAcceptOrder(value){
+    this.acceptElement.orderId = value.orderId;
+    this.acceptElement.fullName = value.fullName;
+  }
+
+  acceptOrder(){
+
+    this.setServiceUser.serviceUserId = Number(this.serviceUserId);
+    this.orderService.setAcceptOrder(this.acceptElement.orderId, this.setServiceUser).subscribe((res) =>{
+      console.log(res);
+      this.onClear();
+    })
+
   }
 
 }

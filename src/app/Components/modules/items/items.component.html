@@ -1,5 +1,6 @@
 <button mat-button class="btn btn-primary" routerLink="/add-item">Add Item</button>
-<mat-divider></mat-divider>
+<br />
+<hr>
 <br />
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -78,7 +79,7 @@
   (click)="onPreviewButton()"
   style="margin: 15px; padding: 0px 20px; float: left"
 >
-  << Preview
+<i class="fa fa-angle-double-left fa-2x" aria-hidden="true"></i>
 </button>
 
 <button
@@ -99,7 +100,7 @@
   (click)="onNextButton()"
   style="margin: 15px; padding: 0px 20px; float: left"
 >
-  Next >>
+<i class="fa fa-angle-double-right fa-2x" aria-hidden="true"></i>
 </button>
 
 <!-- Modal -->
@@ -127,7 +128,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <span class="modal-text">You are deleting {{ deleteElement.name }} </span>
+        <span class="modal-text">You are deleting {{ deleteElement.name }} in {{deleteElement.providerName}} </span>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">

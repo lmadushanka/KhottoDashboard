@@ -17,5 +17,6 @@ export class PromotionDto {
     giveAwayItemId: any;
     giveAwayItemCount: any;
     isLoyaltyPromo: any;
+    promotionDescription:any;
   }
   

@@ -1,7 +1,8 @@
 <button mat-button class="btn btn-primary" routerLink="/add-provider">
   Add Provider
 </button>
-<mat-divider></mat-divider>
+<br />
+<hr>
 <br />
 
 <!-- Provider Type -->
@@ -93,7 +94,7 @@
   (click)="onPreviewButton()"
   style="margin: 15px; padding: 0px 20px; float: left"
 >
-  << Preview
+<i class="fa fa-angle-double-left fa-2x" aria-hidden="true"></i>
 </button>
 
 <button
@@ -112,9 +113,9 @@
   color="success"
   type="submit"
   (click)="onNextButton()"
-  style="margin: 15px; padding: 0px 20px; float: left"
+  style="margin: 15px; padding: 0px 10px; float: left"
 >
-  Next >>
+  <i class="fa fa-angle-double-right fa-2x" aria-hidden="true"></i>
 </button>
 
 <!-- Modal Confirmation -->

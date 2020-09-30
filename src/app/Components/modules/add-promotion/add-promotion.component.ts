@@ -40,6 +40,11 @@ export class AddPromotionComponent implements OnInit {
     { title: 'No', value: 0 },
   ]
 
+  isTransferable = [
+    { title: 'Yes', value: 1 },
+    { title: 'No', value: 0 },
+  ]
+
   isPromotionTypeSelect = [
     { title: 'Percentage Off Promotion', value: 0 },
     { title: 'Fixed Off Promotion', value: 1 },
@@ -48,6 +53,15 @@ export class AddPromotionComponent implements OnInit {
     { title: 'Buy And Get Free Promotion', value: 4 },
     { title: 'Come Back Promo Code  For Whole Bill Fixed Off Promotion', value: 5 },
   ]
+
+  addPromoCodeDto:any = {
+    promoCode: '',
+    promotionId: '',
+    usableCount: '',
+    leftUsableCount: '',
+    isTransferable: '',
+    serviceUserId: '',
+  }
 
 
   serviceUserId:any;
@@ -83,7 +97,12 @@ export class AddPromotionComponent implements OnInit {
     originalItemCount: new FormControl(),
     giveAwayItemId: new FormControl(),
     giveAwayItemCount: new FormControl(),
-    isLoyaltyPromo: new FormControl()
+    isLoyaltyPromo: new FormControl(),
+    promotionDescription: new FormControl(),
+    promoCode: new FormControl(),
+    usableCount: new FormControl(),
+    leftUsableCount: new FormControl(),
+    isTransferable: new FormControl()
   });
 
   percentageOff:boolean = true;
@@ -94,6 +113,8 @@ export class AddPromotionComponent implements OnInit {
   giveAwayItemId: boolean = true;
   giveAwayItemCount: boolean = true;
   LoyaltyPromo: boolean = true;
+
+  setPromoCode: boolean = true;
 
 
 
@@ -145,6 +166,7 @@ export class AddPromotionComponent implements OnInit {
     this.addNewPromotion.giveAwayItemId = Number(this.addPromotionForm.value.giveAwayItemId);
     this.addNewPromotion.giveAwayItemCount = this.addPromotionForm.value.giveAwayItemCount;
     this.addNewPromotion.isLoyaltyPromo = this.addPromotionForm.value.isLoyaltyPromo;
+    this.addNewPromotion.promotionDescription = this.addPromotionForm.value.promotionDescription;
 
     console.log(this.addNewPromotion);
 
@@ -155,6 +177,9 @@ export class AddPromotionComponent implements OnInit {
 
       this.router.navigateByUrl('/promotion');
     })
+
+
+    this.addPromoCodeDto.promoCode = this.addPromotionForm.value.promoCode;
 
   }
 
@@ -170,6 +195,7 @@ export class AddPromotionComponent implements OnInit {
       this.giveAwayItemCount = false;
       this.LoyaltyPromo = false;
       this.percentageOff = true;
+      this.setPromoCode = false;
     }else if(value == 1){
       this.percentageOff = false;
       this.CombinedToPromoCode = false;
@@ -179,6 +205,7 @@ export class AddPromotionComponent implements OnInit {
       this.giveAwayItemCount = false;
       this.LoyaltyPromo = false;
       this.fixedOff = true;
+      this.setPromoCode = false;
     }else if(value == 2){
       this.fixedOff = false;
       this.percentageOff = true;
@@ -188,6 +215,7 @@ export class AddPromotionComponent implements OnInit {
       this.giveAwayItemCount = false;
       this.LoyaltyPromo = false;
       this.CombinedToPromoCode = true;
+      this.setPromoCode = true;
     }else if(value == 3){
       this.fixedOff = true;
       this.percentageOff = false;
@@ -196,6 +224,7 @@ export class AddPromotionComponent implements OnInit {
       this.giveAwayItemId = false;
       this.giveAwayItemCount = false;
       this.LoyaltyPromo = false;
+      this.setPromoCode = true;
     }else if(value == 4){
 
       this.fixedOff = false;
@@ -206,6 +235,7 @@ export class AddPromotionComponent implements OnInit {
       this.giveAwayItemId = true;
       this.giveAwayItemCount = true;
       this.LoyaltyPromo = false;
+      this.setPromoCode = false;
 
     }else if(value == 5){
 
@@ -217,6 +247,7 @@ export class AddPromotionComponent implements OnInit {
       this.fixedOff = true;
       this.CombinedToPromoCode = true;
       this.LoyaltyPromo = true;
+      this.setPromoCode = true;
       
     }
 

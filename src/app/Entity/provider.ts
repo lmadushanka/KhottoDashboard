@@ -13,7 +13,7 @@ export class Provider {
   category: number;
   luxuryCategory: number;
   taxRate: number;
-  serviceCharge: number;
+  serviceChargeRate: number;
   mapUrl: string;
   logoImage: File;
   coverImage: File;

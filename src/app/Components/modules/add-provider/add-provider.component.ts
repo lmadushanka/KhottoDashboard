@@ -149,7 +149,7 @@ export class AddProviderComponent implements OnInit {
     this.newProvider.category = this.addProviderForm.value.categoryType;
     this.newProvider.luxuryCategory = this.addProviderForm.value.luxuryType;
     this.newProvider.taxRate = this.addProviderForm.value.taxRate;
-    this.newProvider.serviceCharge = this.addProviderForm.value.serviceCharge;
+    this.newProvider.serviceChargeRate = this.addProviderForm.value.serviceCharge;
     this.newProvider.mapUrl = this.addProviderForm.value.mapUrl;
     this.newProvider.simpleDescription = this.addProviderForm.value.description;
     this.newProvider.businessRegNo = this.addProviderForm.value.BRNumber;
@@ -190,7 +190,7 @@ export class AddProviderComponent implements OnInit {
       nullIf = false;
     }
 
-    if (this.newProvider.serviceCharge == null) {
+    if (this.newProvider.serviceChargeRate == null) {
       nullIf = false;
     }
 
@@ -231,7 +231,7 @@ export class AddProviderComponent implements OnInit {
       this.addProviderInfo('callNumber', this.newProvider.phone);
       // this.addProviderInfo('luxuryCategory',Number(this.newProvider.luxuryCategory));
       this.addProviderInfo('taxRate', this.newProvider.taxRate);
-      this.addProviderInfo('serviceCharge', this.newProvider.serviceCharge);
+      this.addProviderInfo('serviceChargeRate', this.newProvider.serviceChargeRate);
       this.addProviderInfo('mapUrl', this.newProvider.mapUrl);
       // this.addProviderInfo('simpleDescription', this.newProvider.description);
       this.addProviderInfo('facility', this.newProvider.facility);

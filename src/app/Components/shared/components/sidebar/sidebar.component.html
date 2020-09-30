@@ -1,140 +1,23 @@
 <mat-nav-list class="side-div">
   <!-- <h4 matSubheader>Pages</h4> -->
 
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard">
-    <i class="fa fa-tachometer nav-icon"></i>
-    Dashboard</a
+  <a *ngFor = "let resource of permissions; last as flase" mat-list-item routerLinkActive="list-item-active" routerLink="{{resource.routePath}}">
+    <i class="{{resource.iconClass}} nav-icon"></i>
+   {{resource.resourceName}}</a
   >
 
-  <a
-    mat-list-item
-    routerLinkActive="list-item-active"
-    routerLink="/order"
-  >
-    <i class="fa fa-sitemap nav-icon"></i>
-    Order</a
-  >
-
-  <a
-    mat-list-item
-    routerLinkActive="list-item-active"
-    routerLink="/provider"
-  >
-    <i class="fa fa-arrow-circle-right nav-icon"></i>
-    Provider</a
-  >
-  <a
-    mat-list-item
-    routerLinkActive="list-item-active"
-    routerLink="/items"
-  >
-    <i class="fa fa-cart-plus nav-icon"></i>
-    Items</a
-  >
-
-  <a
-    mat-list-item
-    routerLinkActive="list-item-active"
-    routerLink="/discount"
-  >
-    <i class="fa fa-money nav-icon"></i>
-    Discount</a
-  >
-
-  <a
-    mat-list-item
-    routerLinkActive="list-item-active"
-    routerLink="/category"
-  >
-    <i class="fa fa-list nav-icon"></i>
-    Category</a
-  >
-  <a
-    mat-list-item
-    routerLinkActive="list-item-active"
-    routerLink="/banner"
-  >
-    <i class="fa fa-file-o  nav-icon"></i>
-    Banner</a
-  >
-
-  <a
-    mat-list-item
-    routerLinkActive="list-item-active"
-    routerLink="/resource"
-  >
-    <i class="fa fa-database nav-icon"></i>
-    Resource</a
-  >
-
-  <a
-    mat-list-item
-    routerLinkActive="list-item-active"
-    routerLink="/permission"
-  >
-    <i class="fa fa-plug nav-icon"></i>
-    Permission</a
-  >
-
-  <a
-  mat-list-item
-  routerLinkActive="list-item-active"
-  routerLink="/promotion"
->
-  <i class="fa fa-btc nav-icon"></i>
-  Promotion</a
->
-
-  <a
-    mat-list-item
-    routerLinkActive="list-item-active"
-    routerLink="/facility"
-  >
-    <i class="fa fa-bath  nav-icon"></i>
-    Facility</a
-  >
-
-  <a
-    mat-list-item
-    routerLinkActive="list-item-active"
-    routerLink="/review"
-  >
-    <i class="fa fa-history  nav-icon"></i>
-    Review</a
-  >
-
-  <button id="sideTitle" mat-button [matMenuTriggerFor]="menu" class="btn">
+  <a *ngIf = "setSetingView" id="sideTitle" mat-list-item [matMenuTriggerFor]="menu" class="btn">
     <i class="fa fa-cog  nav-icon"></i>Settings
-  </button>
+  </a>
   <mat-menu #menu="matMenu" style="width: 100%">
     <button
+    *ngFor = "let resource of childPermission"
       class="btn mat-menu-btn custom-btn-1"
-      routerLink="/errors"
+      routerLink="{{resource.routePath}}"
     >
-      <i class="fa fa-exclamation-circle fa-lg nav-icon"></i>
-      Errors
+      <i class="{{resource.iconClass}} nav-icon"></i>
+      {{resource.resourceName}}
     </button>
-    <button class="btn mat-menu-btn custom-btn-1" routerLink="/users">
-      <i class="fa fa-user-circle-o fa-lg nav-icon"></i>
-      Users
-    </button>
-    <button class="btn mat-menu-btn custom-btn-1" routerLink="/location">
-      <i class="fa fa-map-marker fa-lg nav-icon"></i>
-      Location
-    </button>
-    <button class="btn mat-menu-btn custom-btn-1" routerLink="/email">
-      <i class="fa fa-envelope-o fa-lg nav-icon"></i>
-      Email
-    </button>
-
-    <button class="btn mat-menu-btn custom-btn-1" routerLink="/sms">
-      <i class="fa fa-comment fa-lg nav-icon"></i>
-      SMS
-    </button>
-  </mat-menu>
-  <!-- <mat-divider></mat-divider> -->
+  </mat-menu> 
+  
 </mat-nav-list>
-<!-- <div class="side-footer col-12">
-  <div class="col-12 clear-bs-mp">Logged in as:</div>
-  <div class="col-12 clear-bs-mp">{{ currentUser }}</div>
-</div> -->

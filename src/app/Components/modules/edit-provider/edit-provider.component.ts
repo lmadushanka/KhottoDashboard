@@ -158,152 +158,6 @@ export class EditProviderComponent implements OnInit {
     this.onGetProviderById(this.setProviderId);
   }
 
-  
-
-  onSubmit() {
-
-    
-    var nullIf: boolean = true;
-
-    if (this.newProvider.logoImage == null) {
-      this.logoIf = true;
-      nullIf = false;
-    }
-
-    if (this.newProvider.coverImage == null) {
-      this.coverIf = true;
-      nullIf = false;
-    }
-
-    if (this.newProvider.coverImage == null) {
-      this.bannerIf = true;
-      nullIf = false;
-    }
-
-    this.newProvider.name = this.addProviderForm.value.name;
-    this.newProvider.providerType = this.addProviderForm.value.providerType;
-    this.newProvider.location = this.addProviderForm.value.location;
-    this.newProvider.address = this.addProviderForm.value.address;
-    this.newProvider.phone = this.addProviderForm.value.phone;
-    this.newProvider.category = this.addProviderForm.value.categoryType;
-    this.newProvider.luxuryCategory = this.addProviderForm.value.luxuryType;
-    this.newProvider.taxRate = this.addProviderForm.value.taxRate;
-    this.newProvider.serviceCharge = this.addProviderForm.value.serviceCharge;
-    this.newProvider.mapUrl = this.addProviderForm.value.mapUrl;
-    this.newProvider.simpleDescription = this.addProviderForm.value.description;
-    this.newProvider.businessRegNo = this.addProviderForm.value.BRNumber;
-    this.newProvider.nicNo = this.addProviderForm.value.nic;
-
-    if (this.newProvider.name == null || this.newProvider.name == '') {
-      nullIf = false;
-    }
-
-    if (
-      this.newProvider.providerType == null ||
-      this.newProvider.providerType == ''
-    ) {
-      nullIf = false;
-    }
-
-    if (this.newProvider.location == null || this.newProvider.location == '') {
-      nullIf = false;
-    }
-
-    if (this.newProvider.address == null || this.newProvider.address == '') {
-      nullIf = false;
-    }
-
-    if (this.newProvider.phone == null || this.newProvider.phone == '') {
-      nullIf = false;
-    }
-    if (this.newProvider.category == null) {
-      nullIf = false;
-    }
-
-    if (this.newProvider.luxuryCategory == null) {
-      nullIf = false;
-    }
-
-    if (this.newProvider.taxRate == null) {
-      nullIf = false;
-    }
-
-    if (this.newProvider.serviceCharge == null) {
-      nullIf = false;
-    }
-
-    if (this.newProvider.mapUrl == null || this.newProvider.mapUrl == '') {
-      nullIf = false;
-    }
-
-    if (
-      this.newProvider.simpleDescription == null ||
-      this.newProvider.simpleDescription == ''
-    ) {
-      nullIf = false;
-    }
-
-    if (nullIf == true) {
-      var _this = this;
-      let serviceUserId = localStorage.getItem('serviceUserId');
-
-      if (this.facilityArray.length != 0) {
-        this.facilities = this.facilityArray;
-      }
-
-      if (this.policyArray.length != 0) {
-        this.policies = this.policyArray;
-      }
-
-      this.days = this.dayList;
-
-      // FORM SUBMISSION SET
-      this.newProvider.facility = this.facilities;
-      this.newProvider.policy = this.policies;
-      this.newProvider.openDays = this.days;
-
-      // PROVIDER VALUES ENTITY SET < Form Submission^^
-      // this.addProviderInfo('name', this.newProvider.name);
-      // this.addProviderInfo('locationName', this.newProvider.location);
-      this.addProviderInfo('address', this.newProvider.address);
-      this.addProviderInfo('callNumber', this.newProvider.phone);
-      // this.addProviderInfo('luxuryCategory',Number(this.newProvider.luxuryCategory));
-      this.addProviderInfo('taxRate', this.newProvider.taxRate);
-      this.addProviderInfo('serviceCharge', this.newProvider.serviceCharge);
-      this.addProviderInfo('mapUrl', this.newProvider.mapUrl);
-      // this.addProviderInfo('simpleDescription', this.newProvider.description);
-      this.addProviderInfo('facility', this.newProvider.facility);
-      this.addProviderInfo('policy', this.newProvider.policy);
-      this.addProviderInfo('openDays', this.newProvider.openDays);
-      this.addProviderInfo('logoImage', 'logoImage');
-      this.addProviderInfo('coverImage', 'coverImage');
-      this.addProviderInfo('bannerImage', 'bannerImage');
-      this.addProviderDto.serviceUserId = Number(serviceUserId);
-      this.addProviderDto.simpleDescription = this.newProvider.simpleDescription;
-      this.addProviderDto.providerValues = this.providerValues;
-      this.addProviderDto.categoryId = Number(this.newProvider.category);
-      this.addProviderDto.providerTypeId = Number(
-        this.newProvider.providerType
-      );
-
-      this.addProviderDto.providerName = this.newProvider.name;
-      this.addProviderDto.luxuryCategory = this.newProvider.luxuryCategory;
-      this.addProviderDto.location = this.newProvider.location;
-      this.providerInfo.logoImage = this.newProvider.logoImage;
-      this.providerInfo.coverImage = this.newProvider.coverImage;
-      this.providerInfo.bannerImage = this.newProvider.bannerImage;
-      this.providerInfo.providerInfo = this.addProviderDto;
-      this.addProviderDto.businessRegNo = this.newProvider.businessRegNo;
-      this.addProviderDto.nicNo = this.newProvider.nicNo;
-
-      console.log(this.newProvider);
-      console.log(this.providerInfo);
-      // this.providerService.addProvider(this.providerInfo).subscribe((res) => {
-      //   this.resetForm();
-      //   this.router.navigateByUrl('/provider');
-      // });
-    }
-  }
 
   addProviderInfo(type, name) {
     if (name != '') {
@@ -537,7 +391,7 @@ export class EditProviderComponent implements OnInit {
 
     }else if(this.addProviderForm.value.name !== null){
 
-      this.newProvider.name = this.addProviderForm.value;utf8Encode.name;
+      this.newProvider.name = this.addProviderForm.value.name;
 
     }
 
@@ -621,11 +475,11 @@ export class EditProviderComponent implements OnInit {
 
     if(this.addProviderForm.value.serviceCharge == null){
 
-      this.newProvider.serviceCharge = this.providerDetails.serviceCharge;
+      this.newProvider.serviceChargeRate = this.providerDetails.serviceCharge;
 
     }else if(this.addProviderForm.value.serviceCharge !== null){
 
-      this.newProvider.serviceCharge = this.addProviderForm.value.serviceCharge;
+      this.newProvider.serviceChargeRate = this.addProviderForm.value.serviceCharge;
 
     }
 
@@ -675,7 +529,7 @@ export class EditProviderComponent implements OnInit {
     this.addProviderInfo('callNumber', this.newProvider.phone);
     // this.addProviderInfo('luxuryCategory',Number(this.newProvider.luxuryCategory));
     this.addProviderInfo('taxRate', this.newProvider.taxRate);
-    this.addProviderInfo('serviceCharge', this.newProvider.serviceCharge);
+    this.addProviderInfo('serviceChargeRate', this.newProvider.serviceChargeRate);
     this.addProviderInfo('mapUrl', this.newProvider.mapUrl);
     // this.addProviderInfo('simpleDescription', this.newProvider.description);
     this.addProviderInfo('facility', this.newProvider.facility);

@@ -82,6 +82,13 @@ export class LocationComponent implements OnInit {
 
   onClear(){
 
+    this.filterLocationForm.reset();
+
+    this.setNewLocation.districtId = null;
+    this.setNewLocation.pageNumber = 1;
+
+    this.getDefaultLocation(this.setNewLocation);
+
   }
 
   getAllDistrict(){

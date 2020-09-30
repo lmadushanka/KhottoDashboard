@@ -22,7 +22,7 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 })
 export class ItemsComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[] = [];
-  deleteElement: any = { name: '', itemTypeId: 0 };
+  deleteElement: any = { name: '', itemTypeId: 0, providerName: ''};
 
   nextCount: number = 1;
 
@@ -95,8 +95,9 @@ export class ItemsComponent implements OnInit {
   }
 
   setDeleteItem(element) {
-    this.deleteElement.name = element.name;
+    this.deleteElement.name = element.itemName;
     this.deleteElement.itemId = element.itemId;
+    this.deleteElement.providerName = element.providerName;
   }
 
   deleteItem() {

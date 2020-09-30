@@ -119,6 +119,15 @@ export class UsersComponent implements OnInit {
 
   onClear(){
     this.filterUser.reset();
+
+    this.filterUserDto.firstNameString = null;
+    this.filterUserDto.lastNameString = null;
+    this.filterUserDto.providerNameString = null;
+    this.filterUserDto.myServiceUserTypeId = Number(localStorage.getItem('serviceUserTypeId'));
+    this.filterUserDto.pageNumber = 1;
+    this.filterUserDto.serviceUserTypeId = null;
+
+    this.getAllUsers(this.filterUserDto);
   }
   
 

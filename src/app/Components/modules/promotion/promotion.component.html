@@ -1,5 +1,6 @@
 <button mat-button class="btn btn-primary" routerLink="/add-promotion">Add Promotion</button>
-<mat-divider></mat-divider>
+<br />
+<hr>
 <br />
 
 <div class="lightgray-back form-container">
@@ -66,48 +67,49 @@
   </form>
 </div>
 
+<br>
+
 <table
   mat-table
   [dataSource]="dataSource"
   class="mat-elevation-z8"
-  *ngIf="ELEMENT_DATA.length != 0"
 >
   <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
 
   <!-- Promotion Id-->
   <ng-container matColumnDef="promotionId">
-    <th mat-header-cell *matHeaderCellDef style="width: 30%;">Promotion ID</th>
+    <th mat-header-cell *matHeaderCellDef >Promotion ID</th>
     <td mat-cell *matCellDef="let element">{{ element.promotionId }}</td>
   </ng-container>
 
   <!-- minimumOrderLevel -->
   <ng-container matColumnDef="minimumOrderLevel">
-    <th mat-header-cell *matHeaderCellDef style="width: 30%;">Minimum Order Price</th>
+    <th mat-header-cell *matHeaderCellDef>Minimum Order Price</th>
     <td mat-cell *matCellDef="let element">{{ element.minimumOrderLevel }}</td>
   </ng-container>
 
   <!-- maximumPromotionLevel -->
   <ng-container matColumnDef="maximumPromotionLevel">
-    <th mat-header-cell *matHeaderCellDef style="width: 30%;">Maximum Promotion Price</th>
+    <th mat-header-cell *matHeaderCellDef >Maximum Promotion Price</th>
     <td mat-cell *matCellDef="let element">{{ element.maximumPromotionLevel }}</td>
   </ng-container>
 
   <!-- itemId -->
   <ng-container matColumnDef="itemId">
-    <th mat-header-cell *matHeaderCellDef style="width: 30%;">Item ID</th>
+    <th mat-header-cell *matHeaderCellDef >Item ID</th>
     <td mat-cell *matCellDef="let element">{{ element.itemId }}</td>
   </ng-container>
 
   <!-- providerId -->
   <ng-container matColumnDef="providerId">
-    <th mat-header-cell *matHeaderCellDef style="width: 30%;">Provider ID</th>
+    <th mat-header-cell *matHeaderCellDef >Provider ID</th>
     <td mat-cell *matCellDef="let element">{{ element.providerId }}</td>
   </ng-container>
 
   <!-- isActive -->
   <ng-container matColumnDef="isActive">
-    <th mat-header-cell *matHeaderCellDef style="width: 30%;">Is Active</th>
+    <th mat-header-cell *matHeaderCellDef >Is Active</th>
     <td mat-cell *matCellDef="let element">{{ element.isActive }}</td>
   </ng-container>
 
@@ -138,7 +140,7 @@
   (click)="onPreviewButton()"
   style="margin: 15px; padding: 0px 20px; float: left"
 >
-  << Preview
+<i class="fa fa-angle-double-left fa-2x" aria-hidden="true"></i>
 </button>
 
 <button
@@ -159,7 +161,7 @@
   (click)="onNextButton()"
   style="margin: 15px; padding: 0px 20px; float: left"
 >
-  Next >>
+<i class="fa fa-angle-double-right fa-2x" aria-hidden="true"></i>
 </button>
 
 <!-- Modal -->

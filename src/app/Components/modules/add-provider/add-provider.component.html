@@ -2,7 +2,7 @@
   View Provider
 </button>
 <br />
-<mat-divider></mat-divider>
+<hr>
 <br />
 
 <div class="lightgray-back form-container">
@@ -91,14 +91,13 @@
       class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
       appearance="fill"
     >
-      <mat-label>Nic</mat-label>
+      <mat-label>NIC</mat-label>
       <input
         matInput
         placeholder="Enter NIC"
         type="text"
         autocomplete="off"
         formControlName="nic"
-        required
       />
     </mat-form-field>
 
@@ -107,14 +106,13 @@
       class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
       appearance="fill"
     >
-      <mat-label>Business Regitration No</mat-label>
+      <mat-label>Business Registration</mat-label>
       <input
         matInput
         placeholder="Enter Business Regitration No"
         type="text"
         autocomplete="off"
         formControlName="BRNumber"
-        required
       />
     </mat-form-field>
 
@@ -183,7 +181,7 @@
       class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
       appearance="fill"
     >
-      <mat-label>Service Charge</mat-label>
+      <mat-label>Service Charge Rate</mat-label>
       <input
         matInput
         placeholder="Enter Service Charge"
@@ -279,14 +277,14 @@
       style="margin-top: 0.5%"
     >
       <mat-label>Description</mat-label>
-      <input
+      <textarea
         matInput
         placeholder="Description"
         type="text"
         autocomplete="off"
         formControlName="description"
         required
-      />
+      ></textarea>
     </mat-form-field>
 
     <hr style="width: 100%" />

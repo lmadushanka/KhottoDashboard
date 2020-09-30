@@ -21,7 +21,7 @@ export class CategoryComponent implements OnInit {
   deleteElement: any = { name: '', itemTypeId: 0 };
 
   providerTypeList = [
-    { name: 'Resturent', value: 1 },
+    { name: 'Restaurent', value: 1 },
     { name: 'Hotel', value: 2 },
   ];
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/Services/order/order.service';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-order',
@@ -26,9 +28,35 @@ export class ViewOrderComponent implements OnInit {
     itemName: '',
   };
 
+  setTransaction: any = {
+    receivedAmount:'',
+    orderTotal:'',
+    returnedBalanceAmount: '',
+    serviceUserId: ' ',
+    transactionType:''
+  }
+
+  typeOfProviderConfirmatio:any = {typeOfProviderConfirmatio:''};
+
+
   orderItemList: any = [];
 
-  constructor(private OrderService: OrderService) {}
+  public amount:number;
+
+  balance:any;
+
+  confirmation = [
+    { title: 'Cash', value: 1 },
+    // { title: 'No', value: 0 },
+  ]
+
+  filterOrderForm = new FormGroup({
+    confirmation: new FormControl(),
+    amount: new FormControl()
+  });
+  
+
+  constructor(private OrderService: OrderService, private router: Router) {}
 
   ngOnInit() {
     this.getOrderId = Number(localStorage.getItem('orderId'));
@@ -60,5 +88,28 @@ export class ViewOrderComponent implements OnInit {
 
       this.orderItemList = this.orderRecords;
     });
+  }
+
+  onSubmit(){
+    this.typeOfProviderConfirmatio.typeOfProviderConfirmatio = Number(this.filterOrderForm.value.confirmation);
+
+    this.OrderService.setConfirmOrder(this.order.orderId , this.typeOfProviderConfirmatio).subscribe((res) =>{
+      console.log(res);
+    })
+
+    this.setTransaction.receivedAmount = this.amount;
+    this.setTransaction.orderTotal = this.order.orderTotal;
+    this.setTransaction.returnedBalanceAmount = this.amount - this.order.billTotal;
+    this.setTransaction.serviceUserId = Number(localStorage.getItem('serviceUserId'));
+    this.setTransaction.transactionType = Number(this.filterOrderForm.value.confirmation);
+
+    console.log(this.setTransaction);
+
+    this.OrderService.setTrancaction(this.setTransaction).subscribe((res) => {
+      console.log(res);
+    })
+
+    this.router.navigateByUrl('/order');
+
   }
 }

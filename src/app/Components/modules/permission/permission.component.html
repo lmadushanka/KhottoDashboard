@@ -1,12 +1,12 @@
 <button mat-button class="btn btn-primary" routerLink="/add-permission">Add Permission</button>
-<mat-divider></mat-divider>
+<br />
+<hr>
 <br />
 
 <table
   mat-table
   [dataSource]="dataSource"
   class="mat-elevation-z8"
-  *ngIf="ELEMENT_DATA.length != 0"
 >
   <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
@@ -71,7 +71,7 @@
   (click)="onPreviewButton()"
   style="margin: 15px; padding: 0px 20px; float: left"
 >
-  << Preview
+<i class="fa fa-angle-double-left fa-2x" aria-hidden="true"></i>
 </button>
 
 <button
@@ -92,7 +92,7 @@
   (click)="onNextButton()"
   style="margin: 15px; padding: 0px 20px; float: left"
 >
-  Next >>
+<i class="fa fa-angle-double-right fa-2x" aria-hidden="true"></i>
 </button>
 
 <!-- Modal -->

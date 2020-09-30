@@ -76,6 +76,7 @@ import { ReviewComponent } from './Components/modules/review/review.component';
 import { AddReviewComponent } from './Components/modules/add-review/add-review.component';
 import { EmailComponent } from './Components/modules/email/email.component';
 import { SmsComponent } from './Components/modules/sms/sms.component';
+import { NotPermissionComponent } from './Components/modules/not-permission/not-permission.component';
 
 @NgModule({
   declarations: [
@@ -116,6 +117,7 @@ import { SmsComponent } from './Components/modules/sms/sms.component';
     AddReviewComponent,
     EmailComponent,
     SmsComponent,
+    NotPermissionComponent,
   ],
   imports: [
     BrowserModule,

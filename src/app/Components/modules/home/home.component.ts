@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   setRefreshToken(){
     this.refreshTokenService.OnRefreshToken().subscribe((res) =>{
       console.log(res.data);
-      this.router.navigateByUrl('/dashboard');
+      this.router.navigateByUrl('/KhottoDashBoard');
     },
     (error) => {
       window.localStorage.removeItem('user');

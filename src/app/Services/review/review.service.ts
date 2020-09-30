@@ -27,4 +27,10 @@ export class ReviewService {
 
     return this.httpClient.patch(reviewUrl + value1 ,value2,httpOptions);
   }
+
+  setApprovedReview(value1 , value2):Observable<any>{
+    let reviewUrl = this.baseUrl + '/review/approve/';
+
+    return this.httpClient.patch(reviewUrl + value1 ,value2,httpOptions);
+  }
 }

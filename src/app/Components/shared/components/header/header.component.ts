@@ -33,5 +33,6 @@ export class HeaderComponent implements OnInit {
     window.localStorage.removeItem('email');
     window.localStorage.removeItem('viewProviderId');
     window.localStorage.removeItem('itemId');
+    window.localStorage.removeItem('permissions');
   }
 }

@@ -28,4 +28,25 @@ export class OrderService {
     let signinUrl = this.baseUrl +'/order/';
     return this.http.get<any>(signinUrl + value, httpOptions);
   }
+
+  setRejectOrder(value1 , value2){
+    let signinUrl = this.baseUrl +'/order/reject/';
+    return this.http.patch<any>(signinUrl + value1,value2, httpOptions);
+  }
+
+  setConfirmOrder(value1 , value2){
+    let signinUrl = this.baseUrl +'/order/confirm/';
+    return this.http.patch<any>(signinUrl + value1,value2, httpOptions);
+  }
+
+  setAcceptOrder(value1 , value2){
+    let signinUrl = this.baseUrl +'/order/accept/';
+    return this.http.patch<any>(signinUrl + value1,value2, httpOptions);
+  }
+
+  setTrancaction(value){
+    let signinUrl = this.baseUrl +'/transaction/acceptCash';
+    return this.http.post<any>(signinUrl,value, httpOptions);
+  }
+
 }

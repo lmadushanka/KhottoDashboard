@@ -54,12 +54,20 @@
       </mat-select>
     </mat-form-field>
 
-    <hr style="width: 100%"/>
+        <i 
+        class="{{exapndIcon}}" 
+        aria-hidden="true"
+        style="margin-left:20px;"
+        (click) = "expand()"
+        ></i>
+
+    <hr *ngIf = "expandingType" style="width: 100%"/>
 
     <!-- Min Date -->
     <mat-form-field
         class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
         appearance="fill"
+        *ngIf = "expandingType"
         >
         <mat-label>Min Date</mat-label>
         <input
@@ -75,6 +83,7 @@
     <mat-form-field
     class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
     appearance="fill"
+    *ngIf = "expandingType"
     >
     <mat-label>Max Date</mat-label>
     <input
@@ -89,6 +98,7 @@
      <mat-form-field
      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
      appearance="fill"
+     *ngIf = "expandingType"
      >
      <mat-label>Min Price</mat-label>
      <input
@@ -104,6 +114,7 @@
  <mat-form-field
  class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
  appearance="fill"
+ *ngIf = "expandingType"
  >
  <mat-label>Max Price</mat-label>
  <input
@@ -113,11 +124,9 @@
      formControlName="maxPrice"
  />
  </mat-form-field>
- 
-    <hr style="width: 100%"/>
 
     <!-- Submit Button -->
-    <mat-card-actions class="col-12 float:left">
+    <mat-card-actions class="col-12  float:left">
       
     <button
       class="btn btn-sucess"
@@ -126,7 +135,7 @@
       type="submit"
       type="submit"
       (click)="onSubmit()"
-      style="margin-left:15px; margin-bottom: 5px; padding: 0px 20px;"
+      style="margin-left:15px; margin-bottom: 5px; padding: 0px 20px; float: right;"
     >
       Filter
     </button>
@@ -137,13 +146,25 @@
           color="danger"
           type="submit"
           (click)="onClear()"
-          style="margin-left:15px; margin-bottom: 5px; padding: 0px 20px;"
+          style="margin-left:15px; margin-bottom: 5px; padding: 0px 20px; float: right;"
         >
           Clear
         </button>
     </mat-card-actions>
   </form>
 </div>
+
+<br>
+
+    <button
+          class="btn btn-info"
+          mat-raised-button
+          type="submit"
+          (click)="onClear()"
+          style="margin-bottom: 5px; padding: 0px 20px;float:right;"
+        >
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+    </button>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -174,6 +195,12 @@
       <td mat-cell *matCellDef="let element"> {{element.billTotal}} </td>
     </ng-container>
 
+    <!-- email Column -->
+    <ng-container matColumnDef="orderStatusLabel">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td style="color: green;" mat-cell *matCellDef="let element"> {{element.orderStatusLabel}} </td>
+    </ng-container>
+
     <!-- View Column -->
   <ng-container matColumnDef="view">
     <th mat-header-cell *matHeaderCellDef>View</th>
@@ -187,8 +214,122 @@
     </td>
   </ng-container>
 
+   <!-- View Column -->
+   <ng-container matColumnDef="accept">
+    <th mat-header-cell *matHeaderCellDef>Accept</th>
+    <td mat-cell *matCellDef="let element">
+      <i 
+      class="btn fa fa-check-square-o"
+      (click)="setAcceptOrder(element)"
+      data-toggle="modal"
+      data-target="#acceptModal"
+      ></i>
+    </td>
+  </ng-container>
+
+  <!-- rejectOrder -->
+  <ng-container matColumnDef="rejectOrder">
+    <th mat-header-cell *matHeaderCellDef>Reject</th>
+    <td mat-cell *matCellDef="let element">
+      <i 
+      class="btn fa fa-ban"
+      (click)="setRejectOrder(element)"
+      data-toggle="modal"
+        data-target="#confirmationModal"
+      ></i>
+    </td>
+  </ng-container>
+
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+   <!-- Modal -->
+<div
+class="modal fade"
+id="confirmationModal"
+tabindex="-1"
+role="dialog"
+aria-labelledby="confirmationModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="confirmationModalLabel">
+        <span class="modal-text-head">Do you want to Reject the Order ?</span>
+    </h5>
+    <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+    >
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+    <span class="modal-text">You are Rejecting {{rejectElement.fullName}}'s Order</span>
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        No
+    </button>
+    <button
+        type="button"
+        class="btn btn-danger"
+        data-dismiss="modal"
+        (click)="rejectOrder()"
+    >
+        Yes
+    </button>
+    </div>
+</div>
+</div>
+</div>
+
+<div
+class="modal fade"
+id="acceptModal"
+tabindex="-1"
+role="dialog"
+aria-labelledby="confirmationModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="confirmationModalLabel">
+        <span class="modal-text-head">Do you want to Accept the Order ?</span>
+    </h5>
+    <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+    >
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+    <span class="modal-text">You are Accepting {{acceptElement.fullName}}'s Order </span>
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        No
+    </button>
+    <button
+        type="button"
+        class="btn btn-danger"
+        data-dismiss="modal"
+        (click)="acceptOrder()"
+    >
+        Yes
+    </button>
+    </div>
+</div>
+</div>
+</div>
+
 

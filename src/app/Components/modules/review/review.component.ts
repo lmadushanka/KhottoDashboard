@@ -132,7 +132,7 @@ export class ReviewComponent implements OnInit {
 
     this.getProviderList();
 
-    this.setFilterReview.approvedStatus = 0;
+    this.setFilterReview.approvedStatus = null;
     this.setFilterReview.isSpam = 0;
     this.setFilterReview.reviewType = null;
     this.setFilterReview.reviewFor = null;
@@ -192,7 +192,7 @@ export class ReviewComponent implements OnInit {
   onClear(){
     this.filterReviewForm.reset();
 
-    this.setFilterReview.approvedStatus = 0;
+    this.setFilterReview.approvedStatus = null;
     this.setFilterReview.isSpam = 0;
     this.setFilterReview.reviewType = null;
     this.setFilterReview.reviewFor = null;
@@ -295,6 +295,8 @@ export class ReviewComponent implements OnInit {
 
     this.reviewService.setSapmReview(this.spamElement.reviewId, this.newSpamReview).subscribe((res) => {
       console.log(res);
+
+      this.onClear();
     })
   }
 
@@ -305,6 +307,11 @@ export class ReviewComponent implements OnInit {
   aprovedReview(){
     this.setNewApprovedReview.isApproved = 1;
     this.setNewApprovedReview.serviceUserId = Number(this.serviceUserId);
+
+    this.reviewService.setApprovedReview(this.aprovedElement.reviewId , this.setNewApprovedReview).subscribe((res) =>{
+      console.log(res);
+      this.onClear();
+    })
     
   }
   

@@ -1,5 +1,6 @@
 <!-- <div class="lightgray-back form-container"> -->
 <!-- <div class="row"> -->
+  <form class="row" [formGroup]="filterOrderForm" autocomplete="off">
 <div class="row transaction-div">
   <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
     <mat-label class="col-12">
@@ -62,19 +63,23 @@
     </mat-label>
   </div>
 
-  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 lbl-field">
+  <div class="col-10">
     <mat-label class="col-12">
       Type of Order Confirmation :
-      <mat-form-field
-        class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
-        appearance="fill"
-      >
-        <mat-label>Select Confirmation</mat-label>
-        <mat-select>
-          <mat-option>Cash</mat-option>
-          <mat-option>Credit Card</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <!-- Applide for Discount-->
+   <mat-form-field
+   class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+   appearance="fill"
+ >
+   <mat-label>Select Confirmation</mat-label>
+   <mat-select formControlName="confirmation" required>
+       <mat-option
+       *ngFor="let item of confirmation"
+       value="{{ item.value }}"
+       >{{ item.title }}</mat-option
+     >
+   </mat-select>
+ </mat-form-field>
     </mat-label>
   </div>
 </div>
@@ -88,8 +93,9 @@
     <table class="table lbl-field">
       <thead>
         <tr class="table-head" style="width: 100%">
+          <th scope="col" style="width: 15%">Item ID</th>
           <th scope="col" style="width: 35%">Item Name</th>
-          <th scope="col" style="width: 20%">Qty</th>
+          <th scope="col" style="width: 10%">Qty</th>
           <th scope="col" style="width: 15%">Price</th>
           <th scope="col" style="width: 15%">Reduced Price</th>
           <th scope="col" style="width: 15%">Sub Total</th>
@@ -100,6 +106,9 @@
           *ngFor="let item of orderItemList; let i = index"
           [ngClass]="{ 'odd-row': i % 2 == 1, 'even-row': i % 2 == 0 }"
         >
+        <td scope="row">
+          {{ item.itemId }}
+        </td>
           <td scope="row">
             {{ item.itemName }}
           </td>
@@ -121,8 +130,8 @@
   </div>
 </div>
 
-<div style="float: right;" class="col-8 transaction-div">
-  <div class="col-12">
+<div style="float: right;" class="col-5 transaction-div">
+  <div class="col-8">
     <mat-label class="col-12 lbl-field lbl-topics"
       ><b>Transaction Info,</b></mat-label
     >
@@ -135,13 +144,13 @@
           appearance="fill"
         >
           <mat-label>Amount</mat-label>
-          <input matInput placeholder="Amount" type="text" autocomplete="off" />
+          <input [(ngModel)] = "amount" matInput formControlName="amount" placeholder="Amount" type="number" autocomplete="off" />
         </mat-form-field>
       </mat-label>
     </div>
     <div class="col-12">
       <mat-label class="col-12">
-        Amount to be paid :
+        Amount to be paid : 
         <span class="lbl-value">{{ order.billTotal }}</span>
       </mat-label>
     </div>
@@ -149,16 +158,20 @@
     <div class="col-12">
       <mat-label class="col-12">
         Balance :
-        <span class="lbl-value"></span>
+        <span class="lbl-value">{{amount - order.billTotal}}</span>
       </mat-label>
     </div>
     
   </div>
   <br>
   <div style="float: right;" class="col-6">
-    <button class="btn btn-success">Complete Order</button>
+    <button class="btn btn-success"
+    (click)="onSubmit()"
+    >Complete Order</button>
   </div>
 </div>
+
+</form>
 
 
 <!-- </div> -->

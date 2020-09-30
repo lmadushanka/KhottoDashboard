@@ -36,6 +36,18 @@ export class LoginComponent implements OnInit {
     var user = { access: 0, user: '' };
     var validateEmail: boolean = false;
 
+    var permissions:any = {
+      resourceId:'',
+      resourceName:'',
+      iconClass:'',
+      routePath:'',
+      parentResourceId:'',
+      precedenceLevel:'',
+      resourceOrder:'',
+      access:'',    }
+
+      var childPermission:any;
+
     // Validating the Email
     if (
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
@@ -51,15 +63,26 @@ export class LoginComponent implements OnInit {
           if (res.success) {
             user.access = 1;
             user.user = this.loginDto.username;
+            permissions = res.data.permissions;
+
+            // if(res.data.permissions == false){
+
+            //   location.replace('/not-permission');
+            // }
+
+            // console.log(res);
+            
 
             localStorage.setItem('serviceUserId', res.data.serviceUserId);
             localStorage.setItem('providerId', res.data.providerId);
             localStorage.setItem('serviceUserTypeId', res.data.serviceUserTypeId);
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('permissions',JSON.stringify(permissions));
 
-            // this.router.navigateByUrl('/dashboard');
-            location.replace('/dashboard');
+            location.replace('/KhottoDashBoard');
+
+            // console.log(res);
 
           }
         },
@@ -76,7 +99,7 @@ export class LoginComponent implements OnInit {
 
     var user = JSON.parse(localStorage.getItem('user'));
     if(user !== null){
-      location.replace('/dashboard');
+      location.replace('/KhottoDashBoard');
     }
   }
 }
