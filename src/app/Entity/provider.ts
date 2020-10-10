@@ -22,5 +22,7 @@ export class Provider {
   facility: Facility[];
   policy: Policy[];
   openDays: OpenDays[];
-  freeCancelationDateCount:any;
+  selfService: string;
+  freeCancelationDateCount: number;
+  
 }

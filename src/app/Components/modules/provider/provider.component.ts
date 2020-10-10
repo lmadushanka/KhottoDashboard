@@ -24,7 +24,7 @@ export class ProviderComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[] = [];
   deleteElement: any = { name: '', providerId: 0 };
 
-  nextCount: number = 1;
+  nextCount:any;
 
   providerTypeList = [
     { name: 'Resturent', value: 1 },
@@ -38,6 +38,9 @@ export class ProviderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
+    this.nextCount = 1;
+
     this.session.sessionCheck();
     this.getAllProvider(this.nextCount);
   }
@@ -66,7 +69,6 @@ export class ProviderComponent implements OnInit {
   // }
 
   getAllProvider(value) {
-    this.session.sessionCheck();
 
     this.providerService.getAllProviderList(value).subscribe((res) => {
       console.log(res);

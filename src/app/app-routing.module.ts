@@ -38,6 +38,12 @@ import { SmsComponent } from './Components/modules/sms/sms.component';
 import { EmailComponent } from './Components/modules/email/email.component';
 import { ReviewComponent } from './Components/modules/review/review.component';
 import { NotPermissionComponent } from './Components/modules/not-permission/not-permission.component';
+import { ViewCategoryComponent } from './Components/modules/view-category/view-category.component';
+import { EditCategoryComponent } from './Components/modules/edit-category/edit-category.component';
+import { ViewBannerComponent } from './Components/modules/view-banner/view-banner.component';
+import { EditBannerComponent } from './Components/modules/edit-banner/edit-banner.component';
+import { SmsReportComponent } from './Components/modules/sms-report/sms-report.component';
+import { EditDiscountComponent } from './Components/modules/edit-discount/edit-discount.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -47,7 +53,7 @@ const routes: Routes = [
   {path: '',
     component: DefaultComponent,
     children: [
-      { path: 'KhottoDashBoard', component: HomeComponent },
+      { path: 'khottodashboard', component: HomeComponent },
       { path: 'provider', component: ProviderComponent },
       { path: 'add-provider', component: AddProviderComponent },
       { path: 'items', component: ItemsComponent },
@@ -81,6 +87,12 @@ const routes: Routes = [
       { path: 'email', component: EmailComponent},
       { path: 'review', component: ReviewComponent},
       { path: 'not-permission', component: NotPermissionComponent},
+      { path: 'view-category', component: ViewCategoryComponent},
+      { path: 'edit-category', component: EditCategoryComponent},
+      { path: 'view-banner', component: ViewBannerComponent},
+      { path: 'edit-banner', component: EditBannerComponent},
+      { path: 'sms-report', component: SmsReportComponent},
+      { path: 'edit-discount', component: EditDiscountComponent},
       
     ],
   },

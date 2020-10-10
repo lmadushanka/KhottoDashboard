@@ -12,4 +12,5 @@ export class AddProviderDto {
   businessRegNo:any;
   nicNo:any;
   providerId:number;
+  freeCancelationDateCount:any;
 }

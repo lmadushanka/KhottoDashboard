@@ -29,4 +29,9 @@ export class DiscountService {
     let signinUrl = this.baseUrl + '/discount';
     return this.http.post<any>(signinUrl,value, httpOptions);
   }
+
+  setExpireDiscount(value1,value2){
+    let discountUrl = this.baseUrl + '/discount/expire/';
+    return this.http.patch<any>(discountUrl + value1,value2,httpOptions);
+  }
 }

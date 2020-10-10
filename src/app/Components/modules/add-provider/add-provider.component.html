@@ -109,7 +109,7 @@
       <mat-label>Business Registration</mat-label>
       <input
         matInput
-        placeholder="Enter Business Regitration No"
+        placeholder="Enter Business Registration No"
         type="text"
         autocomplete="off"
         formControlName="BRNumber"
@@ -200,7 +200,7 @@
       <mat-label>Free Cancel Available Within Days</mat-label>
       <input
         matInput
-        placeholder="Enter Available Days"
+        placeholder="Enter Free Cancel Available Within Days"
         type="number"
         autocomplete="off"
         formControlName="freeCancelationDateCount"
@@ -208,9 +208,26 @@
       />
     </mat-form-field>
 
+
+    <!-- SelfService -->
+   <mat-form-field
+   class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+   appearance="fill"
+   *ngIf = "anableSelfService"
+ >
+   <mat-label>Self Service</mat-label>
+   <mat-select formControlName="selfService" required>
+       <mat-option
+       *ngFor="let item of setSelfService"
+       value="{{ item.value }}"
+       >{{ item.title }}</mat-option
+     >
+   </mat-select>
+ </mat-form-field>
+
     <!-- Map -->
     <mat-form-field
-      class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9"
+      class="col-6"
       appearance="fill"
     >
       <mat-label>Map URL</mat-label>
@@ -223,6 +240,23 @@
         required
       />
     </mat-form-field>
+
+     <!-- Description -->
+     <mat-form-field
+     class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+     appearance="fill"
+     style="margin-top: 0.5%"
+   >
+     <mat-label>Description</mat-label>
+     <textarea
+       matInput
+       placeholder="Description"
+       type="text"
+       autocomplete="off"
+       formControlName="description"
+       required
+     ></textarea>
+   </mat-form-field>
 
     <hr style="width: 100%" />
 
@@ -270,22 +304,7 @@
 
     <hr style="width: 100%" />
 
-    <!-- Description -->
-    <mat-form-field
-      class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
-      appearance="fill"
-      style="margin-top: 0.5%"
-    >
-      <mat-label>Description</mat-label>
-      <textarea
-        matInput
-        placeholder="Description"
-        type="text"
-        autocomplete="off"
-        formControlName="description"
-        required
-      ></textarea>
-    </mat-form-field>
+   
 
     <hr style="width: 100%" />
 

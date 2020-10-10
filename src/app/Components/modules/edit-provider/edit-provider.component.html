@@ -231,13 +231,63 @@
         type="number"
         autocomplete="off"
         formControlName="serviceCharge"
-        value="{{ providerDetails.serviceCharge }}"
+        value="{{ providerDetails.serviceChargeRate }}"
       />
+    </mat-form-field>
+
+    <!-- Cancel Date Count -->
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>Free Cancel Available Within Days</mat-label>
+      <input
+        matInput
+        placeholder="Enter Free Cancel Available Within Days"
+        type="number"
+        autocomplete="off"
+        formControlName="freeCancelationDateCount"
+        value="{{providerDetails.freeCancelationDateCount}}"
+      />
+    </mat-form-field>
+
+
+    <!-- SelfService -->
+   <!-- <mat-form-field
+   class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+   appearance="fill"
+   *ngIf = "anableSelfService"
+ >
+   <mat-label>Self Service</mat-label>
+   <mat-select 
+    [(value)]="selfServiceSelected"
+    formControlName="selfService"
+    >
+    <mat-option value="0">No</mat-option>
+    <mat-option value="1">Yes</mat-option>
+
+   </mat-select>
+ </mat-form-field> -->
+
+
+ <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+      *ngIf = "anableSelfService"
+    >
+      <mat-label>Self Service</mat-label>
+      <mat-select
+        [(value)]="selfServiceSelected"
+        formControlName="selfService"
+      >
+        <mat-option value="0">No</mat-option>
+        <mat-option value="1">Yes</mat-option>
+      </mat-select>
     </mat-form-field>
 
     <!-- Map -->
     <mat-form-field
-      class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9"
+      class="col-6"
       appearance="fill"
     >
       <mat-label>Map URL</mat-label>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BannerService } from 'src/app/Services/banner/banner.service';
+import { Router } from '@angular/router';
+import { Route } from '@angular/compiler/src/core';
 
 export interface PeriodicElement {
   bannerName: string;
@@ -26,7 +28,10 @@ export class BannerComponent implements OnInit {
   bannerDetails:any;
   // truthyValue: boolean = true;
 
-  constructor(private bannerService: BannerService) {}
+  constructor(
+    private bannerService: BannerService,
+    private router: Router,
+    ) {}
 
   ngOnInit(): void {
     this.getAllBanner();
@@ -64,11 +69,11 @@ export class BannerComponent implements OnInit {
   }
 
   onCancel(value){
-    if(this.bannerDetails.visible == 1){
+    this.bannerService.onCancelBanner(value).subscribe((res) =>{
+      console.log(res);
 
-    }else if(this.bannerDetails.visible == 0){
-      
-    }
+      this.getAllBanner();
+    })
   }
 
   // deleteItem() {
@@ -77,4 +82,16 @@ export class BannerComponent implements OnInit {
   //     this.getAllItems(this.nextCount);
   //   });
   // }
+
+  viewBannerByBannerId(value){
+    localStorage.setItem('bannerId', value);
+    // console.log(value);
+    this.router.navigateByUrl('/view-banner');
+  }
+
+  editBannerByBannerId(value){
+    localStorage.setItem('bannerId', value);
+    // console.log(value);
+    this.router.navigateByUrl('/edit-banner');
+  }
 }

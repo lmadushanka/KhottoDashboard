@@ -54,6 +54,7 @@ export class AddProviderComponent implements OnInit {
     BRNumber: new FormControl(),
     district: new FormControl(),
     freeCancelationDateCount: new FormControl(),
+    selfService: new FormControl()
   });
 
   logoFile: File = null;
@@ -65,7 +66,7 @@ export class AddProviderComponent implements OnInit {
   bannerIf: boolean = false;
 
   providerTypeList = [
-    { name: 'Resturent', value: 1 },
+    { name: 'Restaurant', value: 1 },
     { name: 'Hotel', value: 2 },
   ];
 
@@ -75,6 +76,11 @@ export class AddProviderComponent implements OnInit {
 
   categoryList = [];
   categoryShow: boolean = false;
+
+  setSelfService = [
+    { title: 'Yes', value: 1 },
+    { title: 'No', value: 0 },
+  ]
 
   luxuryList = [
     { name: 'රු', value: 1 },
@@ -110,6 +116,8 @@ export class AddProviderComponent implements OnInit {
   errFacility: any = { show: false, value: 'Enter details... !' };
   errPolicy: any = { show: false, value: 'Enter details... !' };
 
+  anableSelfService:any;
+
   constructor(
     private session: SessionService,
     private providerService: ProviderService,
@@ -121,6 +129,8 @@ export class AddProviderComponent implements OnInit {
     this.session.sessionCheck();
 
     this.onGetAllDistricts();
+
+    this.anableSelfService = false;
   }
 
   onSubmit() {
@@ -154,7 +164,8 @@ export class AddProviderComponent implements OnInit {
     this.newProvider.simpleDescription = this.addProviderForm.value.description;
     this.newProvider.businessRegNo = this.addProviderForm.value.BRNumber;
     this.newProvider.nicNo = this.addProviderForm.value.nic;
-    this.newProvider.freeCancelationDateCount = this.addProviderForm.value.freeCancelationDateCount;
+    this.addProviderDto.freeCancelationDateCount = this.addProviderForm.value.freeCancelationDateCount;
+    this.newProvider.selfService = this.addProviderForm.value.selfService;
 
     if (this.newProvider.name == null || this.newProvider.name == '') {
       nullIf = false;
@@ -240,13 +251,12 @@ export class AddProviderComponent implements OnInit {
       this.addProviderInfo('logoImage', 'logoImage');
       this.addProviderInfo('coverImage', 'coverImage');
       this.addProviderInfo('bannerImage', 'bannerImage');
+      this.addProviderInfo('selfService', Number(this.newProvider.selfService));
       this.addProviderDto.serviceUserId = Number(serviceUserId);
       this.addProviderDto.simpleDescription = this.newProvider.simpleDescription;
       this.addProviderDto.providerValues = this.providerValues;
       this.addProviderDto.categoryId = Number(this.newProvider.category);
-      this.addProviderDto.providerTypeId = Number(
-        this.newProvider.providerType
-      );
+      this.addProviderDto.providerTypeId = Number(this.newProvider.providerType);
 
       this.addProviderDto.providerName = this.newProvider.name;
       this.addProviderDto.luxuryCategory = this.newProvider.luxuryCategory;
@@ -444,6 +454,13 @@ export class AddProviderComponent implements OnInit {
   }
 
   onProviderTypeSelect(value) {
+
+    if(value == 1){
+      this.anableSelfService = true;
+    } else if(value !== 1){
+      this.anableSelfService= false;
+    }
+
     this.categoryService.getCategoryByType(value).subscribe((res) => {
       let categoryData = res.data;
       this.categoryList = categoryData;

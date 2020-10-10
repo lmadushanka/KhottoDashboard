@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   setRefreshToken(){
     this.refreshTokenService.OnRefreshToken().subscribe((res) =>{
       console.log(res.data);
-      this.router.navigateByUrl('/KhottoDashBoard');
+      this.router.navigateByUrl('/khottodashboard');
     },
     (error) => {
       window.localStorage.removeItem('user');
@@ -31,6 +31,8 @@ export class HomeComponent implements OnInit {
       window.localStorage.removeItem('email');
       window.localStorage.removeItem('viewProviderId');
       window.localStorage.removeItem('itemId');
+      window.localStorage.removeItem('permissions');
+      window.localStorage.removeItem('categoryId');
 
       this.router.navigateByUrl('/login');
     });

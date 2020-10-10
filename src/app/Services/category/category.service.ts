@@ -51,4 +51,25 @@ export class CategoryService {
     return this.httpClient.post(categoryUrl, categoryForm, httpOptions);
   }
 
+  getCategoryByCategoryId(value):Observable<any>{
+    let categoryUrl = this.baseUrl + '/category/';
+
+    return this.httpClient.get(categoryUrl + value, httpOptions);
+  }
+
+  updateCategoryByCategoryId(value1,addCategoryDto:AddCategoryDto):Observable<any>{
+
+    let categoryUrl = this.baseUrl + '/category/';
+
+    var categoryForm = new FormData();
+    var categoryDto = JSON.stringify(addCategoryDto.categoryInfo);
+
+    categoryForm.append('categoryCardImage', addCategoryDto.categoryCardImage);
+
+    categoryForm.append('categoryInfo', categoryDto);
+
+    return this.httpClient.put<any>(categoryUrl + value1, categoryForm, httpOptions);
+
+  }
+
 }

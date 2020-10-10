@@ -95,17 +95,13 @@ export class OrderComponent implements OnInit {
 
     this.serviceUserId = localStorage.getItem('serviceUserId');
 
-    if (this.providerId == 0) {
-      this.providerType = true;
-    } else if (this.providerId !== 0) {
-      this.providerType = false;
-    }
+    
     this.onProviderSelect();
 
     this.onGetAllOrder();
 
     this.expandingType = false;
-    this.exapndIcon = 'fa fa-caret-right';
+    this.exapndIcon = 'fa fa-caret-right fa-2x';
   }
 
   onSubmit(){
@@ -215,10 +211,23 @@ export class OrderComponent implements OnInit {
   expand(){
     if(this.expandingType == false){
       this.expandingType = true;
-      this.exapndIcon = 'fa fa-caret-down';
+      this.exapndIcon = 'fa fa-caret-down fa-2x';
+
+      if (this.providerId == 0) {
+        this.providerType = true;
+      } else if (this.providerId !== 0) {
+        this.providerType = false;
+      }
+
     }else if(this.expandingType == true){
       this.expandingType = false;
-      this.exapndIcon = 'fa fa-caret-right';
+      this.exapndIcon = 'fa fa-caret-right fa-2x';
+
+      if (this.providerId == 0) {
+        this.providerType = false;
+      } else if (this.providerId !== 0) {
+        this.providerType = false;
+      }
     }
   }
 

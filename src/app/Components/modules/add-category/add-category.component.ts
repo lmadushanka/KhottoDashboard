@@ -31,7 +31,7 @@ export class AddCategoryComponent implements OnInit {
   coverFile: File = null;
 
   providerTypeList = [
-    { name: 'Resturent', value: 1 },
+    { name: 'Restaurant', value: 1 },
     { name: 'Hotel', value: 2 },
   ];
 

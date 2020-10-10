@@ -77,6 +77,12 @@ import { AddReviewComponent } from './Components/modules/add-review/add-review.c
 import { EmailComponent } from './Components/modules/email/email.component';
 import { SmsComponent } from './Components/modules/sms/sms.component';
 import { NotPermissionComponent } from './Components/modules/not-permission/not-permission.component';
+import { ViewCategoryComponent } from './Components/modules/view-category/view-category.component';
+import { EditCategoryComponent } from './Components/modules/edit-category/edit-category.component';
+import { ViewBannerComponent } from './Components/modules/view-banner/view-banner.component';
+import { EditBannerComponent } from './Components/modules/edit-banner/edit-banner.component';
+import { SmsReportComponent } from './Components/modules/sms-report/sms-report.component';
+import { EditDiscountComponent } from './Components/modules/edit-discount/edit-discount.component';
 
 @NgModule({
   declarations: [
@@ -118,6 +124,12 @@ import { NotPermissionComponent } from './Components/modules/not-permission/not-
     EmailComponent,
     SmsComponent,
     NotPermissionComponent,
+    ViewCategoryComponent,
+    EditCategoryComponent,
+    ViewBannerComponent,
+    EditBannerComponent,
+    SmsReportComponent,
+    EditDiscountComponent,
   ],
   imports: [
     BrowserModule,

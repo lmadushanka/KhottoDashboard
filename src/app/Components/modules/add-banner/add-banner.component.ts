@@ -69,9 +69,7 @@ export class AddBannerComponent implements OnInit {
 
       this.bannerDto.bannerImage = this.bannerFile;
       this.bannerDto.visible = Number(this.addBannerForm.value.visible);
-      this.bannerDto.serviceUserId = Number(
-        localStorage.getItem('serviceUserId')
-      );
+      this.bannerDto.serviceUserId = Number(localStorage.getItem('serviceUserId'));
 
       this.addBannerDto.bannerImage = this.bannerDto.bannerImage;
       this.addBannerDto.bannerInfo = this.bannerDto;

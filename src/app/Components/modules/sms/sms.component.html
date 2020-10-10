@@ -1,5 +1,10 @@
 
-
+<button mat-button class="btn btn-primary" routerLink="/sms-report">
+  SMS Report
+</button>
+<br />
+<hr>
+<br />
 <div class="lightgray-back form-container">
   <form class="row" [formGroup]="filterUser" autocomplete="off">
 
@@ -69,13 +74,22 @@
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
     <ng-container matColumnDef="checkUserId">
-      <th mat-header-cell *matHeaderCellDef> </th>
+      <th mat-header-cell *matHeaderCellDef>
+        <input
+            id="element.clientUserId"
+            placeholder="Open"
+            type="checkbox"
+            (change)= "onSelectAllCheckBox()"
+          />
+         </th>
       <td mat-cell *matCellDef="let element"> 
         
         <input
             id="{{element.clientUserId}}"
             placeholder="Open"
             type="checkbox"
+            [checked]="isChecked"
+            (change)= "onCheckBox(element.clientUserId, element.mobileNo)"
           />
       </td>
     </ng-container>
@@ -102,6 +116,87 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <br />
+
+<button
+  class="btn btn-success page-btn"
+  mat-raised-button
+  color="success"
+  type="submit"
+  (click)="onPreviewButton()"
+  style="margin: 15px; padding: 0px 20px; float: left"
+>
+<i class="fa fa-angle-double-left fa-2x" aria-hidden="true"></i>
+</button>
+
+<button
+  class="btn btn-info"
+  mat-raised-button
+  color="success"
+  type="submit"
+  style="margin: 15px; padding: 0px 20px; float: left"
+>
+  {{ nextCount }}
+</button>
+
+<button
+  class="btn btn-success page-btn"
+  mat-raised-button
+  color="success"
+  type="submit"
+  (click)="onNextButton()"
+  style="margin: 15px; padding: 0px 10px; float: left"
+>
+  <i class="fa fa-angle-double-right fa-2x" aria-hidden="true"></i>
+</button>
+
+<br>
+<br>
+<br>
+
+<hr style="width: 100%" />
+
+<div class="lightgray-back form-container">
+  <form class="row" [formGroup]="addSms" autocomplete="off">
+    <!-- Name -->
+    <mat-form-field
+      class="col-12"
+      appearance="fill"
+    >
+      <mat-label>Text</mat-label>
+      <textarea
+        matInput
+        placeholder="Enter Name"
+        type="text"
+        autocomplete="off"
+        formControlName="smsText"
+        required
+      ></textarea>
+    </mat-form-field>
+
+    <!-- Submit Button -->
+    <mat-card-actions class="col-12 float:left">
+      
+      <button
+        class="btn btn-success"
+        mat-raised-button
+        type="submit"
+        type="submit"
+        (click)="onSendSMS()"
+        style="margin-left:15px; margin-bottom: 5px; padding: 0px 20px;float: right;"
+      >
+        Send SMS
+      </button>
+
+      </mat-card-actions>
+
+  </form>
+  </div>
+
+  <br>
+
+  
 
 
   

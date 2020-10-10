@@ -29,5 +29,11 @@ export class ErrorService {
 
     return this.httpClient.get<any>(errorUrl,httpOptions);
   }
+
+  onClearErrorLog(value):Observable<any>{
+    let errorUrl = this.baseUrl + '/logger/recent/';
+
+    return this.httpClient.delete<any>(errorUrl+ value,httpOptions);
+  }
   
 }

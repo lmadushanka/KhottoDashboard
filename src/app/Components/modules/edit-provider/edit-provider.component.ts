@@ -54,6 +54,8 @@ export class EditProviderComponent implements OnInit {
     nic: new FormControl(),
     BRNumber: new FormControl(),
     district: new FormControl(),
+    freeCancelationDateCount: new FormControl(),
+    selfService: new FormControl()
   });
 
   logoFile: File = null;
@@ -68,6 +70,13 @@ export class EditProviderComponent implements OnInit {
     { name: 'Resturent', value: 1 },
     { name: 'Hotel', value: 2 },
   ];
+
+  setSelfService = [
+    { title: 'Yes', value: 1 },
+    { title: 'No', value: 0 },
+  ]
+
+  anableSelfService:any;
 
   districtList = [];
 
@@ -127,6 +136,7 @@ export class EditProviderComponent implements OnInit {
     bannerImage: '',
     businessRegNo: '',
     categoryId: '',
+    freeCancelationDateCount: ''
   };
 
   luxuryCategoryName = '';
@@ -138,6 +148,8 @@ export class EditProviderComponent implements OnInit {
 
   luxuryCategorySelected = '';
 
+  selfServiceSelected = '';
+
   constructor(
     private session: SessionService,
     private providerService: ProviderService,
@@ -147,6 +159,8 @@ export class EditProviderComponent implements OnInit {
 
   ngOnInit(): void {
     this.session.sessionCheck();
+
+    this.anableSelfService = true;
 
     this.onGetAllDistricts();
 
@@ -363,6 +377,13 @@ export class EditProviderComponent implements OnInit {
       console.log(res.data);
       this.providerDetails = res.data;
 
+      if(res.data.providerTypeName !== 'Restaurant'){
+        this.anableSelfService = false;
+        // console.log(this.selfServiceSelected);
+      }
+
+      this.selfServiceSelected = String(res.data.selfService);
+
       this.luxuryCategorySelected = String(this.providerDetails.luxuryCategory);
       this.ProviderTypeSelected = String(this.providerDetails.providerTypeName);
       this.categorySelected = String(this.providerDetails.categoryName);
@@ -379,7 +400,20 @@ export class EditProviderComponent implements OnInit {
       this.newProvider.bannerImage = res.data.bannerImage;
       this.newProvider.coverImage = res.data.coverImage;
 
-      // this.onDistrictSelect(res.data.districtId);
+      if(res.data.facility !== null){
+
+        this.facilityArray = res.data.facility;
+      }
+
+
+      if(res.data.policy !== null){
+        
+        this.policyArray = res.data.policy;
+      }
+
+      
+
+      
     });
   }
 
@@ -420,6 +454,26 @@ export class EditProviderComponent implements OnInit {
     }else if(this.addProviderForm.value.location !== null){
 
       this.newProvider.location = this.addProviderForm.value.location;
+
+    }
+
+    if(this.addProviderForm.value.freeCancelationDateCount == null){
+
+      this.addProviderInfo('freeCancelationDateCount', this.providerDetails.freeCancelationDateCount);
+
+    }else if(this.addProviderForm.value.freeCancelationDateCount !== null){
+
+      this.addProviderInfo('freeCancelationDateCount', this.addProviderForm.value.freeCancelationDateCount);
+
+    }
+
+    if(this.addProviderForm.value.selfService == null){
+
+      this.addProviderInfo('selfService', this.providerDetails.selfService);
+
+    }else if(this.addProviderForm.value.selfService !== null){
+
+      this.addProviderInfo('selfService', this.addProviderForm.value.selfService);
 
     }
 
@@ -595,33 +649,11 @@ export class EditProviderComponent implements OnInit {
   }
 
   setFacility() {
-    this.facilityArray = [
-      {
-        title: 'Abc',
-        description: 'aabbcc',
-      },
-      {
-        title: 'DEF',
-        description: 'DDEEFF',
-      },
-    ];
+    this.facilityArray = [];
   }
 
   setPolicy() {
-    this.policyArray = [
-      {
-        title: '123',
-        description: 'cde789',
-      },
-      {
-        title: '456',
-        description: 'abc456',
-      },
-      {
-        title: '789',
-        description: 'dfghsty546',
-      },
-    ];
+    this.policyArray = [];
   }
 
   setDays() {

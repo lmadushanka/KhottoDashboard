@@ -22,7 +22,9 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 export class DiscountComponent implements OnInit {
 
   ELEMENT_DATA: PeriodicElement[] = [];
-  deleteElement: any = { name: '', itemTypeId: 0 };
+  deleteElement: any = { discountId: 0, providerName: '', itemName: ''};
+
+  serviceUserId:any ={serviceUserId: 0};
 
   nextCount: number = 1;
 
@@ -54,6 +56,23 @@ export class DiscountComponent implements OnInit {
       this.ELEMENT_DATA = res.data;
       this.dataSource = this.ELEMENT_DATA;
     })
+  }
+
+  setExpireDiscount(value){
+    console.log(value);
+    this.deleteElement.discountId = value.discountId;
+    this.deleteElement.itemName = value.itemName;
+    this.deleteElement.providerName = value.providerName;
+  }
+
+  setDeleteDiscount(){
+    this.serviceUserId.serviceUserId =  Number(localStorage.getItem('serviceUserId'));
+
+    console.log(this.serviceUserId);
+
+    this.discountService.setExpireDiscount(this.deleteElement.discountId , this.serviceUserId).subscribe((res) =>{
+      console.log(res);
+    });
   }
 
 }

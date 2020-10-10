@@ -20,4 +20,14 @@ export class SmsService {
     let filterUserUrl = this.baseUrl + '/clientUser/searchByFilters';
     return this.httpClient.post(filterUserUrl,value,httpOptions);
   }
+
+  addSMS(value):Observable<any>{
+    let addSMSUrl = this.baseUrl + '/sms/bulk';
+    return this.httpClient.post(addSMSUrl,value,httpOptions);
+  }
+
+  getSMSReport(value):Observable<any>{
+    let smsUrl = this.baseUrl + '/sms/all';
+    return this.httpClient.post(smsUrl,value,httpOptions);
+  }
 }

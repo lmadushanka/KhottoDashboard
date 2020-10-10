@@ -68,7 +68,7 @@ export class AreaComponent implements OnInit {
       },
       series: [
         {
-          name: 'Foods',
+          name: 'Food',
           data: [1, 2, 3, 4, 5, 6, 27, 45, 39, 20, 31, 52, 63, 105, 75, 66],
           fillColor: 'rgb(0, 123, 255, 0.3)',
           lineColor: 'rgb(0, 123, 255)',
@@ -77,7 +77,7 @@ export class AreaComponent implements OnInit {
           },
         },
         {
-          name: 'Accommodations',
+          name: 'Accommodation',
           data: [2, 4, 6, 8, 50, 25, 14, 26, 97, 68, 70, 62, 107, 76, 58, 30],
           fillColor: 'rgb(32, 201, 151, 0.3)',
           lineColor: 'rgb(32, 201, 151)',

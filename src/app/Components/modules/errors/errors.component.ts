@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from 'src/app/Services/session/session.service';
 import { ErrorService } from 'src/app/Services/error/error.service';
+import { Route, Router } from '@angular/router';
 
 export interface ErrorsElement {
   logId: number;
@@ -19,6 +20,8 @@ export interface ErrorsElement {
 export class ErrorsComponent implements OnInit {
   ELEMENT_DATA: ErrorsElement[] = [];
 
+
+
   errorType:any = null;
 
   apiTypeList = [
@@ -28,7 +31,8 @@ export class ErrorsComponent implements OnInit {
 
   constructor(
     private session: SessionService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -69,5 +73,14 @@ export class ErrorsComponent implements OnInit {
     }else{
       this.getAll();
     }
+  }
+
+  onClear(){
+
+    this.errorService.onClearErrorLog(this.errorType).subscribe((res)=>{
+      console.log(res);
+      this.getAll();
+    });
+
   }
 }

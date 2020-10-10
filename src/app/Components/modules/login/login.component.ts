@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('user', JSON.stringify(user));
             localStorage.setItem('permissions',JSON.stringify(permissions));
 
-            location.replace('/KhottoDashBoard');
+            location.replace('/khottodashboard');
 
             // console.log(res);
 
@@ -99,7 +99,7 @@ export class LoginComponent implements OnInit {
 
     var user = JSON.parse(localStorage.getItem('user'));
     if(user !== null){
-      location.replace('/KhottoDashBoard');
+      location.replace('/khottodashboard');
     }
   }
 }

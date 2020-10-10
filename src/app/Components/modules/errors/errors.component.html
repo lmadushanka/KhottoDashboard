@@ -1,6 +1,8 @@
+<div class="lightgray-back form-container">
+  <form class="row"  autocomplete="off">
 <!-- Provider Type -->
 <mat-form-field
-  class="col-4 float-left"
+  class="col-12 float-left"
   appearance="fill"
 >
   <mat-label>Select API Type...</mat-label>
@@ -25,7 +27,24 @@
   Refresh
 </button>
 
+<button
+  class="btn btn-danger"
+  mat-raised-button
+  type="submit"
+  (click)="onClear()"
+  style="margin-top: 4px; margin-left: 5px; padding: 5px 20px;"
+>
+  Clear
+</button>
+
 </mat-card-actions>
+</form>
+
+</div>
+
+<br>
+<br>
+<br>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <!--- Note that these columns can be defined in any order.

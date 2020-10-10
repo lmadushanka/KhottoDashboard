@@ -1,0 +1,51 @@
+<button mat-button class="btn btn-primary" routerLink="/category">
+    View Category
+  </button>
+  <br />
+  <hr>
+  <br />
+  
+  <div class="lightgray-back form-container">
+    <form class="row" [formGroup]="addCategoryForm" autocomplete="off">
+      <!-- Provider Type -->
+      <mat-form-field
+        class="col-6"
+        appearance="fill"
+      >
+        <mat-label>Provider Type</mat-label>
+        <input
+          matInput
+          placeholder="Enter Provider Type"
+          type="text"
+          formControlName="categoryName"
+          value="{{providerType}}"
+          readonly
+        />
+      </mat-form-field>
+  
+      <!-- Name -->
+      <mat-form-field
+        class="col-6 "
+        appearance="fill"
+      >
+        <mat-label>Category Name</mat-label>
+        <input
+          matInput
+          placeholder="Enter Category Name"
+          type="text"
+          formControlName="categoryName"
+          value="{{categoryDetails.categoryName}}"
+          readonly
+        />
+      </mat-form-field>
+
+      <hr>
+  
+      <!-- Cover Image -->
+      <div class="col-">
+        <label class="col-12">Cover Image</label>
+        <img [src]="imgURLCover" height="120" width="180" *ngIf="imgURLCover" />
+      </div>
+    </form>
+  </div>
+  

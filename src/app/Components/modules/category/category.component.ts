@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from 'src/app/Services/session/session.service';
 import { CategoryService } from 'src/app/Services/category/category.service';
+import { Router } from '@angular/router';
 
 export interface CategoryElement {
   categoryId: number;
@@ -8,7 +9,6 @@ export interface CategoryElement {
   categoryName: string;
   view: string;
   edit: string;
-  delete: string;
 }
 
 @Component({
@@ -27,7 +27,8 @@ export class CategoryComponent implements OnInit {
 
   constructor(
     private session: SessionService,
-    private category: CategoryService
+    private category: CategoryService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -35,7 +36,7 @@ export class CategoryComponent implements OnInit {
     this.getAllCategory();
   }
 
-  displayedColumns: string[] = ['categoryId', 'categoryName','view','edit','delete'];
+  displayedColumns: string[] = ['categoryId', 'categoryName','view','edit'];
   dataSource = this.ELEMENT_DATA;
 
   getCategory(type: number) {
@@ -67,4 +68,19 @@ export class CategoryComponent implements OnInit {
   //     this.getAllItems(this.nextCount);
   //   });
   // }
+
+  viewCategoryById(value){
+    // console.log(value);
+
+    localStorage.setItem('categoryId', value);
+    // console.log(value);
+    this.router.navigateByUrl('/view-category');
+
+  }
+
+  editCategoryById(value){
+    localStorage.setItem('categoryId', value);
+    // console.log(value);
+    this.router.navigateByUrl('/edit-category');
+  }
 }

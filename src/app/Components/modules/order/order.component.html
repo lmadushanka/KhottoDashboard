@@ -2,10 +2,37 @@
 <br />
 
 <div class="lightgray-back form-container">
+
+
+
+  <i 
+    class="{{exapndIcon}}" 
+    aria-hidden="true"
+    style="margin-left:20px;"
+    (click) = "expand()"
+  >
+
+  <mat-label
+    style="margin-left: 30px;margin-top: 5px;"
+    >
+    Filter
+  </mat-label>
+
+  </i>
+
+
+  
+
+  
+
   <form class="row" [formGroup]="filterOrderForm" autocomplete="off">
 
     <!-- Order Id -->
-    <mat-form-field class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3" appearance="fill">
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3" 
+      appearance="fill"
+      *ngIf = "expandingType"
+      >
       <mat-label>Order ID</mat-label>
       <input matInput placeholder="Enter Order ID" type="text" formControlName="orderId" />
     </mat-form-field>
@@ -14,6 +41,7 @@
     <mat-form-field
       class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
       appearance="fill"
+      *ngIf = "expandingType"
     >
       <mat-label>Mobile Number</mat-label>
       <input
@@ -28,6 +56,7 @@
     <mat-form-field
       class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
       appearance="fill"
+      *ngIf = "expandingType"
     >
       <mat-label>Requested Order</mat-label>
       <input
@@ -53,13 +82,6 @@
         >
       </mat-select>
     </mat-form-field>
-
-        <i 
-        class="{{exapndIcon}}" 
-        aria-hidden="true"
-        style="margin-left:20px;"
-        (click) = "expand()"
-        ></i>
 
     <hr *ngIf = "expandingType" style="width: 100%"/>
 
@@ -126,7 +148,11 @@
  </mat-form-field>
 
     <!-- Submit Button -->
-    <mat-card-actions class="col-12  float:left">
+    <mat-card-actions 
+      class="col-12  
+      float:left"
+      *ngIf = "expandingType"
+      >
       
     <button
       class="btn btn-sucess"
@@ -146,6 +172,7 @@
           color="danger"
           type="submit"
           (click)="onClear()"
+          *ngIf = "expandingType"
           style="margin-left:15px; margin-bottom: 5px; padding: 0px 20px; float: right;"
         >
           Clear

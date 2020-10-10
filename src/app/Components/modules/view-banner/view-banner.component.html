@@ -1,0 +1,81 @@
+<button mat-button class="btn btn-primary" routerLink="/banner">
+    View Banner
+  </button>
+  <br />
+  <hr>
+  <br />
+  
+  <div class="lightgray-back form-container">
+    <form class="row" [formGroup]="addBannerForm" autocomplete="off">
+      <!-- Provider Type -->
+      <!-- <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Select Provider Type</mat-label>
+        <mat-select formControlName="providerType" required>
+          <mat-option
+            *ngFor="let item of providerTypeList"
+            value="{{ item.value }}"
+            >{{ item.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field> -->
+  
+      <!-- Name -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Banner Name</mat-label>
+        <input
+          matInput
+          placeholder="Enter Banner Name"
+          type="text"
+          formControlName="bannerName"
+          value="{{bannerDetails.bannerName}}"
+        />
+      </mat-form-field>
+  
+      <!-- Visiblity -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+        style="margin-top: 0.5%"
+      >
+        <mat-label>Visiblity</mat-label>
+        <input
+          matInput
+          placeholder="Description"
+          type="text"
+          autocomplete="off"
+          formControlName="description"
+          value="{{bannerVisibilty}}"
+        />
+      </mat-form-field>
+  
+      <!-- Description -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+        appearance="fill"
+        style="margin-top: 0.5%"
+      >
+        <mat-label>Description</mat-label>
+        <input
+          matInput
+          placeholder="Description"
+          type="text"
+          autocomplete="off"
+          formControlName="description"
+          value="{{bannerDetails.bannerDescription}}"
+        />
+      </mat-form-field>
+
+      <!-- Cover Image -->
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        <label class="col-12">Upload Banner Image</label>
+        <img [src]="imgURLCover" height="120" width="180" *ngIf="imgURLCover" />
+      </div>
+    </form>
+  </div>
+  
