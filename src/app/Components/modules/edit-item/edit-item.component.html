@@ -17,8 +17,8 @@
         [(value)]="itemTypeSelected"
         formControlName="itemType"
       >
-        <mat-option value="2">Food</mat-option>
-        <mat-option value="1">Accommodation</mat-option>
+        <mat-option value="1">Food</mat-option>
+        <mat-option value="2">Accommodation</mat-option>
         
       </mat-select>
     </mat-form-field>
@@ -95,6 +95,21 @@
           readonly
         />
       </mat-form-field>
+
+      <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+      *ngIf="itemType"
+    >
+      <mat-label>Item Availabilty</mat-label>
+      <input
+        matInput
+        placeholder="Enter Availabilty"
+        type="text"
+        formControlName="itemAvailability"
+      />
+    </mat-form-field>
+
       
 
       <hr style="width: 100%">
@@ -143,7 +158,7 @@
           <input
             id="{{ itemOption.optionName }}{{ itemOption.optionId }}"
             type="checkbox"
-            [checked]=false
+            [checked]=itemOption.isActiveOption
             (change)="
             updateOption(itemOption.optionName, itemOption.optionId, ioIndex)
           "

@@ -28,8 +28,8 @@ export class AddProviderComponent implements OnInit {
 
   //Others
   newProvider: Provider = new Provider();
-  facilities: Facility[];
-  policies: Policy[];
+  facilities: Facility[] = [];
+  policies: Policy[] = [];
   days: OpenDays[];
   addProviderDto: AddProviderDto = new AddProviderDto();
   providerValues: ProviderValues[] = [];
@@ -54,7 +54,8 @@ export class AddProviderComponent implements OnInit {
     BRNumber: new FormControl(),
     district: new FormControl(),
     freeCancelationDateCount: new FormControl(),
-    selfService: new FormControl()
+    selfService: new FormControl(),
+    isDelivery: new FormControl()
   });
 
   logoFile: File = null;
@@ -68,6 +69,11 @@ export class AddProviderComponent implements OnInit {
   providerTypeList = [
     { name: 'Restaurant', value: 1 },
     { name: 'Hotel', value: 2 },
+  ];
+
+  setIsDelivery= [
+    { title: 'Yes', value: 1 },
+    { title: 'No', value: 0 },
   ];
 
   districtList = [];
@@ -166,6 +172,7 @@ export class AddProviderComponent implements OnInit {
     this.newProvider.nicNo = this.addProviderForm.value.nic;
     this.addProviderDto.freeCancelationDateCount = this.addProviderForm.value.freeCancelationDateCount;
     this.newProvider.selfService = this.addProviderForm.value.selfService;
+    this.newProvider.isDelivery = this.addProviderForm.value.isDelivery;
 
     if (this.newProvider.name == null || this.newProvider.name == '') {
       nullIf = false;
@@ -252,6 +259,7 @@ export class AddProviderComponent implements OnInit {
       this.addProviderInfo('coverImage', 'coverImage');
       this.addProviderInfo('bannerImage', 'bannerImage');
       this.addProviderInfo('selfService', Number(this.newProvider.selfService));
+      this.addProviderInfo('isDelivery', Number(this.newProvider.isDelivery));
       this.addProviderDto.serviceUserId = Number(serviceUserId);
       this.addProviderDto.simpleDescription = this.newProvider.simpleDescription;
       this.addProviderDto.providerValues = this.providerValues;
@@ -278,12 +286,12 @@ export class AddProviderComponent implements OnInit {
   }
 
   addProviderInfo(type, name) {
-    if (name != '') {
+    // if (name != '') {
       this.providerValues.push({
         propertyIdentifier: type,
         providerValueStr: name,
       });
-    }
+    // }
   }
 
   addFacility(title, description) {

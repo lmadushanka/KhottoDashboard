@@ -9,6 +9,7 @@ import { ItemDto } from 'src/app/Entity/itemDto';
 import { ItemValues } from 'src/app/Entity/itemValues';
 import { ItemOption } from 'src/app/Entity/itemOption';
 import { Router } from '@angular/router';
+import { Term } from 'src/app/Entity/term';
 
 @Component({
   selector: 'app-edit-item',
@@ -29,7 +30,7 @@ export class EditItemComponent implements OnInit {
   coverIf: boolean = false;
 
   newItem: Item = new Item();
-  terms: [];
+  terms: Term[];
   provider: ProviderInfo;
   providerId: any;
   providerType: any;
@@ -38,6 +39,7 @@ export class EditItemComponent implements OnInit {
 
   itemOptions: ItemOption[] = [];
   selectedOption: number[] = [];
+  getItemOption: ItemOption[] = []
 
   editItemForm = new FormGroup({
     itemType: new FormControl(),
@@ -50,12 +52,14 @@ export class EditItemComponent implements OnInit {
   });
 
   itemList:any = {
-    itemType: '',
+    itemTypeId: '',
     itemName: '',
     price: '',
     simpleDescription: '',
     providerName: '',
     terms: '',
+    coverImage: '',
+    providerId: ''
   }
 
   itemTypeSelected = '';
@@ -88,19 +92,117 @@ export class EditItemComponent implements OnInit {
 
 
   onSubmit(){
+    
 
     this.newItem.name = this.editItemForm.value.itemName;
     this.newItem.type = this.editItemForm.value.itemType;
     this.newItem.price = this.editItemForm.value.itemPrice;
     this.newItem.description = this.editItemForm.value.description;
 
-    console.log(this.newItem);
+    if(this.newItem.name == null){
+      this.newItem.name = this.itemList.itemName;
+    }
 
+    if(this.newItem.type == null){
+      this.newItem.type = this.itemList.itemTypeId;
+    }
+
+    if(this.newItem.price == null){
+      this.newItem.price = this.itemList.price;
+    }
+
+    if(this.newItem.description == null){
+      this.newItem.description = this.itemList.simpleDescription;
+    }
+
+    if(this.coverFile == null){
+      this.coverFile = this.itemList.coverImage;
+    }
+
+    console.log(this.coverFile);
+
+    var _this = this;
+      let serviceUserId = localStorage.getItem('serviceUserId');
+
+      if(this.itemList.terms !== null){
+        if (this.termArray.length != 0) {
+          this.terms = this.termArray;
+        }
+      }else{
+        this.terms = this.itemList.terms;
+      }
+
+      console.log(this.itemOptions);
+
+      if (this.itemOptions.length != 0) {
+        for (var i = 0; i < this.itemOptions.length; i++) {
+          if (this.itemOptions[i].isActiveOption == true) {
+            this.selectedOption.push(this.itemOptions[i].optionId);
+          }
+        }
+      }
+
+      this.newItem.coverImage = this.coverFile;
+      this.newItem.terms = this.terms;
+      this.newItem.availability = this.editItemForm.value.itemAvailability;
+
+      if(this.newItem.availability == null){
+        this.newItem.availability = null;
+      }
+      
+
+      
+
+      this.itemDto.itemTypeId = Number(this.newItem.type);
+      this.itemDto.price = Number(this.newItem.price);
+      this.itemDto.serviceUserId = Number(serviceUserId);
+      this.itemDto.itemOptionValues = this.selectedOption;
+
+      // add provider
+      if (this.providerId == 0) {
+        this.itemDto.providerId = Number(this.editItemForm.value.provider);
+      } else if (this.providerId == 0) {
+        this.itemDto.providerId = Number(this.providerId);
+      }
+
+      // this.addItemInfo('name', this.newItem.name);
+      this.addItemInfo('coverImage', this.coverFile);
+      // this.addItemInfo('simpleDescription', this.newItem.description);
+      this.addItemInfo('terms', this.newItem.terms);
+      this.addItemInfo('availability', Number(this.newItem.availability));
+      this.itemDto.itemValues = this.itemValues;
+
+      this.addItemDto.coverImage = this.newItem.coverImage;
+      this.addItemDto.itemInfo = this.itemDto;
+      this.addItemDto.itemInfo.simpleDescription = this.newItem.description;
+      this.addItemDto.itemInfo.itemName = this.newItem.name;
+      this.addItemDto.itemInfo.itemId = Number(localStorage.getItem('itemId'));
+
+     
+
+      console.log(this.addItemDto);
+
+      this.ItemService.updateItemByItemId(this.addItemDto).subscribe((res)=>{
+        console.log(res);
+        this.router.navigateByUrl('/items');
+      })
+
+  }
+
+  addItemInfo(type, name) {
+    if (name != '') {
+      this.itemValues.push({
+        propertyIdentifier: type,
+        itemValueStr: name,
+      });
+    }
   }
 
 
   onGetItemByItemId(value){
     this.ItemService.getItemByItemId(value).subscribe((res) =>{
+      
+      
       console.log(res.data);
       this.itemList = res.data;
 
@@ -112,11 +214,24 @@ export class EditItemComponent implements OnInit {
 
       this.imgURLCover = res.data.coverImage;
 
-      this.itemOptions = res.data.itemOption;
+      // this.itemOptions = res.data.itemOption
+      
+
+      for(let i = 0 ; i < this.itemOptions.length; i++){
+        if(this.itemOptions[i].optionId == res.data.itemOption[i].optionId){
+          console.log(this.itemOptions[i]);
+          this.itemOptions[i].isActiveOption = res.data.itemOption[i].isActiveOption;
+          console.log(i);
+        }
+      }
+
+      this.getItemOption = res.data.itemOption;
+
+      
 
       this.termArray = res.data.terms;
-
       this.onItemTypeSelect(res.data.itemTypeId);
+      
     })
   }
 
@@ -140,7 +255,6 @@ export class EditItemComponent implements OnInit {
   onProviderSelect() {
     this.ItemService.getProviders().subscribe((res) => {
       this.provider = res.data;
-      console.log(this.provider);
     });
   }
 
@@ -151,15 +265,21 @@ export class EditItemComponent implements OnInit {
       this.itemType = false;
     }
 
-    // console.log(value);
-
     this.ItemService.getOptionsByItemType(value).subscribe((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       this.itemOptions = res.data;
 
       for (var i = 0; i < this.itemOptions.length; i++) {
         this.itemOptions[i].isActiveOption = false;
+
+        for(var j = 0; j < this.getItemOption.length; j++){
+          if(this.itemOptions[i].optionId == this.getItemOption[j].optionId){
+            this.itemOptions[i].isActiveOption = true;
+          }
+        }
       }
+
+      console.log(this.itemOptions);
     });
   }
 

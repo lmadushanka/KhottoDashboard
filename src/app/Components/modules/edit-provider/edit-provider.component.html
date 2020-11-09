@@ -285,6 +285,22 @@
       </mat-select>
     </mat-form-field>
 
+    <!-- Is Delivery -->
+    <mat-form-field
+    class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+    appearance="fill"
+    *ngIf = "anableSelfService"
+  >
+    <mat-label>Is Delivery</mat-label>
+    <mat-select 
+      formControlName="isDelivery"
+      [(value)]="isDeliverySelected"
+      >
+      <mat-option value="0">No</mat-option>
+      <mat-option value="1">Yes</mat-option>
+    </mat-select>
+  </mat-form-field>
+
     <!-- Map -->
     <mat-form-field
       class="col-6"

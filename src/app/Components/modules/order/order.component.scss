@@ -72,3 +72,14 @@ a {
     font-size: 20px;
     color: #d90000;
   }
+
+  .blinking{
+    animation:blinkingText 1.2s infinite;
+    }
+    @keyframes blinkingText{
+        0%{     color: red;    }
+        49%{    color: red; }
+        60%{    color: transparent; }
+        99%{    color:transparent;  }
+        100%{   color: #000;    }
+    }

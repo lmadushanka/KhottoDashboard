@@ -1,0 +1,141 @@
+<button mat-button class="btn btn-primary" routerLink="/add-item-option">Add Item Option</button>
+<br />
+<hr>
+<br />
+
+<div class="lightgray-back form-container">
+    <form class="row" [formGroup]="filterItemOption" autocomplete="off">
+
+        <!-- Item Type Id -->
+        <mat-form-field class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3" appearance="fill">
+            <mat-label>Select Item Type</mat-label>
+            <mat-select formControlName="itemType">
+                <mat-option value="1">Food</mat-option>
+                <mat-option value="2">Accomadation</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+
+        <!-- Mobile No -->
+        <mat-form-field class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3" appearance="fill">
+            <mat-label>Select Active Status</mat-label>
+            <mat-select formControlName="isActiveOption">
+                <mat-option value="true">True</mat-option>
+                <mat-option value="false">false</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Submit Button -->
+        <mat-card-actions class="col-12 float:left">
+
+            <button class="btn btn-sucess" mat-raised-button color="primary" type="submit" type="submit"
+                (click)="onSubmit()" style="margin-left:15px; margin-bottom: 5px; padding: 0px 20px;">
+                Filter
+            </button>
+
+            <button class="btn btn-danger" mat-raised-button color="danger" type="submit" (click)="onClear()"
+                style="margin-left:15px; margin-bottom: 5px; padding: 0px 20px;">
+                Clear
+            </button>
+        </mat-card-actions>
+    </form>
+</div>
+
+<br>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- firstName Column -->
+    <ng-container matColumnDef="optionId">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.optionId}} </td>
+    </ng-container>
+
+    <!-- lastName Column -->
+    <ng-container matColumnDef="itemType">
+        <th mat-header-cell *matHeaderCellDef> Item Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.itemType}} </td>
+    </ng-container>
+
+    <!-- mobile Column -->
+    <ng-container matColumnDef="optionName">
+        <th mat-header-cell *matHeaderCellDef> Option Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.optionName}} </td>
+    </ng-container>
+
+    <!-- email Column -->
+    <ng-container matColumnDef="isActiveOption">
+        <th mat-header-cell *matHeaderCellDef>  Active Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.isActiveOption}} </td>
+    </ng-container>
+
+    <!-- View Column -->
+    <ng-container matColumnDef="view">
+        <th mat-header-cell *matHeaderCellDef>View</th>
+        <td mat-cell *matCellDef="let element">
+            <i class="btn fa fa-external-link" (click)="viewItemOption(element.optionId)"></i>
+        </td>
+    </ng-container>
+
+    <!-- Edit Column -->
+    <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
+        <td mat-cell *matCellDef="let element">
+            <i class="btn fa fa-edit" (click)="editItemOption(element.optionId)"></i>
+        </td>
+    </ng-container>
+
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>Expire</th>
+        <td mat-cell *matCellDef="let element">
+            <i 
+                class="btn fa fa fa-ban" 
+                data-toggle="modal" 
+                data-target="#confirmationModal"
+                (click)="expireItemOption(element)"
+            ></i>
+        </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">
+                    <span class="modal-text-head">Do you want to expire the option?</span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span class="modal-text">You are deleting {{expireElement.optionName}} </span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    No
+                </button>
+                <button 
+                    type="button" 
+                    class="btn btn-danger" 
+                    data-dismiss="modal"
+                    (click)="expiredOption()"
+                    >
+                    Yes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

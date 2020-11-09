@@ -8,6 +8,8 @@ import { MinMaxDate } from 'src/app/Entity/minMaxDate';
 import { MinMaxPrice } from 'src/app/Entity/minMaxPrice';
 import { OrderService } from 'src/app/Services/order/order.service';
 import { Router } from '@angular/router';
+import { Subscription, timer } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 export interface PeriodicElement {
   orderId: string;
@@ -15,11 +17,14 @@ export interface PeriodicElement {
   mobile: any;
   email: string;
   orderStatusLabel: string; 
+  billRequested:string;
   view: string;
   accept: string;
   rejectOrder: string;
   
 }
+
+
 
 const ELEMENT_DATA: PeriodicElement[] = [];
 
@@ -38,6 +43,9 @@ export class OrderComponent implements OnInit {
 
   filterOrderDto: FilterOrderDto = new FilterOrderDto();
   orderId:any;
+
+  subscription: Subscription;
+  statusText: string;
   
 
   filterOrderForm = new FormGroup({
@@ -56,7 +64,7 @@ export class OrderComponent implements OnInit {
   minMaxPrice: MinMaxPrice = new MinMaxPrice();
 
   provider: ProviderInfo;
-  serviceUserId:any;
+  serviceUserId:number;
   providerId: any;
   providerType: any;
 
@@ -65,7 +73,6 @@ export class OrderComponent implements OnInit {
   expandingType:any;
 
   exapndIcon:any;
-
   
 
   constructor(
@@ -81,19 +88,31 @@ export class OrderComponent implements OnInit {
     'mobile',
     'billTotal',
     'orderStatusLabel',
+    'billRequested',
     'view',
     'accept',
     'rejectOrder',
     
   ];
 
+  statustext:any;
+
   dataSource = ELEMENT_DATA;
 
   ngOnInit(): void {
     this.session.sessionCheck();
-    this.providerId = localStorage.getItem('providerId');
 
-    this.serviceUserId = localStorage.getItem('serviceUserId');
+    this.providerId = Number(localStorage.getItem('providerId'));
+
+    this.serviceUserId = Number(localStorage.getItem('serviceUserId'));
+
+    this.filterOrderDto.priceInfo = this.minMaxPrice;
+    this.filterOrderDto.dateInfo = this.minMaxDate;
+    this.filterOrderDto.providerId = Number(this.providerId);
+
+    this.filterOrderDto.pageNumber = 1;
+
+    console.log(this.filterOrderDto);
 
     
     this.onProviderSelect();
@@ -102,7 +121,23 @@ export class OrderComponent implements OnInit {
 
     this.expandingType = false;
     this.exapndIcon = 'fa fa-caret-right fa-2x';
+
+    
+
+    this.subscription = timer(0, 5000).pipe(
+      switchMap(() => this.orderService.getAllOrder(this.filterOrderDto))
+    ).subscribe((res) => {
+      // console.log(res);
+
+      this.ELEMENT_DATA = res.data;
+      this.dataSource = this.ELEMENT_DATA;
+    });
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+  
 
   onSubmit(){
 
@@ -182,6 +217,7 @@ export class OrderComponent implements OnInit {
     this.orderService.getAllOrder(this.filterOrderDto).subscribe((res) =>{
       console.log(this.filterOrderDto);
       console.log(res);
+
       this.ELEMENT_DATA = res.data;
       this.dataSource = this.ELEMENT_DATA;
     })

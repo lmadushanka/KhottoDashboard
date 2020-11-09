@@ -35,13 +35,13 @@ export class ItemService {
   }
 
   getAllItemList(value):Observable<any>{
-    let signinUrl = this.baseUrl + '/item/all/';
+    let signinUrl = this.baseUrl + '/item/searchItem';
 
-    return this.http.get<any>(signinUrl + value, httpOptions);
+    return this.http.post<any>(signinUrl, value, httpOptions);
   }
 
   getOptionsByItemType(value):Observable<any>{
-    let signingUrl = this.baseUrl +'/itemOption/';
+    let signingUrl = this.baseUrl +'/itemOption/all/';
     return this.http.get<any>(signingUrl + value,httpOptions);
   }
 
@@ -55,6 +55,19 @@ export class ItemService {
   getItemByItemId(value){
     let signingUrl = this.baseUrl +'/item/';
     return this.http.get<any>(signingUrl + value,httpOptions);
+  }
+
+  updateItemByItemId(addItemDto: AddItemDto):Observable<any>{
+    let signingUrl = this.baseUrl +'/item';
+
+    var itemForm = new FormData();
+    var itemDto = JSON.stringify(addItemDto.itemInfo);
+
+    itemForm.append('coverImage', addItemDto.coverImage);
+
+    itemForm.append('itemInfo', itemDto);
+
+    return this.http.put<any>(signingUrl, itemForm, httpOptions);
   }
 
 }

@@ -101,16 +101,14 @@ export class AddItemComponent implements OnInit {
       nullIf = false;
     }
 
-    if (this.newItem.description == null || this.newItem.description == '') {
-      nullIf = false;
-    }
-
     if (nullIf == true) {
       var _this = this;
       let serviceUserId = localStorage.getItem('serviceUserId');
 
       if (this.termArray.length != 0) {
         this.terms = this.termArray;
+      }else{
+        this.terms = [];
       }
 
       if (this.itemOptions.length != 0) {
@@ -134,9 +132,13 @@ export class AddItemComponent implements OnInit {
       // add provider
       if (this.providerId == 0) {
         this.itemDto.providerId = Number(this.addItemForm.value.provider);
-      } else if (this.providerId == 0) {
+      } else if (this.providerId !== 0) {
         this.itemDto.providerId = Number(this.providerId);
       }
+      
+      // console.log(this.itemDto);
+
+
 
       // this.addItemInfo('name', this.newItem.name);
       this.addItemInfo('coverImage', this.coverFile);
@@ -241,7 +243,7 @@ export class AddItemComponent implements OnInit {
     // console.log(value);
 
     this.ItemService.getOptionsByItemType(value).subscribe((res) => {
-      // console.log(res.data);
+      console.log(res.data);
       this.itemOptions = res.data;
 
       for (var i = 0; i < this.itemOptions.length; i++) {

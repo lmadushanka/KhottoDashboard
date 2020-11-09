@@ -44,6 +44,17 @@ import { ViewBannerComponent } from './Components/modules/view-banner/view-banne
 import { EditBannerComponent } from './Components/modules/edit-banner/edit-banner.component';
 import { SmsReportComponent } from './Components/modules/sms-report/sms-report.component';
 import { EditDiscountComponent } from './Components/modules/edit-discount/edit-discount.component';
+import { ViewDiscountComponent } from './Components/modules/view-discount/view-discount.component';
+import { EmptyPageComponent } from './Components/modules/empty-page/empty-page.component';
+import { EmailReportComponent } from './Components/modules/email-report/email-report.component';
+import { ViewUserComponent } from './Components/modules/view-user/view-user.component';
+import { EditUserComponent } from './Components/modules/edit-user/edit-user.component';
+import { ItemOptionComponent } from './Components/modules/item-option/item-option.component';
+import { AddItemOptionComponent } from './Components/modules/add-item-option/add-item-option.component';
+import { EditItemOptionComponent } from './Components/modules/edit-item-option/edit-item-option.component';
+import { ViewItemOptionComponent } from './Components/modules/view-item-option/view-item-option.component';
+import { MyFacilityComponent } from './Components/modules/my-facility/my-facility.component';
+import { AddMyFacilityComponent } from './Components/modules/add-my-facility/add-my-facility.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -93,6 +104,17 @@ const routes: Routes = [
       { path: 'edit-banner', component: EditBannerComponent},
       { path: 'sms-report', component: SmsReportComponent},
       { path: 'edit-discount', component: EditDiscountComponent},
+      { path: 'view-discount', component: ViewDiscountComponent},
+      { path: 'empty-page', component: EmptyPageComponent},
+      { path: 'email-report', component: EmailReportComponent},
+      { path: 'view-user', component: ViewUserComponent},
+      { path: 'edit-user', component: EditUserComponent},
+      { path: 'item-option', component: ItemOptionComponent},
+      { path: 'add-item-option', component: AddItemOptionComponent},
+      { path: 'edit-item-option', component: EditItemOptionComponent},
+      { path: 'view-item-option', component: ViewItemOptionComponent},
+      { path: 'my-facility', component: MyFacilityComponent},
+      { path: 'add-my-facility', component: AddMyFacilityComponent},
       
     ],
   },

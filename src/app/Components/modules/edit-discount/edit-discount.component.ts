@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { SessionService } from 'src/app/Services/session/session.service';
+import { ItemService } from 'src/app/Services/Item/item.service';
+import { ProviderInfo } from '../../../Entity/providerInfo';
+import { DiscountService } from 'src/app/Services/discount/discount.service';
+import { AddDiscountDto } from 'src/app/Entity/addDiscountDto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-discount',
@@ -7,9 +14,123 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditDiscountComponent implements OnInit {
 
-  constructor() { }
+  addDiscountDto: AddDiscountDto = new AddDiscountDto();
+
+  providerId: any;
+  providerType: any;
+  provider: ProviderInfo;
+  items: any;
+  assignedBy = 0;
+  getProviderId:any;
+
+  addDiscountForm = new FormGroup({
+    providerTypeId:new FormControl(),
+    itemId: new FormControl(),
+    percentage: new FormControl(),
+    startDate: new FormControl(),
+    endDate: new FormControl(),
+  });
+
+  coverFile: File = null;
+
+  discountDetails: any ={
+    providerName: '',
+    providerId: '',
+    itemName: '',
+    itemId: '',
+    percentageOff: '',
+    startDate: '',
+    endDate: '',
+  }
+
+  constructor(
+    private session:SessionService,
+    private ItemService: ItemService,
+    private DiscountService: DiscountService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+    this.session.sessionCheck();
+    this.providerId = localStorage.getItem('providerId');
+
+    if (this.providerId == 0) {
+      this.providerType = true;
+    } else if (this.providerId !== 0) {
+      this.providerType = false;
+      this.assignedBy = Number(localStorage.getItem('providerId'));
+    }
+
+    this.onGetDiscountByDiscountId(localStorage.getItem('discountId'));
+
+    // this.onProviderSelect();
   }
+
+  onSubmit(){
+
+    this.addDiscountDto.assignedBy = this.assignedBy;
+    this.addDiscountDto.itemId = Number(this.discountDetails.itemId);
+    this.addDiscountDto.percentageOff = this.addDiscountForm.value.percentage;
+    this.addDiscountDto.startDate = this.addDiscountForm.value.startDate;
+    this.addDiscountDto.endDate = this.addDiscountForm.value.endDate;
+    this.addDiscountDto.createdBy = Number(localStorage.getItem('serviceUserTypeId'));
+    this.addDiscountDto.providerId = Number(this.discountDetails.providerId);
+
+    if(this.addDiscountDto.percentageOff == null){
+      this.addDiscountDto.percentageOff = this.discountDetails.percentageOff;
+    }
+
+    if(this.addDiscountDto.startDate == null){
+      this.addDiscountDto.startDate = this.discountDetails.startDate;
+    }
+
+    if(this.addDiscountDto.endDate == null){
+      this.addDiscountDto.endDate = this.discountDetails.endDate;
+    }
+
+    console.log(this.addDiscountDto);
+
+    this.DiscountService.editDiscountByDiscountId(localStorage.getItem('discountId'), this.addDiscountDto).subscribe((res) =>{
+      console.log(res);
+    });
+  }
+
+  onClear(){
+    this.addDiscountForm.reset();
+  }
+
+  onGetDiscountByDiscountId(value){
+    this.DiscountService.getDiscountByDiscountId(value).subscribe((res) =>{
+      console.log(res);
+
+      this.discountDetails = res.data;
+
+      console.log(this.discountDetails);
+    });
+  }
+
+  // onProviderSelect() {
+  //   this.ItemService.getProviders().subscribe((res) => {
+  //     this.provider = res.data;
+  //     console.log(this.provider);
+      
+  //   });
+  // }
+
+  // onProviderTypeSelect(value){
+  //   this.DiscountService.getItemByProviderId(value).subscribe((res) =>{
+  //     console.log(res);
+
+  //     this.items = res.data;
+
+  //     this.getProviderId = value;
+
+  //     console.log(this.items);
+  //   })
+  // }
+
+  
+
+
 
 }

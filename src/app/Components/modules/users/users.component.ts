@@ -6,6 +6,7 @@ import { AddUserDto } from 'src/app/Entity/addUserDto';
 import { FilterUserDto } from 'src/app/Entity/filterUserDto';
 import { ProviderInfo } from '../../../Entity/providerInfo';
 import { ItemService } from 'src/app/Services/Item/item.service';
+import { Router } from '@angular/router';
 
 export interface PeriodicElement {
   fistName: string;
@@ -48,7 +49,8 @@ export class UsersComponent implements OnInit {
   constructor(
     private session: SessionService,
     private userService: UserService,
-    private itemService: ItemService
+    private itemService: ItemService,
+    private router: Router,
     ) { }
 
     displayedColumns: string[] = [
@@ -133,7 +135,7 @@ export class UsersComponent implements OnInit {
 
   getUserType(value){
     this.userService.getServiceUserType(value).subscribe((res) =>{
-      // console.log(res);
+      console.log(res);
       this.serviceUserTypeList = res.data;
       
     })
@@ -153,6 +155,16 @@ export class UsersComponent implements OnInit {
       this.provider = res.data;
       // console.log(this.provider);
     });
+  }
+
+  viewUser(value){
+    localStorage.setItem('viewEditUserId', value);
+    this.router.navigateByUrl('/view-user');
+  }
+
+  editUser(value){
+    localStorage.setItem('viewEditUserId', value);
+    this.router.navigateByUrl('/edit-user');
   }
 
 }

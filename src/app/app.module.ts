@@ -83,6 +83,18 @@ import { ViewBannerComponent } from './Components/modules/view-banner/view-banne
 import { EditBannerComponent } from './Components/modules/edit-banner/edit-banner.component';
 import { SmsReportComponent } from './Components/modules/sms-report/sms-report.component';
 import { EditDiscountComponent } from './Components/modules/edit-discount/edit-discount.component';
+import { ViewDiscountComponent } from './Components/modules/view-discount/view-discount.component';
+import { EmptyPageComponent } from './Components/modules/empty-page/empty-page.component';
+import { EmailReportComponent } from './Components/modules/email-report/email-report.component';
+import { ViewUserComponent } from './Components/modules/view-user/view-user.component';
+import { EditUserComponent } from './Components/modules/edit-user/edit-user.component';
+import { AddItemOptionComponent } from './Components/modules/add-item-option/add-item-option.component';
+import { ItemOptionComponent } from './Components/modules/item-option/item-option.component';
+import { ViewItemOptionComponent } from './Components/modules/view-item-option/view-item-option.component';
+import { EditItemOptionComponent } from './Components/modules/edit-item-option/edit-item-option.component';
+import { ProviderDashboardComponent } from './Components/modules/provider-dashboard/provider-dashboard.component';
+import { MyFacilityComponent } from './Components/modules/my-facility/my-facility.component';
+import { AddMyFacilityComponent } from './Components/modules/add-my-facility/add-my-facility.component';
 
 @NgModule({
   declarations: [
@@ -130,6 +142,18 @@ import { EditDiscountComponent } from './Components/modules/edit-discount/edit-d
     EditBannerComponent,
     SmsReportComponent,
     EditDiscountComponent,
+    ViewDiscountComponent,
+    EmptyPageComponent,
+    EmailReportComponent,
+    ViewUserComponent,
+    EditUserComponent,
+    AddItemOptionComponent,
+    ItemOptionComponent,
+    ViewItemOptionComponent,
+    EditItemOptionComponent,
+    ProviderDashboardComponent,
+    MyFacilityComponent,
+    AddMyFacilityComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,7 +11,7 @@
   </a>
   <mat-menu #menu="matMenu" style="width: 100%">
     <button
-    *ngFor = "let resource of childPermission"
+      *ngFor = "let resource of childPermission"
       class="btn mat-menu-btn custom-btn-1"
       routerLink="{{resource.routePath}}"
     >

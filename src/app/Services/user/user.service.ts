@@ -32,4 +32,14 @@ export class UserService {
     return this.http.post<any>(signingUrl,value,httpOptions);
   }
 
+  getUserByServiceUserId(value):Observable<any>{
+    let userUrl = this.baseUrl + '/user/';
+    return this.http.get<any>(userUrl + value,httpOptions);
+  }
+
+  updateUser(value1,value2):Observable<any>{
+    let userUrl = this.baseUrl + '/user/';
+    return this.http.put<any>(userUrl + value1, value2, httpOptions);
+  }
+
 }

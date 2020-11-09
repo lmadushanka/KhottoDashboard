@@ -24,5 +24,6 @@ export class Provider {
   openDays: OpenDays[];
   selfService: string;
   freeCancelationDateCount: number;
+  isDelivery:number;
   
 }

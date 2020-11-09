@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import HC_exporting from 'highcharts/modules/exporting';
+import { KhottoDashboardService } from 'src/app/Services/khotto-dashboard/khotto-dashboard.service';
 
 @Component({
   selector: 'app-widget-card',
@@ -17,9 +18,31 @@ export class CardComponent implements OnInit {
 
   chartOptions={};
 
-  constructor() { }
+  constructor(private khottoDashboardService:KhottoDashboardService ) { }
+
+  sales = [];
+
+  salesCount:number[] = [];
 
   ngOnInit(): void {
+
+    this.khottoDashboardService.getProviderGrowth().subscribe((res) =>{
+      console.log(res);
+
+      var data = res.data;
+
+      for(var i = 0; i < data.length; i++){
+        this.salesCount.push(data[i]);
+      }
+      
+    });
+
+    this.sales = [1,9,6,4,6,12,43,16,4,6,1];
+
+
+    console.log(this.salesCount);
+
+    
     this.chartOptions = {
       chart: {
           type: 'area',
@@ -99,17 +122,20 @@ export class CardComponent implements OnInit {
         tickOption:[]
       },
       series: [{
-        data: [71,78,39,66]
+        data: this.sales
       }]
-  };
+    };
 
-  HC_exporting(Highcharts);
+    HC_exporting(Highcharts);
 
-  setTimeout(() =>{
-    window.dispatchEvent(
-      new Event('resize')
-    );
-  },300);
+    setTimeout(() =>{
+      window.dispatchEvent(
+        new Event('resize')
+      );
+    },300);
+    
   }
 
 }
+
+

@@ -15,9 +15,9 @@ export class DiscountService {
 
   constructor(private http: HttpClient, private globals: Globals) { }
 
-  getAllDiscount(): Observable<any>{
-    let signinUrl = this.baseUrl + '/discount/all';
-    return this.http.get<any>(signinUrl, httpOptions);
+  getAllDiscount(value): Observable<any>{
+    let signinUrl = this.baseUrl + '/discount/all/';
+    return this.http.get<any>(signinUrl + value , httpOptions);
   }
 
   getItemByProviderId(value){
@@ -33,5 +33,17 @@ export class DiscountService {
   setExpireDiscount(value1,value2){
     let discountUrl = this.baseUrl + '/discount/expire/';
     return this.http.patch<any>(discountUrl + value1,value2,httpOptions);
+  }
+
+  getDiscountByDiscountId(value){
+    let discountUrl = this.baseUrl + '/discount/';
+    return this.http.get<any>(discountUrl + value ,httpOptions);
+  }
+
+  editDiscountByDiscountId(value1,value2){
+
+    let discountUrl = this.baseUrl + '/discount/';
+    return this.http.patch<any>(discountUrl + value1,value2,httpOptions);
+
   }
 }

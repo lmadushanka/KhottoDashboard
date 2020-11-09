@@ -46,7 +46,6 @@ export class ProviderComponent implements OnInit {
   }
 
   displayedColumns: string[] = [
-    'provider',
     'name',
     'address',
     'view',
@@ -85,7 +84,7 @@ export class ProviderComponent implements OnInit {
     i++;
 
     this.nextCount += i;
-    // console.log(this.nextCount);
+    console.log(this.nextCount);
 
     this.providerService.getAllProviderList(this.nextCount).subscribe((res) => {
       console.log(res);

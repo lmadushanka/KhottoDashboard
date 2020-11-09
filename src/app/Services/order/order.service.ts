@@ -19,7 +19,7 @@ export class OrderService {
   
 
   getAllOrder(value){
-    console.log(value);
+    // console.log(value);
     let signinUrl = this.baseUrl +'/order/searchOrder';
     return this.http.post<any>(signinUrl,value, httpOptions);
   }

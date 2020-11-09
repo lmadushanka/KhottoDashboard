@@ -11,28 +11,28 @@ import { RefreshTokenService } from 'src/app/Services/refresh-token/refresh-toke
 export class HomeComponent implements OnInit {
   constructor(private router: Router, private session: SessionService, private refreshTokenService: RefreshTokenService) {}
 
+  setDashboardForKhotto = false;
+  setDashboardForProvider = false;
+
   ngOnInit() {
     this.session.sessionCheck();
     this.setRefreshToken();
+
+    if(Number(localStorage.getItem('providerId')) == 0){
+      this.setDashboardForKhotto = true;
+    }else if(Number(localStorage.getItem('providerId')) !== 0){
+      this.setDashboardForProvider = false;
+    }
   }
 
   setRefreshToken(){
     this.refreshTokenService.OnRefreshToken().subscribe((res) =>{
-      console.log(res.data);
-      this.router.navigateByUrl('/khottodashboard');
+      // console.log(res.data);
+      // this.router.navigateByUrl('/khottodashboard');
     },
     (error) => {
-      window.localStorage.removeItem('user');
-      window.localStorage.removeItem('token');
-      window.localStorage.removeItem('serviceUserId');
-      window.localStorage.removeItem('providerId');
-      window.localStorage.removeItem('orderId');
-      window.localStorage.removeItem('serviceUserTypeId');
-      window.localStorage.removeItem('email');
-      window.localStorage.removeItem('viewProviderId');
-      window.localStorage.removeItem('itemId');
-      window.localStorage.removeItem('permissions');
-      window.localStorage.removeItem('categoryId');
+      
+      window.localStorage.clear();
 
       this.router.navigateByUrl('/login');
     });

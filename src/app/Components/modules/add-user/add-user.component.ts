@@ -73,7 +73,7 @@ export class AddUserComponent implements OnInit {
 
     if (this.providerId == 0) {
       this.addUserDto.providerId = Number(this.addUserForm.value.provider);
-    } else if (this.providerId == 0) {
+    } else if (this.providerId !== 0) {
       this.addUserDto.providerId = Number(this.providerId);
     }
 

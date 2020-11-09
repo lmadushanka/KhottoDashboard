@@ -14,7 +14,7 @@ export class SidebarComponent implements OnInit {
 
   permissions:[] = [];
 
-  permission2:any;
+  permission2 =  [];
 
   childPermission:any;
 
@@ -32,33 +32,54 @@ export class SidebarComponent implements OnInit {
 
     
     this.setServiceUserId = JSON.parse(localStorage.getItem('serviceUserTypeId'));
-    
-    if (user != null) {
-      this.currentUser = user.user;
-    }
-
-    if(this.setServiceUserId == 1){
-
-      this.setSetingView = true;
-
-      this.childPermission = this.permission2[12].childResources;
-      this.permissions.splice(12,1)  
-
-    }else if(this.setServiceUserId !== 1){
-
-      this.setSetingView = false;
-
-      // if(this.childPermission == undefined){
-      //   location.replace('/not-permission');
-      // }
-
-    }
-    
-
-    
 
     console.log(this.permissions);
-    console.log(this.childPermission);
+
+    let i = 0;
+
+    for(i; i < this.permissions.length; i++){
+      // console.log(i);
+
+      if(this.permission2[i].resourceName == 'Settings'){
+
+          this.setSetingView = true;
+    
+          this.permissions.splice(i,1);
+
+          this.childPermission = this.permission2[i].childResources;
+          
+      }
+    }
+
+    // console.log(this.permissions);
+    
+
+    
+
+
+    
+    // if (user != null) {
+    //   this.currentUser = user.user;
+    // }
+
+    // if(this.setServiceUserId == 1){
+
+    //   this.setSetingView = true;
+
+    //   this.childPermission = this.permission2[12].childResources;
+    //   this.permissions.splice(12,1)  
+
+    //   console.log(this.childPermission);
+
+    // }else if(this.setServiceUserId !== 1){
+
+    //   this.setSetingView = false;
+
+    //   // if(this.childPermission == undefined){
+    //   //   location.replace('/not-permission');
+    //   // }
+
+    // }
 
   }
 }

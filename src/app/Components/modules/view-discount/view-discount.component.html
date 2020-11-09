@@ -1,0 +1,93 @@
+<button mat-button class="btn btn-primary" routerLink="/discount">
+    View Discount
+  </button>
+  <br />
+  <hr>
+  <br />
+  
+  <div class="lightgray-back form-container">
+    <form class="row" [formGroup]="addDiscountForm" autocomplete="off">
+
+      <!-- Provider Type -->
+      <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+      *ngIf="providerType"
+    >
+      <mat-label>Provider</mat-label>
+      <input
+          matInput
+          placeholder="Provider Name"
+          type="text"
+          formControlName="providerTypeId"
+          value="{{discountDetails.providerName}}"
+          readonly
+        />
+    </mat-form-field>
+  
+     <!-- Provider Type -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Item</mat-label>
+        <input
+          matInput
+          placeholder="Provider Name"
+          type="text"
+          formControlName="itemId"
+          value="{{discountDetails.itemName}}"
+          readonly
+        />
+      </mat-form-field>
+
+      <!-- Discount -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Percentage</mat-label>
+        <input
+          matInput
+          placeholder="Enter Category Name"
+          type="number"
+          formControlName="percentage"
+          value="{{discountDetails.percentageOff}}"
+          readonly
+        />
+      </mat-form-field>
+
+      <!-- start date -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>Start Date</mat-label>
+        <input
+          matInput
+          placeholder="Enter Category Name"
+          type="text"
+          formControlName="startDate"
+          value="{{discountDetails.startDate}}"
+          readonly
+        />
+      </mat-form-field>
+
+      <!-- end date -->
+      <mat-form-field
+        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        appearance="fill"
+      >
+        <mat-label>End Date</mat-label>
+        <input
+          matInput
+          placeholder="Enter Category Name"
+          type="text"
+          formControlName="endDate"
+          value="{{discountDetails.startDate}}"
+          readonly
+        />
+      </mat-form-field>
+    </form>
+  </div>
+  

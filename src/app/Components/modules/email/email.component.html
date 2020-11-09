@@ -1,108 +1,218 @@
 
+<button mat-button class="btn btn-primary" routerLink="/email-report">
+  Email Report
+</button>
+<br />
+<hr>
+<br />
+<div class="lightgray-back form-container">
+  <form class="row" [formGroup]="filterUser" autocomplete="off">
+
+    <!-- Min -->
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>Min Date</mat-label>
+      <input
+        matInput
+        placeholder="Enter First Name"
+        type="date"
+        formControlName="minDate"
+      />
+    </mat-form-field>
+
+    <!-- Max -->
+    <mat-form-field
+      class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+      appearance="fill"
+    >
+      <mat-label>Max Date</mat-label>
+      <input
+        matInput
+        placeholder="Enter Last Name"
+        type="date"
+        formControlName="maxDate"
+      />
+    </mat-form-field>
+
+    
+
+    <!-- Submit Button -->
+    <mat-card-actions class="col-12 float:left">
+      
+    <button
+      class="btn btn-sucess"
+      mat-raised-button
+      color="primary"
+      type="submit"
+      type="submit"
+      (click)="onSubmit()"
+      style="margin-left:15px; margin-bottom: 5px; padding: 0px 20px;"
+    >
+      Filter
+    </button>
+
+    <button
+          class="btn btn-danger"
+          mat-raised-button
+          color="danger"
+          type="submit"
+          (click)="onClear()"
+          style="margin-left:15px; margin-bottom: 5px; padding: 0px 20px;"
+        >
+          Clear
+        </button>
+    </mat-card-actions>
+  </form>
+</div>
+
+<br>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+    <ng-container matColumnDef="checkUserId">
+      <th mat-header-cell *matHeaderCellDef>
+        <input
+            id="element.clientUserId"
+            placeholder="Open"
+            type="checkbox"
+            (change)= "onSelectAllCheckBox()"
+          />
+         </th>
+      <td mat-cell *matCellDef="let element"> 
+        
+        <input
+            id="{{element.clientUserId}}"
+            placeholder="Open"
+            type="checkbox"
+            [checked]="isChecked"
+            (change)= "onCheckBox(element.clientUserId, element.email)"
+          />
+      </td>
+    </ng-container>
+    <!-- firstName Column -->
+    <ng-container matColumnDef="clientUserId">
+      <th mat-header-cell *matHeaderCellDef> Client User Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.clientUserId}} </td>
+    </ng-container>
+  
+    <!-- lastName Column -->
+    <ng-container matColumnDef="clientName">
+      <th mat-header-cell *matHeaderCellDef> Client Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.ClientName}} </td>
+    </ng-container>
+  
+    <!-- mobile Column -->
+    <ng-container matColumnDef="mobile">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+  
+    
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <br />
+
+<button
+  class="btn btn-success page-btn"
+  mat-raised-button
+  color="success"
+  type="submit"
+  (click)="onPreviewButton()"
+  style="margin: 15px; padding: 0px 20px; float: left"
+>
+<i class="fa fa-angle-double-left fa-2x" aria-hidden="true"></i>
+</button>
+
+<button
+  class="btn btn-info"
+  mat-raised-button
+  color="success"
+  type="submit"
+  style="margin: 15px; padding: 0px 20px; float: left"
+>
+  {{ nextCount }}
+</button>
+
+<button
+  class="btn btn-success page-btn"
+  mat-raised-button
+  color="success"
+  type="submit"
+  (click)="onNextButton()"
+  style="margin: 15px; padding: 0px 10px; float: left"
+>
+  <i class="fa fa-angle-double-right fa-2x" aria-hidden="true"></i>
+</button>
+
+<br>
+<br>
+<br>
+
+<hr style="width: 100%" />
 
 <div class="lightgray-back form-container">
-    <form class="row" [formGroup]="filterUser" autocomplete="off">
-  
-      <!-- Min -->
-      <mat-form-field
-        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
-        appearance="fill"
-      >
-        <mat-label>Min Date</mat-label>
-        <input
-          matInput
-          placeholder="Enter First Name"
-          type="date"
-          formControlName="minDate"
-        />
-      </mat-form-field>
-  
-      <!-- Max -->
-      <mat-form-field
-        class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
-        appearance="fill"
-      >
-        <mat-label>Max Date</mat-label>
-        <input
-          matInput
-          placeholder="Enter Last Name"
-          type="date"
-          formControlName="maxDate"
-        />
-      </mat-form-field>
-  
+  <form class="row" [formGroup]="addSms" autocomplete="off">
+
+    <!-- Name -->
+    <mat-form-field
+      class="col-12"
+      appearance="fill"
+    >
+      <mat-label>Subject</mat-label>
+      <input
+        matInput
+        placeholder="Enter Subject"
+        type="text"
+        autocomplete="off"
+        formControlName="emailSubject"
+      />
+    </mat-form-field>
+
+    <!-- Name -->
+    <mat-form-field
+      class="col-12"
+      appearance="fill"
+    >
+      <mat-label>Body</mat-label>
+      <textarea
+        matInput
+        placeholder="Enter Body"
+        type="text"
+        autocomplete="off"
+        formControlName="emailBody"
+        required
+      ></textarea>
+    </mat-form-field>
+
+    <!-- Submit Button -->
+    <mat-card-actions class="col-12 float:left">
       
-  
-      <!-- Submit Button -->
-      <mat-card-actions class="col-12 float:left">
-        
       <button
-        class="btn btn-sucess"
+        class="btn btn-success"
         mat-raised-button
-        color="primary"
         type="submit"
-        type="submit"
-        (click)="onSubmit()"
-        style="margin-left:15px; margin-bottom: 5px; padding: 0px 20px;"
+        (click)="onSendSMS()"
+        style="margin-left:15px; margin-bottom: 5px; padding: 0px 20px;float: right;"
       >
-        Filter
+        Send Email
       </button>
-  
-      <button
-            class="btn btn-danger"
-            mat-raised-button
-            color="danger"
-            type="submit"
-            (click)="onClear()"
-            style="margin-left:15px; margin-bottom: 5px; padding: 0px 20px;"
-          >
-            Clear
-          </button>
+
       </mat-card-actions>
-    </form>
+
+  </form>
   </div>
-  
+
   <br>
+
   
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
-      <ng-container matColumnDef="checkUserId">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> 
-          
-          <input
-              id="{{element.clientUserId}}"
-              placeholder="Open"
-              type="checkbox"
-            />
-        </td>
-      </ng-container>
-      <!-- firstName Column -->
-      <ng-container matColumnDef="clientUserId">
-        <th mat-header-cell *matHeaderCellDef> Client User Id </th>
-        <td mat-cell *matCellDef="let element"> {{element.clientUserId}} </td>
-      </ng-container>
-    
-      <!-- lastName Column -->
-      <ng-container matColumnDef="clientName">
-        <th mat-header-cell *matHeaderCellDef> Client Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.ClientName}} </td>
-      </ng-container>
-    
-      <!-- email Column -->
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Email </th>
-        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-      </ng-container>
-    
-      
-    
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+
+
   
   
-    
-    

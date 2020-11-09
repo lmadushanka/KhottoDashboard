@@ -28,4 +28,16 @@ export class FacilityService {
 
     return this.httpClient.post<any>(facilityUrl,value,httpOptions);
   }
+
+  getMyFacility(value){
+    let myFacilityUrl = this.baseUrl + '/bookableFacility/all';
+
+    return this.httpClient.post<any>(myFacilityUrl,value,httpOptions);
+  }
+
+  onDeleteMyFacility(value):Observable<any>{
+    let myFacilityUrl = this.baseUrl + '/bookableFacility/';
+
+    return this.httpClient.delete<any>(myFacilityUrl + value, httpOptions);
+  }
 }

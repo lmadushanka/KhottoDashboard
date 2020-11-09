@@ -13,4 +13,5 @@ export class AddProviderDto {
   nicNo:any;
   providerId:number;
   freeCancelationDateCount:any;
+  isDelivery:any;
 }

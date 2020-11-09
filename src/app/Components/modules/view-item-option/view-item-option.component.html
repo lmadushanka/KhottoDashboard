@@ -1,0 +1,55 @@
+<button mat-button class="btn btn-primary" routerLink="/item-option">View Item Option</button>
+<br />
+<hr>
+<br />
+
+<div class="lightgray-back form-container">
+    <form class="row" [formGroup]="addItemOption" autocomplete="off">
+
+        <!-- Name -->
+    <mat-form-field
+    class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+    appearance="fill"
+  >
+    <mat-label>Item Option Name</mat-label>
+    <input
+      matInput
+      placeholder="Enter Item Option Name"
+      type="text"
+      formControlName="itemOptionName"
+      value="{{itemOptionDetails.optionName}}"
+      readonly
+      
+    />
+  </mat-form-field>
+
+        <!-- Item Type Id -->
+        <mat-form-field class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3" appearance="fill">
+            <mat-label>Item Type</mat-label>
+            <input
+                matInput
+                placeholder=""
+                type="text"
+                formControlName="itemOptionName"
+                readonly
+                value="{{itemType}}"
+                
+                />
+        </mat-form-field>
+
+
+
+        <!-- Mobile No -->
+        <mat-form-field class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3" appearance="fill">
+            <mat-label>Is Active Option</mat-label>
+            <input
+                matInput
+                placeholder=""
+                type="text"
+                formControlName="itemOptionName"
+                readonly
+                value="{{itemOptionDetails.isActiveOption}}"
+            />
+        </mat-form-field>
+    </form>
+</div>

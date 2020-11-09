@@ -169,7 +169,7 @@
       <input
         matInput
         placeholder="Enter Tax Rate"
-        type="number"
+        type="text"
         autocomplete="off"
         formControlName="taxRate"
         required
@@ -185,7 +185,7 @@
       <input
         matInput
         placeholder="Enter Service Charge"
-        type="number"
+        type="text"
         autocomplete="off"
         formControlName="serviceCharge"
         required
@@ -201,7 +201,7 @@
       <input
         matInput
         placeholder="Enter Free Cancel Available Within Days"
-        type="number"
+        type="text"
         autocomplete="off"
         formControlName="freeCancelationDateCount"
         required
@@ -224,6 +224,22 @@
      >
    </mat-select>
  </mat-form-field>
+
+     <!-- Is Delivery -->
+     <mat-form-field
+     class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+     appearance="fill"
+     *ngIf = "anableSelfService"
+   >
+     <mat-label>Is Delivery</mat-label>
+     <mat-select formControlName="isDelivery" required>
+         <mat-option
+         *ngFor="let item of setIsDelivery"
+         value="{{ item.value }}"
+         >{{ item.title }}</mat-option
+       >
+     </mat-select>
+   </mat-form-field>
 
     <!-- Map -->
     <mat-form-field

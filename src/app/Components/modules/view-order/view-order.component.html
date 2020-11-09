@@ -73,11 +73,7 @@
  >
    <mat-label>Select Confirmation</mat-label>
    <mat-select formControlName="confirmation" required>
-       <mat-option
-       *ngFor="let item of confirmation"
-       value="{{ item.value }}"
-       >{{ item.title }}</mat-option
-     >
+    <mat-option value="1">Cash</mat-option>
    </mat-select>
  </mat-form-field>
     </mat-label>

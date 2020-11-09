@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DiscountService } from 'src/app/Services/discount/discount.service';
 import { SessionService } from 'src/app/Services/session/session.service';
+import { Router } from '@angular/router';
+
 export interface PeriodicElement {
   itemName: string;
   providerName: string;
@@ -30,11 +32,18 @@ export class DiscountComponent implements OnInit {
 
   constructor(
     private discountService:DiscountService,
-    private sessionService:SessionService
+    private sessionService:SessionService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.getAllDiscount();
+
+    if(Number(localStorage.getItem('providerId')) == 0){
+      this.getAllDiscount('');
+    }else if(Number(localStorage.getItem('providerId')) !== 0){
+      this.getAllDiscount(Number(localStorage.getItem('providerId')));
+    }
+    
   }
 
   displayedColumns: string[] = [
@@ -49,8 +58,8 @@ export class DiscountComponent implements OnInit {
   ];
   dataSource = ELEMENT_DATA;
 
-  getAllDiscount(){
-    this.discountService.getAllDiscount().subscribe((res) =>{
+  getAllDiscount(value){
+    this.discountService.getAllDiscount(value).subscribe((res) =>{
       console.log(res.data);
 
       this.ELEMENT_DATA = res.data;
@@ -73,6 +82,22 @@ export class DiscountComponent implements OnInit {
     this.discountService.setExpireDiscount(this.deleteElement.discountId , this.serviceUserId).subscribe((res) =>{
       console.log(res);
     });
+  }
+
+  editDiscount(value){
+
+    localStorage.setItem('discountId', value);
+    // console.log(value);
+    this.router.navigateByUrl('/edit-discount');
+
+  }
+
+  viewDiscount(value){
+
+    localStorage.setItem('discountId', value);
+    // console.log(value);
+    this.router.navigateByUrl('/view-discount');
+
   }
 
 }

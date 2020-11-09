@@ -3,6 +3,9 @@ import { ResourceService } from 'src/app/Services/resource/resource.service';
 import { SessionService } from 'src/app/Services/session/session.service';
 import { PermissionService } from 'src/app/Services/permission/permission.service'
 import { PageNumber } from 'src/app/Entity/pageNumber';
+import { FormGroup, FormControl } from '@angular/forms';
+import { UserService } from 'src/app/Services/user/user.service';
+import { FilterPermission } from 'src/app/Entity/filterPermissionDto';
 
 export interface ResourceElement {
   resourcePermissionId: number;
@@ -25,15 +28,24 @@ export class PermissionComponent implements OnInit {
 
   pageNumber:PageNumber = new PageNumber();
 
+  filterPermissionDto: FilterPermission = new FilterPermission();
+
   nextCount: number = 1;
 
   access:string = '';
+
+  serviceUserTypeList = [];
+
+  filterPermission = new FormGroup({
+    serviceUserTypeId: new FormControl(),
+  });
 
 
   constructor(
     private resourceService: ResourceService,
     private session: SessionService,
     private permissionService: PermissionService,
+    private userService: UserService,
     ) { }
 
   ngOnInit(): void {
@@ -41,6 +53,29 @@ export class PermissionComponent implements OnInit {
     this.pageNumber.pageNumber = this.nextCount;
 
     this.onGetAllPermission(this.pageNumber);
+
+    this.getUserType(Number(localStorage.getItem('serviceUserId')));
+  }
+
+  onSubmit(){
+
+    this.filterPermissionDto.serviceUserTypeId = Number(this.filterPermission.value.serviceUserTypeId);
+    this.filterPermissionDto.pageNumber = 1;
+
+    console.log(this.filterPermissionDto);
+
+    this.permissionService.getAllPermission(this.filterPermissionDto).subscribe((res) =>{
+      console.log(res.data);
+      let data = res.data;
+      this.ELEMENT_DATA = res.data;
+      this.dataSource = this.ELEMENT_DATA;
+
+      this.filterPermission.reset();
+    });
+  }
+
+  onClear(){
+    this.filterPermission.reset();
   }
 
   displayedColumns: string[] = ['resourcePermissionId', 'access','resourceName','view','edit','delete'];
@@ -111,6 +146,14 @@ export class PermissionComponent implements OnInit {
       // }else if(res.data.access == 0){
       //   this.access = 'No';
       // }
+      
+    })
+  }
+  
+  getUserType(value){
+    this.userService.getServiceUserType(value).subscribe((res) =>{
+      console.log(res);
+      this.serviceUserTypeList = res.data;
       
     })
   }

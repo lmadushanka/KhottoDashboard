@@ -11,7 +11,7 @@ import { AddProviderDto } from 'src/app/Entity/addProviderDto';
 import { ProviderInfo } from 'src/app/Entity/providerInfo';
 import { CategoryService } from 'src/app/Services/category/category.service';
 import { Router } from '@angular/router';
-import { utf8Encode } from '@angular/compiler/src/util';
+import { newArray, utf8Encode } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-edit-provider',
@@ -55,7 +55,8 @@ export class EditProviderComponent implements OnInit {
     BRNumber: new FormControl(),
     district: new FormControl(),
     freeCancelationDateCount: new FormControl(),
-    selfService: new FormControl()
+    selfService: new FormControl(),
+    isDelivery: new FormControl(),
   });
 
   logoFile: File = null;
@@ -136,7 +137,8 @@ export class EditProviderComponent implements OnInit {
     bannerImage: '',
     businessRegNo: '',
     categoryId: '',
-    freeCancelationDateCount: ''
+    freeCancelationDateCount: '',
+    isDelivery: ''
   };
 
   luxuryCategoryName = '';
@@ -149,6 +151,8 @@ export class EditProviderComponent implements OnInit {
   luxuryCategorySelected = '';
 
   selfServiceSelected = '';
+
+  isDeliverySelected = '';
 
   constructor(
     private session: SessionService,
@@ -411,6 +415,12 @@ export class EditProviderComponent implements OnInit {
         this.policyArray = res.data.policy;
       }
 
+      if(this.providerDetails.isDelivery == 0){
+        this.isDeliverySelected = '0';
+      }else if(this.providerDetails.isDelivery == 1){
+        this.isDeliverySelected = '1';
+      }
+
       
 
       
@@ -557,6 +567,12 @@ export class EditProviderComponent implements OnInit {
 
     }
 
+    if(this.addProviderForm.value.isDelivery == null){
+      this.newProvider.isDelivery = this.providerDetails.isDelivery;
+    }else {
+      this.newProvider.isDelivery = Number(this.addProviderForm.value.isDelivery);
+    }
+
     if(this.newProvider.logoImage == null){
       this.newProvider.logoImage = this.imgURLLogo;
     }
@@ -599,6 +615,7 @@ export class EditProviderComponent implements OnInit {
     this.addProviderDto.providerTypeId = Number(
       this.newProvider.providerType
     );
+    this.addProviderDto.isDelivery = Number(this.newProvider.isDelivery);
 
     this.addProviderDto.providerId = Number(localStorage.getItem('viewProviderId'));
 

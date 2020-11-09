@@ -45,7 +45,7 @@ export class BannerService {
   }
 
   updateBannerByBannerId(value,addBannerDto:AddBannerDto):Observable<any>{
-    let bannerUrl = this.baseUrl + '/banner/cancel/';
+    let bannerUrl = this.baseUrl + '/banner/';
 
     var updateBannerForm = new FormData();
 

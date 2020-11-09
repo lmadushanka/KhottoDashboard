@@ -225,7 +225,20 @@
     <!-- email Column -->
     <ng-container matColumnDef="orderStatusLabel">
       <th mat-header-cell *matHeaderCellDef> Status </th>
-      <td style="color: green;" mat-cell *matCellDef="let element"> {{element.orderStatusLabel}} </td>
+      <td mat-cell *matCellDef="let element"> 
+        <div style="text-transform: uppercase;" *ngIf = "element.orderStatusLabel == 'Pending'" class='blinking'>
+          {{element.orderStatusLabel}}
+          </div>
+
+          <div style="color: green;text-transform: uppercase;" *ngIf = "element.orderStatusLabel !== 'Pending'">
+            {{element.orderStatusLabel}}
+            </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="billRequested">
+      <th mat-header-cell *matHeaderCellDef> Bill Requested </th>
+      <td style="text-transform: uppercase;" mat-cell *matCellDef="let element"> {{element.lastLocationTriedToFinalizeOrder}} </td>
     </ng-container>
 
     <!-- View Column -->

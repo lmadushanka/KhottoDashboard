@@ -39,16 +39,16 @@ export class ViewOrderComponent implements OnInit {
   typeOfProviderConfirmatio:any = {typeOfProviderConfirmatio:''};
 
 
-  orderItemList: any = [];
+  orderItemList:any;
 
   public amount:number;
 
   balance:any;
 
-  confirmation = [
+  confirmations = [
     { title: 'Cash', value: 1 },
     // { title: 'No', value: 0 },
-  ]
+  ];
 
   filterOrderForm = new FormGroup({
     confirmation: new FormControl(),
@@ -61,6 +61,7 @@ export class ViewOrderComponent implements OnInit {
   ngOnInit() {
     this.getOrderId = Number(localStorage.getItem('orderId'));
     this.getOrderDetails();
+    
   }
 
   getOrderDetails() {
@@ -68,6 +69,8 @@ export class ViewOrderComponent implements OnInit {
       console.log(res.data);
       this.commonOrderInfo = res.data.commonOrderInfo;
       this.orderRecords = res.data.orderRecords;
+
+      // console.log(this.commonOrderInfo.billTotal);
       // console.log(Number(this.orderDetails.billTotal));
 
       this.order.billTotal = Number(this.commonOrderInfo.billTotal);
@@ -87,6 +90,8 @@ export class ViewOrderComponent implements OnInit {
       }
 
       this.orderItemList = this.orderRecords;
+
+      // console.log(this.orderItemList);
     });
   }
 

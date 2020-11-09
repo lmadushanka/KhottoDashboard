@@ -26,8 +26,18 @@ export class SmsService {
     return this.httpClient.post(addSMSUrl,value,httpOptions);
   }
 
+  sendEmail(value):Observable<any>{
+    let addEmailUrl = this.baseUrl + '/email/bulk';
+    return this.httpClient.post(addEmailUrl,value,httpOptions);
+  }
+
   getSMSReport(value):Observable<any>{
     let smsUrl = this.baseUrl + '/sms/all';
     return this.httpClient.post(smsUrl,value,httpOptions);
+  }
+
+  getEmailReport(value):Observable<any>{
+    let emailrl = this.baseUrl + '/email/all';
+    return this.httpClient.post(emailrl,value,httpOptions);
   }
 }

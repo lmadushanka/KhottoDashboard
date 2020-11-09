@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { SessionService } from 'src/app/Services/session/session.service';
 import { ItemService } from 'src/app/Services/Item/item.service';
 import { Router } from '@angular/router';
+import { SerchItem } from 'src/app/Entity/serchItem';
+import { getInterpolationArgsLength } from '@angular/compiler/src/render3/view/util';
 
 export interface PeriodicElement {
-  type: string;
   name: string;
   price: number;
   imageUrl: string;
@@ -15,16 +16,20 @@ export interface PeriodicElement {
 
 const ELEMENT_DATA: PeriodicElement[] = [];
 
+
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent implements OnInit {
+
+  nextCount:number;
+
   ELEMENT_DATA: PeriodicElement[] = [];
   deleteElement: any = { name: '', itemTypeId: 0, providerName: ''};
 
-  nextCount: number = 1;
+  serchItem:SerchItem = new SerchItem();
 
   constructor(
     private session: SessionService,
@@ -34,11 +39,23 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit() {
     this.session.sessionCheck();
-    this.getAllItems(this.nextCount);
+
+    this.serchItem.itemTypeId = null;
+    if(Number(localStorage.getItem('providerId')) == 0){
+      this.serchItem.providerId = null;
+    }else if(Number(localStorage.getItem('providerId')) !== 0){
+      this.serchItem.providerId = Number(localStorage.getItem('providerId'));
+    }
+    this.serchItem.pageNumber = 1;
+
+    this.nextCount = 1;
+
+    console.log(this.serchItem);
+  
+    this.getAllItems();
   }
 
   displayedColumns: string[] = [
-    'type',
     'name',
     'price',
     'cover_image',
@@ -48,8 +65,8 @@ export class ItemsComponent implements OnInit {
   ];
   dataSource = ELEMENT_DATA;
 
-  getAllItems(value) {
-    this.ItemService.getAllItemList(value).subscribe((res) => {
+  getAllItems() {
+    this.ItemService.getAllItemList(this.serchItem).subscribe((res) => {
       console.log(res);
       this.ELEMENT_DATA = res.data;
       this.dataSource = this.ELEMENT_DATA;
@@ -63,12 +80,13 @@ export class ItemsComponent implements OnInit {
 
     i--;
 
-    if (this.nextCount != 1) {
-      this.nextCount += i;
+    if (this.serchItem.pageNumber != 1) {
+      this.serchItem.pageNumber += i;
       // console.log(this.nextCount);
+      this.nextCount += i;
     }
 
-    this.ItemService.getAllItemList(this.nextCount).subscribe((res) => {
+    this.ItemService.getAllItemList(this.serchItem).subscribe((res) => {
       console.log(res);
       this.ELEMENT_DATA = res.data;
       this.dataSource = this.ELEMENT_DATA;
@@ -82,10 +100,12 @@ export class ItemsComponent implements OnInit {
 
     i++;
 
-    this.nextCount += i;
+    this.serchItem.pageNumber += i;
     // console.log(this.nextCount);
 
-    this.ItemService.getAllItemList(this.nextCount).subscribe((res) => {
+    this.nextCount += i;
+
+    this.ItemService.getAllItemList(this.serchItem).subscribe((res) => {
       console.log(res);
       this.ELEMENT_DATA = res.data;
       this.dataSource = this.ELEMENT_DATA;
@@ -103,7 +123,7 @@ export class ItemsComponent implements OnInit {
   deleteItem() {
     console.log(this.deleteElement.itemId);
     this.ItemService.deleteItemById(this.deleteElement.itemId).subscribe((res) => {
-      this.getAllItems(this.nextCount);
+      this.getAllItems();
     });
   }
 
